@@ -15,10 +15,9 @@ class EventController extends Controller
     }
 
     public function show(Event $id){
-    	$tags = $id->tags;
-        $data = ['data' => $id, $tags];
-
-    	return response()->json($data);
+    	$tags = $id->tags->pluck('id');
+        
+    	return response()->json($tags);
     }
 
     public function store(Request $request){

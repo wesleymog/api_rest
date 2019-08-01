@@ -38,3 +38,4 @@ Route::prefix('events')->group(function (){
 	Route::put('/{id}', 'EventController@update')->name('update_event');
 	Route::delete('/{id}', 'EventController@delete')->name('delete_event');
 });
+Route::get('home/{id}', 'UserController@home'); //retorna a home com os eventos à ver com as tags

@@ -12,7 +12,7 @@ class Event extends Model
 
 	public function tags(){
     	
-    	return $this->hasMany('App\Tag', 'id_tag', 'id');
+    	return $this->belongsToMany('App\Tag');
     }
 
 }

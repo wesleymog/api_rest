@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Tag;
+use Event;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -16,10 +18,22 @@ class UserController extends Controller
     	return response()->json($data);
     }
 
-    public function show(User $id){
-    	$data = ['data' => $id];
-    	
+    public function home(User $id){
+        $tags = $id->tags->pluck("id");
+        $results = DB::table('event_tag')->where('tag_id', $tags)->pluck("event_id");
+        $events = [];
+        foreach($results as $result){
+            $result_temp = DB::table('events')->where('id', $result)->get();
+            //$result_temp = Event::find($result);
+            array_push($events, $result_temp);
+        }
+    	$data = ["data" => $events];
     	return response()->json($data);
+    }
+
+    public function show(User $id){
+        $data = ['data' => $id];
+        return response()->json($data);
     }
 
     public function store(Request $request){
@@ -27,7 +41,14 @@ class UserController extends Controller
         $UserData['password'] = Hash::make($request['password']);
     	$user = new User;
     	$user->create($UserData);
-    	
+    	//Tratamento das Tags
+        if($tags = explode(",", $request->tags)){
+            foreach ($tags as $tag) {
+                if($tag_component = Tag::find($tag)){
+                    $tag_component->users()->attach($user);
+                }
+            }   
+        }
     	return response()->json(['msg' => 'Usuário cadastrada com sucesso!'], 201);
 
     }
