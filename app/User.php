@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
 class User extends Authenticatable
 {
     use Notifiable;
@@ -41,4 +40,25 @@ class User extends Authenticatable
         return $this->belongsToMany(Tag::class);
     }
 
+     public function createUser($request){
+
+        $this->name = $request->name;
+        $this->email = $request->email;
+        $this->password = $request->password;
+        $this->admission = $request->admission;
+        $this->occupation = $request->occupation;
+        $this->sector = $request->sector;
+        $this->institute = $request->institute;
+        $this->first_access = $request->first_access;
+        $this->save();
+
+        //Tratamento das Tags
+        if($tags = explode(",", $request->tags)){
+            foreach ($tags as $tag) {
+                if($tag_component = Tag::find($tag)){
+                    $tag_component->users()->attach($this);
+                }
+            }   
+        }
+    }
 }
