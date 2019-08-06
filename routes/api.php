@@ -39,3 +39,8 @@ Route::prefix('events')->group(function (){
 	Route::delete('/{id}', 'EventController@delete')->name('delete_event');
 });
 Route::get('home/{id}', 'UserController@home'); //retorna a home com os eventos à ver com as tags
+
+
+Route::prefix('participation')->group(function (){
+	Route::post('/', 'ParticipationController@confirmation')->name('confirmation_participation');
+});
