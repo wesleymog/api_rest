@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('sector')->nullable();
             $table->string('institute')->nullable();
             $table->string('profile_picture')->nullable();
-            $table->double('wallet')->nullable();
+            $table->double('wallet')->default(0)->nullable();
             $table->boolean('first_access')->default(0);
             $table->rememberToken();
             $table->timestamps();

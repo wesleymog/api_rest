@@ -48,7 +48,7 @@ class User extends Authenticatable
     }
 
     public function alterWallet($value){
-        $this->wallet += $request->value;
+        $this->wallet += $value;
 
         $this->save();
     }
