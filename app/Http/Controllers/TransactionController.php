@@ -11,9 +11,8 @@ class TransactionController extends Controller
 {
     public function getAllMyTransactions($id){
 
-        $myTransactions = DB::table('transactions')->where([
-            ['user_id', '=', $id]
-        ])->get();
+        $user = User::find($id);
+        $myTransactions = $user->transactions();
     	$data = ['data' => $myTransactions];
         
         

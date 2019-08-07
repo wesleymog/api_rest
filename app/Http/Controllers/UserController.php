@@ -28,7 +28,6 @@ class UserController extends Controller
         $results = DB::table('event_tag')->where('tag_id', $tags)->pluck("event_id");
         $events = [];
         foreach($results as $result){
-            //$result_temp = DB::table('events')->where('id', $result)->get();
             $result_temp = Event::find($result);
             array_push($events, $result_temp);
         }
@@ -37,7 +36,9 @@ class UserController extends Controller
     }
 
     public function show(User $id){
-        $data = ['data' => $id];
+        $tags = $id->tags;
+
+        $data = ['data' => ['user' => $id]];
         return response()->json($data);
     }
 
