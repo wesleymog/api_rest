@@ -44,3 +44,8 @@ Route::get('home/{id}', 'UserController@home'); //retorna a home com os eventos 
 Route::prefix('participation')->group(function (){
 	Route::post('/', 'ParticipationController@confirmation')->name('confirmation_participation');
 });
+
+Route::prefix('transaction')->group(function (){
+	Route::post('/', 'TransactionController@store')->name('add_transaction');
+	Route::get('/{id}', 'TransactionController@getAllMyTransactions')->name('get_users_transactions');
+});

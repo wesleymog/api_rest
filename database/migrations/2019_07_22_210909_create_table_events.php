@@ -21,6 +21,7 @@ class CreateTableEvents extends Migration
             $table->datetime('datetime');
             $table->string('location');
             $table->text('description');
+            $table->string('img')->nullable();
             $table->timestamps();
         });
     }
