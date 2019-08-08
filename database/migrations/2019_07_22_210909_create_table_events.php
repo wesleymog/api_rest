@@ -18,7 +18,8 @@ class CreateTableEvents extends Migration
             $table->integer('type');
             $table->string('title');
             $table->string('code');
-            $table->datetime('datetime');
+            $table->datetime('start_time');
+            $table->datetime('end_time');
             $table->string('location');
             $table->text('description');
             $table->string('img')->nullable();
