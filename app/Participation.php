@@ -13,7 +13,15 @@ class Participation extends Model
 
     public function confirmParticipation(){
         $this->confirm_status = TRUE;
+        dd($this);
         $this->save;
+    }
+    
+    public function rateParticipation($request){
+        $this->status = $request->status;
+        $this->rate = $request->rate;
+            $this->save;
+        
     }
 
     public function createParticipation($request){
@@ -33,8 +41,12 @@ class Participation extends Model
     public function updateParticipation($request){
         
         $this->rate = $request->rate;
-        $this->confirm_status = $request->confirm_status;
-        $this->interest_status = $request->interest_status;
+        if($request->confirm_status){
+            $this->confirm_status = $request->confirm_status;
+        }
+        if($request->interest_status){
+            $this->interest_status = $request->interest_status;
+        }
         $this->status = $request->status;
         $this->save();
     }

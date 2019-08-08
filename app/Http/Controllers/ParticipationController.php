@@ -32,8 +32,22 @@ class ParticipationController extends Controller
 
             return response()->json(['msg' => 'Confirmamos sua participação no evento!'], 201);
         }
-        
-    	
 
+    }
+    public function rating(Request $request){
+        $participation = DB::table('participations')->where('user_id', $request->user_id)->where('event_id', $request->event_id)->first();
+        if($participation){
+            if($request->status == true){
+                $participation = Participation::find($participation->id);
+                $participation->updateParticipation($request);
+                return response()->json(['msg' => 'Obrigado por sua avaliação', 'participation'=> $participation], 201);
+            }elseif ($request->status == false) {
+                $participation = Participation::find($participation->id);
+                $participation->updateParticipation($request);
+                return response()->json(['msg' => 'Que pena que você não foi ao evento, haverá uma próxima!', 'participation'=> $participation], 201);            
+            }
+        }else{
+            return response()->json(['msg' => 'Participação no evento não encontrada'], 404);
+        }
     }
 }

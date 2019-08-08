@@ -22,7 +22,7 @@ class UserController extends Controller
         
         $user = User::find($id);
         
-        $tags = $user->tags->pluck("user");
+        $tags = $user->tags->pluck("id");
         //checando se não há nenhuma tag cadastrada
         if($tags->count() <= 0){
             $events =  Event::all();
@@ -39,13 +39,13 @@ class UserController extends Controller
         }
 
         //Checando se há alguma participação em evento está sem avaliação e sem confirmação de presença
-        $eventsWithoutRate = DB::table('participations')->where('user_id',$id)->where('rate',null)->where('status',null)->pluck('event_id');
+        $eventsWithoutRate= DB::table('participations')->where('user_id',$id)->where('rate',null)->where('status',null)->pluck('event_id');
         
         //pegando a data atual e passando para string
         $carbon =Carbon::now( 'America/Sao_Paulo')->toDateTimeString();
 
         //checando se há algum evento na lista de eventos que eu selecionei que já finalizaram
-        $eventsForPopup = DB::table('events')->whereIn('id', $eventsWithoutRate)->where('end_time','<',$carbon)->get();
+        $eventsForPopup = DB::table('events')->whereIn('id',$eventsWithoutRate)->where('end_time','<',$carbon)->get();
         
     	$data = ["data" => ["eventsForHome" => $events, "eventsForPopUp" => $eventsForPopup]];
     	return response()->json($data);
