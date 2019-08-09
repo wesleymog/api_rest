@@ -14,5 +14,4 @@ class Event extends Model
     	
     	return $this->belongsToMany('App\Tag');
     }
-
 }

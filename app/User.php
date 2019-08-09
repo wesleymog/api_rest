@@ -15,10 +15,18 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 
-        'admission', 'occupation', 'sector', 
-        'institute', 'first_access','img'
-        ,'wallet',
+        'name',
+        'birthday', 
+        'email', 
+        'password', 
+        'admission', 
+        'position', 
+        'sector', 
+        'education',
+        'university', 
+        'first_access',
+        'place_of_birth',
+        'wallet',
     ];
     
     /**
@@ -56,13 +64,17 @@ class User extends Authenticatable
      public function createUser($request){
 
         $this->name = $request->name;
+        $this->birthday = $request->birthday;
         $this->email = $request->email;
         $this->password = $request->password;
         $this->admission = $request->admission;
-        $this->occupation = $request->occupation;
+        $this->position = $request->position;
         $this->sector = $request->sector;
-        $this->institute = $request->institute;
+        $this->education = $request->education;
+        $this->university = $request->university;
+        $this->place_of_birth = $request->place_of_birth;
         $this->first_access = $request->first_access;
+        
         $this->save();
 
         //Tratamento das Tags
