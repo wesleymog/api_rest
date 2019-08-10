@@ -37,17 +37,20 @@ class UserController extends Controller
             $result_temp = Event::find($result);
             array_push($events, $result_temp);
         }
+        //pegando a data atual e passando para string
+        $carbon =Carbon::now( 'America/Sao_Paulo')->toDateTimeString();
+
+        //Pegando os eventos confirmados
+        $eventsConfirmed = DB::table('participations')->where('user_id', $id)->where('confirm_status', true)->pluck('id');
 
         //Checando se há alguma participação em evento está sem avaliação e sem confirmação de presença
         $eventsWithoutRate= DB::table('participations')->where('user_id',$id)->where('rate',null)->where('status',null)->pluck('event_id');
         
-        //pegando a data atual e passando para string
-        $carbon =Carbon::now( 'America/Sao_Paulo')->toDateTimeString();
-
+        
         //checando se há algum evento na lista de eventos que eu selecionei que já finalizaram
         $eventsForPopup = DB::table('events')->whereIn('id',$eventsWithoutRate)->where('end_time','<',$carbon)->get();
         
-    	$data = ["data" => ["eventsForHome" => $events, "eventsForPopUp" => $eventsForPopup]];
+    	$data = ["data" => ["eventsForHome" => $events, "eventsForPopUp" => $eventsForPopup, "eventsconfirmed"=> $eventsConfirmed]];
     	return response()->json($data);
     }
 
