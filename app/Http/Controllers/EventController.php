@@ -21,18 +21,26 @@ class EventController extends Controller
     }
 
     public function store(Request $request){
-    	$EventData = $request->all();
-    	$event = Event::create($EventData);    
-    	//Tratamento das Tags
-        if($tags = explode(",", $request->tags)){
-            foreach ($tags as $tag) {
-                if($tag_component = Tag::find($tag)){
-                    $tag_component->events()->attach($event);
-                }
-            }   
+        try {
+            $EventData = $request->all();
+            $event = Event::create($EventData);    
+            //Tratamento das Tags
+            if($tags = explode(",", $request->tags)){
+                foreach ($tags as $tag) {
+                    if($tag_component = Tag::find($tag)){
+                        $tag_component->events()->attach($event);
+                    }
+                }   
+            }
+    	    return response()->json(['msg' => 'Evento cadastrado com sucesso!'], 201);
+
         }
+
+        catch (exception $e) {
+            return response()->json(['error' => $e], 500);
+        }
+    	
           
-    	return response()->json(['msg' => 'Evento cadastrado com sucesso!'], 201);
 
     }
 
