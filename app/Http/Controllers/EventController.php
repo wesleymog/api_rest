@@ -14,7 +14,9 @@ class EventController extends Controller
     	return response()->json($data);
     }
 
-    public function show(Event $id){
+    public function show( $id){
+        $id = Event::find($id);
+        if(! $id) return response()->json([ 'msg' =>    'O evento não foi encontrado'], 404);
     	$tags = $id->tags->pluck('id');
         
     	return response()->json($tags);
@@ -37,7 +39,7 @@ class EventController extends Controller
         }
 
         catch (exception $e) {
-            return response()->json(['error' => $e], 500);
+            return response()->json(['error' => $e], 400);
         }
     	
           
