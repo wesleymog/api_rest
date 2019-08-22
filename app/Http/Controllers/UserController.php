@@ -31,12 +31,8 @@ class UserController extends Controller
         }
 
         //Pegando os eventos de acordo com a tag
-        $results = DB::table('event_tag')->where('tag_id', $tags)->pluck("event_id");
-        $events = [];
-        foreach($results as $result){
-            $result_temp = Event::find($result);
-            array_push($events, $result_temp);
-        }
+        $events = DB::table('event_tag')->whereIn('tag_id', $tags)->pluck("event_id");
+        $events = Event::findMany($events);
         //pegando a data atual e passando para string
         $carbon =Carbon::now( 'America/Sao_Paulo')->toDateTimeString();
 
