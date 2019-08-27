@@ -30,12 +30,13 @@ class UserController extends Controller
             return response()->json($data);
         }
 
-        //Pegando os eventos de acordo com a tag
-        $events = DB::table('event_tag')->whereIn('tag_id', $tags)->pluck("event_id");
-        $events = Event::findMany($events);
         //pegando a data atual e passando para string
         $carbon =Carbon::now( 'America/Sao_Paulo')->toDateTimeString();
 
+        //Pegando os eventos de acordo com a tag
+        $events = DB::table('event_tag')->whereIn('tag_id', $tags)->pluck("event_id");
+        $events = Event::findMany($events)->where('end_time','>',$carbon);
+        
         //Pegando os eventos confirmados
         $eventsConfirmed = DB::table('participations')->where('user_id', $id)->where('confirm_status', true)->pluck('id');
 
