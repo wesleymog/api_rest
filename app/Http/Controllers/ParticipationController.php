@@ -51,3 +51,47 @@ class ParticipationController extends Controller
         }
     }
 }
+
+//Documentação da API
+
+
+/**
+ * @OA\Tag(
+ *     name="participation",
+ *     description="Everything about your participations",
+ * )
+ */
+
+ /**
+ * @OA\Post(
+ *      path="/participation",
+ *      operationId="confirmation_participation",
+ *      tags={"participation"},
+ *      summary="Confirm your participation",
+ *      description="Confirm a participation of an user",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *     )
+ *
+ * Return the participation of the user
+ */
+   /**
+ * @OA\Post(
+ *      path="/participation/rate",
+ *      operationId="rate_participation",
+ *      tags={"participation"},
+ *      summary="Rate your participation in an event",
+ *      description="Returns your rate in the event",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       
+ *     )
+ *
+ * Rate your participation in an event
+ */

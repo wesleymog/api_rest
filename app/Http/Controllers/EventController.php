@@ -82,3 +82,8 @@ class EventController extends Controller
 
     }
 }
+
+
+
+// Documentação API
+

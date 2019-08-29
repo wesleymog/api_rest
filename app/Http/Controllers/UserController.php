@@ -101,3 +101,27 @@ class UserController extends Controller
 
     }
 }
+
+
+/**
+ * @OA\Tag(
+ *     name="home",
+ *     description="Home",
+ * )
+ */
+
+ /**
+ * @OA\Get(
+ *      path="/home/{id}",
+ *      operationId="home",
+ *      tags={"home"},
+ *      summary="Home",
+ *      description="Home",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *     )
+ *
+ */
