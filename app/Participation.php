@@ -41,7 +41,7 @@ class Participation extends Model
     public function updateParticipation($request){
         
         $this->rate = $request->rate;
-        if($request->confirm_status){
+        if($request->confirm_status == 0 || $request->confirm_status == 1){
             $this->confirm_status = $request->confirm_status;
         }
         if($request->interest_status){
