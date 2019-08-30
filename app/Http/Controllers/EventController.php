@@ -56,7 +56,7 @@ class EventController extends Controller
         if($tags = explode(",", $request->tags)){
             foreach ($tags as $tag) {
                 if($tag_component = Tag::find($tag)){
-                    $tag_component->event()->attach($event);
+                    $tag_component->events()->attach($event);
                 }
             }   
         }
