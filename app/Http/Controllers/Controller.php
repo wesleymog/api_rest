@@ -347,7 +347,19 @@ class Controller extends BaseController
  *
  * Return a message of sucess
  */
-
+/* 
+    paths:
+      /events/{id}:
+        get:
+          parameters:
+            - in: path
+              name: id   # Note the name is the same as in the path
+              required: true
+              schema:
+                type: integer
+                minimum: 1
+              description: The user ID
+*/
 
 
 
