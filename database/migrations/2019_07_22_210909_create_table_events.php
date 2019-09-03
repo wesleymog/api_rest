@@ -23,6 +23,13 @@ class CreateTableEvents extends Migration
             $table->string('location');
             $table->text('description');
             $table->string('img')->nullable();
+            $table->double('value');
+            $table->bigInteger('user_id')->unsigned();
+            
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

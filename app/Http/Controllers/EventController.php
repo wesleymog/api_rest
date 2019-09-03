@@ -23,26 +23,9 @@ class EventController extends Controller
     }
 
     public function store(Request $request){
-        try {
-            $EventData = $request->all();
-            $event = Event::create($EventData);    
-            //Tratamento das Tags
-            if($tags = explode(",", $request->tags)){
-                foreach ($tags as $tag) {
-                    if($tag_component = Tag::find($tag)){
-                        $tag_component->events()->attach($event);
-                    }
-                }   
-            }
-    	    return response()->json(['msg' => 'Evento cadastrado com sucesso!'], 201);
-
-        }
-
-        catch (exception $e) {
-            return response()->json(['error' => $e], 400);
-        }
-    	
-          
+            $event = new Event;
+            $event->createEvent($request);
+    	    return response()->json(['msg' => 'Evento cadastrado com sucesso!'], 201);          
 
     }
 
@@ -50,17 +33,7 @@ class EventController extends Controller
         $EventData = $request->all();
         $event = Event::find($id);
         if(! $event) return response()->json(['msg' => 'Evento não encontrado'], 404);
-        $event->update($EventData);
-        
-        //Tratamento das Tags
-        if($tags = explode(",", $request->tags)){
-            foreach ($tags as $tag) {
-                if($tag_component = Tag::find($tag)){
-                    $tag_component->events()->attach($event);
-                }
-            }   
-        }
-          
+        $event->updateEvent($request);
 
         return response()->json(['msg' => 'Evento Atualizado com sucesso!'], 201);
 
