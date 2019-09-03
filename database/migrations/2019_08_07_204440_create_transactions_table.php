@@ -18,6 +18,8 @@ class CreateTransactionsTable extends Migration
             $table->string('description');
             $table->double('value');
             $table->string('type');
+            $table->string('code')->unique();
+            $table->boolean('confirm_status')->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
 

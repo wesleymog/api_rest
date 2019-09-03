@@ -12,11 +12,11 @@ class TransactionController extends Controller
     public function getAllMyTransactions($id){
 
         $user = User::find($id);
-        $myTransactions = $user->transactions();
+        $myTransactions = $user->transactions()->get();
     	$data = ['data' => $myTransactions];
         
         
-    	return response()->json($data);
+    	return response()->json($data, 200);
     }
 
     public function store(Request $request){
