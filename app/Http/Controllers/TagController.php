@@ -53,3 +53,119 @@ class TagController extends Controller
 
     }
 }
+//Api Documentation
+/**
+ * @OA\Tag(
+ *     name="tags",
+ *     description="Everything about your tags",
+ *     @OA\ExternalDocumentation(
+ *         description="Find out more",
+ *         url="http://swagger.io"
+ *     )
+ * )
+ */
+
+ /**
+ * @OA\Get(
+ *      path="/tags",
+ *      operationId="gettags",
+ *      tags={"tags"},
+ *      summary="Get list of tags",
+ *      description="Returns list of tags",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ * Returns list of tags
+ */
+   /**
+ * @OA\Put(
+ *      path="/tags/{id}",
+ *      operationId="update_tag",
+ *      tags={"tags"},
+ *      summary="Edit an tag",
+ *      description="Returns list of tags",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       
+ *     )
+ *
+ * Return an tag Edited
+ */
+   /**
+ * @OA\Get(
+ *      path="/tags/{id}",
+ *      operationId="single_tag",
+ *      tags={"tags"},
+ *      summary="Get an tag",
+ *      description="Returns list of tags",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       
+ *     )
+ *
+ * Return an tag
+ */
+
+ /**
+ * @OA\Post(
+ *      path="/tags",
+ *      operationId="add_tag",
+ *      tags={"tags"},
+ *      summary="Add an tag",
+ *      description="Returns list of tags",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ * Returns list of tags
+ */
+
+ /**
+ * @OA\Delete(
+ *      path="/tags/{id}",
+ *      operationId="delete_tag",
+ *      tags={"tags"},
+ *      summary="Delete an tag",
+ *      description="Returns list of tags",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       
+ *     )
+ *
+ * Return a message of sucess
+ */
+/* 
+    paths:
+      /events/{id}:
+        get:
+          parameters:
+            - in: path
+              name: id   # Note the name is the same as in the path
+              required: true
+              schema:
+                type: integer
+                minimum: 1
+              description: The user ID
+*/

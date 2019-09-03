@@ -87,3 +87,105 @@ class EventController extends Controller
 
 // Documentação API
 
+/**
+ * @OA\Tag(
+ *     name="Events",
+ *     description="Everything about your Events",
+ *     @OA\ExternalDocumentation(
+ *         description="Find out more",
+ *         url="http://swagger.io"
+ *     )
+ * )
+ */
+
+ /**
+ * @OA\Get(
+ *      path="/events",
+ *      operationId="getEvents",
+ *      tags={"Events"},
+ *      summary="Get list of Events",
+ *      description="Returns list of Evennts",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ * Returns list of Events
+ */
+   /**
+ * @OA\Put(
+ *      path="/events/{id}",
+ *      operationId="update_event",
+ *      tags={"Events"},
+ *      summary="Edit an Event",
+ *      description="Returns list of Events",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       
+ *     )
+ *
+ * Return an Event Edited
+ */
+   /**
+ * @OA\Get(
+ *      path="/events/{id}",
+ *      operationId="single_event",
+ *      tags={"Events"},
+ *      summary="Get an Event",
+ *      description="Returns list of Events",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       
+ *     )
+ *
+ * Return an Event
+ */
+
+ /**
+ * @OA\Post(
+ *      path="/events",
+ *      operationId="add_event",
+ *      tags={"Events"},
+ *      summary="Add an Event",
+ *      description="Returns list of Events",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ * Returns list of Events
+ */
+
+ /**
+ * @OA\Delete(
+ *      path="/events/{id}",
+ *      operationId="delete_event",
+ *      tags={"Events"},
+ *      summary="Delete an Event",
+ *      description="Returns list of Events",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       
+ *     )
+ *
+ * Return a message of sucess
+ */

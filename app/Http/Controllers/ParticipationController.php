@@ -74,6 +74,7 @@ class ParticipationController extends Controller
  *          description="successful operation"
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
+ *       
  *     )
  *
  * Return the participation of the user
@@ -94,4 +95,22 @@ class ParticipationController extends Controller
  *     )
  *
  * Rate your participation in an event
+ */
+
+/*paths:
+/participation:
+  post:
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user_id:         
+                type: integer
+              event_id:    
+                type: integer
+              confirmation_status:         
+                  type: integer
  */

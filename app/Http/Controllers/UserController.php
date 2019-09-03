@@ -102,6 +102,112 @@ class UserController extends Controller
     }
 }
 
+//Api Documentation
+
+/**
+ * @OA\Tag(
+ *     name="users",
+ *     description="Everything about your users",
+ *     @OA\ExternalDocumentation(
+ *         description="Find out more",
+ *         url="http://swagger.io"
+ *     )
+ * )
+ */
+
+
+ /**
+ * @OA\Get(
+ *      path="/users",
+ *      operationId="getusers",
+ *      tags={"users"},
+ *      summary="Get list of users",
+ *      description="Returns list of Users",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ * Returns list of users
+ */
+   /**
+ * @OA\Put(
+ *      path="/users/{id}",
+ *      operationId="update_user",
+ *      tags={"users"},
+ *      summary="Edit an user",
+ *      description="Returns list of users",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       
+ *     )
+ *
+ * Return an user Edited
+ */
+   /**
+ * @OA\Get(
+ *      path="/users/{id}",
+ *      operationId="single_user",
+ *      tags={"users"},
+ *      summary="Get an user",
+ *      description="Returns list of users",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       
+ *     )
+ *
+ * Return an user
+ */
+
+ /**
+ * @OA\Post(
+ *      path="/users",
+ *      operationId="add_user",
+ *      tags={"users"},
+ *      summary="Add an user",
+ *      description="Returns list of users",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ * Returns list of users
+ */
+
+ /**
+ * @OA\Delete(
+ *      path="/users/{id}",
+ *      operationId="delete_user",
+ *      tags={"users"},
+ *      summary="Delete an user",
+ *      description="Returns list of users",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       
+ *     )
+ *
+ * Return a message of sucess
+ */
+
 
 /**
  * @OA\Tag(
