@@ -25,7 +25,7 @@ class Event extends Model
         $this->location = $request->location;
         $this->description = $request->description;
         $this->img = $request->img;
-        $this->value = $request->value;
+        $this->value = $request->value ? $request->value: 10;
         $this->user_id = $request->user_id;
 
         $this->save();
@@ -49,7 +49,7 @@ class Event extends Model
         $this->location = $request->location;
         $this->description = $request->description;
         $this->img = $request->img;
-        $this->value = $request->value;
+        $this->value = $request->value ? $request->value: 10;
         $this->user_id = $request->user_id;
 
         $this->save();

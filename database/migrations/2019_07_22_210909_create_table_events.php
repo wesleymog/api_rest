@@ -23,7 +23,7 @@ class CreateTableEvents extends Migration
             $table->string('location');
             $table->text('description');
             $table->string('img')->nullable();
-            $table->double('value');
+            $table->double('value')->default(10);
             $table->bigInteger('user_id')->unsigned();
             
             $table->foreign('user_id')
