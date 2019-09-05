@@ -46,8 +46,8 @@ class Transaction extends Model
         $this->value = $event->value;
         $this->confirm_status = null;
         $this->code = Str::random(10);
-        $user = User::find($transaction->user_id);
-        $user->alterWallet($transaction->value);
+        $user = User::find($this->user_id);
+        $user->alterWallet($this->value);
         $this->save();
     
     }
