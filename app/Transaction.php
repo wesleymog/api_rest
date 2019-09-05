@@ -38,6 +38,20 @@ class Transaction extends Model
         $this->save();
     }
 
+    public function participationTransaction($participation){
+        $event = Event::find($participation->event_id);
+        $this->type = "Event";
+        $this->description = $event->title;
+        $this->user_id = $participation->user_id;
+        $this->value = $event->value;
+        $this->confirm_status = null;
+        $this->code = Str::random(10);
+        $user = User::find($transaction->user_id);
+        $user->alterWallet($transaction->value);
+        $this->save();
+    
+    }
+
     public function user(){
         return $this->belongsTo('App\User', 'foreign_key');
     }

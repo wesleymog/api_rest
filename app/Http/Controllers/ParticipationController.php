@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Participation;
+use App\Transaction;
 use Illuminate\Support\Facades\DB;
 
 class ParticipationController extends Controller
@@ -40,7 +41,13 @@ class ParticipationController extends Controller
             if($request->status == true){
                 $participation = Participation::find($participation->id);
                 $participation->updateParticipation($request);
-                return response()->json(['msg' => 'Obrigado por sua avaliação', 'participation'=> $participation], 201);
+
+                // Fazendo transação
+                $transaction = new Transaction;
+                $transaction->participationTransaction($participation);
+                
+
+                return response()->json(['msg' => 'Obrigado por sua avaliação', 'participation'=> $participation, 'transaction'=> $transaction], 201);
             }elseif ($request->status == false) {
                 $participation = Participation::find($participation->id);
                 $participation->updateParticipation($request);
