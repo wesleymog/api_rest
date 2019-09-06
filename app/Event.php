@@ -26,7 +26,7 @@ class Event extends Model
         $this->description = $request->description;
         $this->img = $request->img;
         $this->value = $request->value ? $request->value: 10;
-        $this->user_id = $request->user_id;
+        $this->user_id = 1;
 
         $this->save();
 
@@ -50,7 +50,7 @@ class Event extends Model
         $this->description = $request->description;
         $this->img = $request->img;
         $this->value = $request->value ? $request->value: 10;
-        $this->user_id = $request->user_id;
+        $this->user_id = 1;
 
         $this->save();
         if($tags = explode(",", $request->tags)){
