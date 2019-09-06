@@ -50,3 +50,11 @@ Route::prefix('transaction')->group(function (){
 	Route::post('/', 'TransactionController@store')->name('add_transaction');
 	Route::get('/{id}', 'TransactionController@getAllMyTransactions')->name('get_users_transactions');
 });
+
+Route::prefix('rewards')->group(function (){
+	Route::get('/', 'RewardController@index')->name('rewards');
+	Route::get('/{id}', 'RewardController@show')->name('single_reward');
+	Route::post('/', 'RewardController@store')->name('add_reward');
+	Route::put('/{id}', 'RewardController@update')->name('update_reward');
+	Route::delete('/{id}', 'RewardController@delete')->name('delete_reward');
+});
