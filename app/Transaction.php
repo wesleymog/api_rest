@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 class Transaction extends Model
 {
     protected $fillable = [
-        'type', 'description', 'user_id','value',
+        'type', 'description', 'user_id','value','code'
     ]; 
 
     public function createTransaction($request){
