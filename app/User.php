@@ -27,6 +27,7 @@ class User extends Authenticatable
         'first_access',
         'place_of_birth',
         'wallet',
+        'profile_picture',
     ];
     
     /**
@@ -59,6 +60,26 @@ class User extends Authenticatable
         $this->wallet += $value;
 
         $this->save();
+    }
+    public function responseCommunitybyTag(){
+        //Select user's tag
+        $tags = $this->tags;
+        //starting a new collection
+        $community = collect();
+
+        foreach ($tags as $tag) {
+
+            $users = collect();
+            //Creating a new tag with users
+            $users = $users->merge(['name'=>$tag->name,'users'=> $tag->users->pluck('id')]);
+            
+            $community = $community->push($users);
+        }
+        //dd($community->());
+        $community = $community->sortByDesc(function ($product, $key) {
+            return count($product['users']);
+        });
+        return $community->values()->all();
     }
 
      public function createUser($request){

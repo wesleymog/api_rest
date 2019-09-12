@@ -58,3 +58,7 @@ Route::prefix('rewards')->group(function (){
 	Route::put('/{id}', 'RewardController@update')->name('update_reward');
 	Route::delete('/{id}', 'RewardController@delete')->name('delete_reward');
 });
+
+Route::prefix('community')->group(function (){
+	Route::get('/', 'CommunityController@index')->name('comunnity');
+});
