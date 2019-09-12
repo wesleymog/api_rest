@@ -13,7 +13,6 @@ class Participation extends Model
 
     public function confirmParticipation(){
         $this->confirm_status = TRUE;
-        dd($this);
         $this->save;
     }
     
