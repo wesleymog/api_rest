@@ -20,7 +20,13 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
+        'birthday' => $faker->date,
         'email_verified_at' => now(),
+        'sector' =>'Supply Chain Managment',
+        'position' =>'Senior Analyst',
+        'education' =>'Business',
+        'place_of_birth' =>$faker->state,
+        'university' =>$faker->company,
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
     ];

@@ -23,5 +23,6 @@ class UsersTableSeeder extends Seeder
             'university' =>'UFRJ',
 
         ]);
+        factory(App\User::class, 10)->create();
     }
 }
