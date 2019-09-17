@@ -14,6 +14,16 @@ class Event extends Model
     	
     	return $this->belongsToMany('App\Tag');
     }
+    
+    public function participations(){
+    	
+    	return $this->hasMany('App\Participation');
+    }
+    
+    public function users_confirmed(){
+    	
+    	return $this->belongsToMany('App\User','participations');
+    }
 
     public function createEvent($request){
 

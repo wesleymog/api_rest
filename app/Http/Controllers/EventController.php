@@ -15,11 +15,11 @@ class EventController extends Controller
     }
 
     public function show( $id){
-        $id = Event::find($id);
-        if(! $id) return response()->json([ 'msg' =>    'O evento não foi encontrado'], 404);
-    	$tags = $id->tags->pluck('id');
-        
-    	return response()->json($tags);
+        $event = Event::find($id);
+        if(! $event) return response()->json([ 'msg' =>    'O evento não foi encontrado'], 404);
+    	$event->tags;
+        $users = $event->users_confirmed;
+    	return response()->json($event);
     }
 
     public function store(Request $request){
