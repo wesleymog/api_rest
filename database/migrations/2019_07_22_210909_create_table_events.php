@@ -16,8 +16,9 @@ class CreateTableEvents extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('type');
+            $table->string('category')->default('teste');
             $table->string('title');
-            $table->string('code');
+            $table->string('code')->unique();
             $table->datetime('start_time');
             $table->datetime('end_time');
             $table->string('location');

@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
 	 protected $fillable = [
-        'type', 'title', 'code','start_time','end_time', 'location', 'description','img','value','user_id'
+        'type','category', 'title', 'code','start_time'
+        ,'end_time', 'location', 'description','img','value','user_id'
     ];
 
 	public function tags(){
@@ -28,6 +29,7 @@ class Event extends Model
     public function createEvent($request){
 
         $this->type = $request->type;
+        $this->category = $request->category;
         $this->title = $request->title;
         $this->code = $request->code;
         $this->start_time = $request->start_time;
@@ -52,6 +54,7 @@ class Event extends Model
     public function updateEvent($request){
 
         $this->type = $request->type;
+        $this->category = $request->category;
         $this->title = $request->title;
         $this->code = $request->code;
         $this->start_time = $request->start_time;
