@@ -62,3 +62,8 @@ Route::prefix('rewards')->group(function (){
 Route::prefix('community')->group(function (){
 	Route::get('/', 'CommunityController@index')->name('comunnity');
 });
+
+
+Route::prefix('journey')->group(function (){
+	Route::get('/', 'UserController@journey')->name('journey');
+});

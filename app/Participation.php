@@ -19,7 +19,7 @@ class Participation extends Model
     public function rateParticipation($request){
         $this->status = $request->status;
         $this->rate = $request->rate;
-            $this->save;
+        $this->save;
         
     }
 

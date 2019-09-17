@@ -61,6 +61,12 @@ class User extends Authenticatable
 
         $this->save();
     }
+
+    public function myJourney()
+    {
+        return $this->belongsToMany('App\Event', 'participations')->wherePivot('status', 1);
+    }
+
     public function responseCommunitybyTag(){
         //Select user's tag
         $tags = $this->tags;
