@@ -21,9 +21,15 @@ class TransactionController extends Controller
 
     public function store(Request $request){
         $transaction = new Transaction;
+        $user = User::find($request->user_id);
+        
+        if(!$user) return response()->json(['msg' => 'User não encontrado'],401);
+        
+        $transactions_status = $user->alterWallet($request->value);
+        
+        if(!$transactions_status) return response()->json(['msg' => 'Não há saldo suficiente'],401);
+        
         $transaction->createTransaction($request);
-        $user = User::find($transaction->user_id);
-        $user->alterWallet($transaction->value);
 
         return response()->json(['msg' => 'Transação realizada com sucesso', 'data' => $transaction], 201);
     }

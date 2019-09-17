@@ -21,6 +21,7 @@ class UsersTableSeeder extends Seeder
             'education' =>'Business',
             'place_of_birth' =>'Rio de Janeiro',
             'university' =>'UFRJ',
+            'wallet' => 1500,
 
         ]);
         factory(App\User::class, 10)->create();

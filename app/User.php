@@ -57,9 +57,13 @@ class User extends Authenticatable
     }
 
     public function alterWallet($value){
-        $this->wallet += $value;
-
-        $this->save();
+        if($this->wallet + $value >= 0){
+            $this->wallet += $value;
+            $this->save();
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function myJourney()
