@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -69,6 +71,14 @@ class User extends Authenticatable
     public function myJourney()
     {
         return $this->belongsToMany('App\Event', 'participations')->wherePivot('status', 1);
+    }
+    public function eventsConfirmed(){
+        return $this->belongsToMany('App\Event', 'participations')->wherePivot('confirm_status', 1)->wherePivot('status',NULL);
+    }
+
+    public function participationsWithoutRate()
+    {
+        return $this->belongsToMany('App\Event', 'participations')->wherePivot('rate',null)->wherePivot('status',null);
     }
 
     public function responseCommunitybyTag(){

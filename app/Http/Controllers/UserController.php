@@ -94,11 +94,10 @@ class UserController extends Controller
         $events = Event::findMany($events)->where('end_time','>',$carbon);
         
         //Pegando os eventos confirmados
-        $eventsConfirmed = DB::table('participations')->where('user_id', $id)->where('confirm_status', true)->pluck('event_id');
+        $eventsConfirmed = $user->eventsConfirmed->pluck('id');
 
         //Checando se há alguma participação em evento está sem avaliação e sem confirmação de presença
-        $eventsWithoutRate= DB::table('participations')->where('user_id',$id)->where('rate',null)->where('status',null)->pluck('event_id');
-        
+        $eventsWithoutRate= $user->participationsWithoutRate->pluck('id');
         
         //checando se há algum evento na lista de eventos que eu selecionei que já finalizaram
         $eventsForPopup = DB::table('events')->whereIn('id',$eventsWithoutRate)->where('end_time','<',$carbon)->get();
