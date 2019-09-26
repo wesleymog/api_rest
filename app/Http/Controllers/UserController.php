@@ -24,13 +24,13 @@ class UserController extends Controller
         $data = ['data' => ['user' => $id]];
         return response()->json($data);
     }
-
+/* 
     public function store(Request $request){
         $user = new User;
         $user->createUser($request);
     	return response()->json(['msg' => 'Usuário cadastrada com sucesso!'], 201);
 
-    }
+    } */
 
     public function update(Request $request, $id){
         $UserData = $request->all();

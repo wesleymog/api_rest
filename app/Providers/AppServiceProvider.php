@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Passport\Passport;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,12 +13,16 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
     public function register()
     {
         //
         $this->app->register(\L5Swagger\L5SwaggerServiceProvider::class);
     }
 
+    protected $policies = [
+        'App\Model'=> 'App\Policies\ModelPolicy'
+    ];
     /**
      * Bootstrap any application services.
      *
@@ -24,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->registerPolicies();
+        Passport::routes();
     }
 }
