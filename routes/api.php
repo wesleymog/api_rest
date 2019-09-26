@@ -78,3 +78,5 @@ Route::prefix('community')->group(function (){
 Route::prefix('journey')->group(function (){
 	Route::get('/', 'UserController@journey')->name('journey');
 });
+
+Route::post('/getReward', 'TransactionController@getReward')->name('get_Reward');

@@ -18,7 +18,7 @@ class CreateRewardsTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('img');
-            $table->integer('stock');
+            $table->integer('stock')->default(500);
             $table->double('value');
             $table->text('guide')->nullable();
             $table->timestamps();

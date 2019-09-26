@@ -9,6 +9,10 @@ class Reward extends Model
     protected $fillable = [
         'title','description', 'img', 'stock', 'value', 'guide'
     ];
+    
+    public function users(){
+    	return $this->belongsToMany('App\User');
+    }
 
     public function createReward($request){
 
@@ -19,6 +23,12 @@ class Reward extends Model
         $this->value = $request->value;
         $this->guide = $request->guide;
 
+        $this->save();
+    }
+
+    public function CreateRewardUser(){
+        $this->users()->attach($this);
+        $this->stock -=1;
         $this->save();
     }
 
