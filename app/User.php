@@ -32,6 +32,7 @@ class User extends Authenticatable
         'place_of_birth',
         'wallet',
         'profile_picture',
+        'is_admin',
     ];
     
     /**
