@@ -80,3 +80,4 @@ Route::prefix('journey')->group(function (){
 });
 
 Route::post('/getReward', 'TransactionController@getReward')->name('get_Reward');
+Route::get('/getMyReward', 'TransactionController@getMyReward')->name('get_my_Reward');

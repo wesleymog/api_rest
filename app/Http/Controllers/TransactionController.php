@@ -45,7 +45,7 @@ class TransactionController extends Controller
         if(!$reward) return response()->json(['msg' => 'Reward não encontrado'],401);
         
         $reward->CreateRewardUser();
-        $transactions_status = $user->alterWallet($reward->value);
+        $transactions_status = $user->alterWallet(-$reward->value);
         
         if(!$transactions_status) return response()->json(['msg' => 'Não há saldo suficiente'],401);
         
@@ -53,14 +53,15 @@ class TransactionController extends Controller
         $request->description = $reward->title;
 
         $transaction->createTransaction($request);
-
-        $reward = Reward::find($request->reward_id);
-        if($reward){
-            $reward->CreateRewardUser();
-        }
         
         
         return response()->json(['msg' => 'Transação realizada com sucesso', 'data' => $transaction], 201);
+    }
+
+    public function getMyReward(Request $request){
+        $user = User::find(1);
+        //$user = User::auth();
+        return response()->json(["data"=>$user->rewards], 201);
     }
     
 }

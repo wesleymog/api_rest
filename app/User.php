@@ -57,6 +57,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Tag::class);
     }
 
+    public function rewards(){
+        return $this->belongsToMany(Reward::class);
+    }
+
     public function transactions(){
         return $this->hasMany(Transaction::class);
     }

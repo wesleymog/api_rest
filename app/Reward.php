@@ -27,7 +27,7 @@ class Reward extends Model
     }
 
     public function CreateRewardUser(){
-        $this->users()->attach($this);
+        $this->users()->attach($this, ['code'=>str_random(40)]);
         $this->stock -=1;
         $this->save();
     }
