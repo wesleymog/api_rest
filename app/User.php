@@ -91,20 +91,24 @@ class User extends Authenticatable
     }
 
     public function responseCommunitybyTag(){
-        //Select user's tag
-        $tags = $this->tags;
-        //starting a new collection
         $community = collect();
-
-        foreach ($tags as $tag) {
+            
+        foreach ($this->tags as $tag) {
 
             $users = collect();
-            //Creating a new tag with users
-            $users = $users->merge(['name'=>$tag->name,'users'=> $tag->users->pluck('id')]);
             
-            $community = $community->push($users);
+            //Pegando os usuários relacionados à uma tag específica
+            $user_by_tag = $tag->users()->where('user_id','!=',$this->id)->pluck('users.id');
+            
+            //Checando se há algum usuário nessa tag do usuário
+            if($user_by_tag->count() >0){
+                
+                $users = $users->merge(['name'=>$tag->name,'users'=> $user_by_tag]);
+            
+                $community = $community->push($users);
+            }
+            
         }
-        //dd($community->());
         $community = $community->sortByDesc(function ($product, $key) {
             return count($product['users']);
         });
