@@ -23,6 +23,17 @@ class UsersTableSeeder extends Seeder
             'university' =>'UFRJ',
             'wallet' => 1500,
 
+        ]
+        );
+        DB::table('users')->insert([
+            'name' => 'Admin',
+            'birthday' =>'1990-05-02',
+            'email' =>'admin@admin.com',
+            'password' => bcrypt('teste'),
+            'university' =>'UFRJ',
+            'wallet' => 1500,
+            'is_admin' => 1,
+
         ]);
         factory(App\User::class, 10)->create();
     }
