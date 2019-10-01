@@ -21,20 +21,40 @@ class ParticipationController extends Controller
         ])->first()){
             $participation = Participation::find($response->id);
             $participation->updateParticipation($request);
-            if($request->confirm_status == 0){
-                return response()->json(['msg' => 'Desconfirmamos sua participação no evento!'], 201);
-            }else{
-                return response()->json(['msg' => 'Confirmamos sua participação no evento!'], 201);
-            }
-
-        }else{
+             }else{
             $participation = new Participation;
             $participation->createParticipation($request);
 
-            return response()->json(['msg' => 'Confirmamos sua participação no evento!'], 201);
-        }
-
+            }
+            if($request->confirm_status == 0 && $request->confirm_status!= null) return response()->json(['msg' => 'Desconfirmamos sua participação no evento!'], 201);
+            if($request->confirm_status == 1) return response()->json(['msg' => 'Confirmamos sua participação no evento!'], 201);
+            if($request->interest_status == 0 && $request->interest_status!= null) return response()->json(['msg' => 'Desconfirmamos seu interesse no evento!'], 201);
+            if($request->interest_status == 1) return response()->json(['msg' => 'Confirmamos seu interesse no evento!'], 201);
+  
     }
+
+    public function interest(Request $request){
+        
+      // $user = Auth::id();
+      // $user = User::find($request->user);
+      // $event = Event::find($request->event);
+      if( $response = DB::table('participations')->where([
+          ['user_id', '=', $request->user_id],
+          ['event_id', '=', $request->event_id],
+      ])->first()){
+          $participation = Participation::find($response->id);
+          $participation->updateParticipation($request);
+           }else{
+          $participation = new Participation;
+          $participation->createParticipation($request);
+
+          }
+
+          if($request->interest_status == 0 && $request->interest_status!= null) return response()->json(['msg' => 'Desconfirmamos seu interesse no evento!'], 201);
+          if($request->interest_status == 1) return response()->json(['msg' => 'Confirmamos seu interesse no evento!'], 201);
+
+  }
+  
     public function rating(Request $request){
         $participation = DB::table('participations')->where('user_id', $request->user_id)->where('event_id', $request->event_id)->first();
         if($participation){
@@ -42,7 +62,7 @@ class ParticipationController extends Controller
                 $participation = Participation::find($participation->id);
                 $participation->updateParticipation($request);
 
-                // Fazendo transação
+                // Fazendo transação
                 $transaction = new Transaction;
                 $transaction->participationTransaction($participation);
                 

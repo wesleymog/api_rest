@@ -53,7 +53,9 @@ Route::get('home/{id}', 'UserController@home'); //retorna a home com os eventos 
 
 
 Route::prefix('participation')->group(function (){
-	Route::post('/', 'ParticipationController@confirmation')->name('confirmation_participation');
+	Route::post('/', 'ParticipationController@confirmation')->name('participation');
+	Route::post('/confirm', 'ParticipationController@confirmation')->name('confirmation_participation');
+	Route::post('/interest', 'ParticipationController@interest')->name('interest_participation');
 	Route::post('/rate', 'ParticipationController@rating')->name('rate_participation'); // 'rate', 'event_id' or 'status', 'event_id'
 });
 

@@ -15,7 +15,10 @@ class Participation extends Model
         $this->confirm_status = TRUE;
         $this->save;
     }
-    
+    public function interestParticipation(){
+        $this->interest_status = TRUE;
+        $this->save;    
+    }
     public function rateParticipation($request){
         $this->status = $request->status;
         $this->rate = $request->rate;
