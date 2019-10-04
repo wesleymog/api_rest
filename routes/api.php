@@ -49,7 +49,8 @@ Route::prefix('events')->group(function (){
 	Route::put('/{id}', 'EventController@update')->name('update_event');
 	Route::delete('/{id}', 'EventController@delete')->name('delete_event');
 });
-Route::get('home/{id}', 'UserController@home'); //retorna a home com os eventos à ver com as tags
+Route::get('home/{id}', 'HomeController@home'); //retorna a home com os eventos à ver com as tags
+Route::get('experiences/{filter}', 'HomeController@experiences'); //retorna a home com os eventos à ver com as tags
 
 
 Route::prefix('participation')->group(function (){

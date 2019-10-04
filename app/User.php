@@ -140,4 +140,14 @@ class User extends Authenticatable
             }   
         }
     }
+    public function eventsByMe()
+    {
+        return DB::table('events')->where('user_id', $this->id)->orderBy('start_time')->get();
+    }
+
+
+    public function eventsInteresed(){
+
+        return $this->belongsToMany('App\Event', 'participations')->wherePivot('interest_status', 1)->wherePivot('status',NULL);
+    }
 }
