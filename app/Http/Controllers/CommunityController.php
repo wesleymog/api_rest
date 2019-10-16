@@ -15,7 +15,7 @@ class CommunityController extends Controller
      */
     public function index()
     {
-        $user = User::find(1);
+        $user = Auth::user();
         $data = $user->responseCommunitybyTag();
         return response()->json($data, 200);
     }

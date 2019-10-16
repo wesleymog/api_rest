@@ -6,30 +6,30 @@ use Illuminate\Http\Request;
 use App\Transaction;
 use App\User;
 use App\Reward;
-use Illuminate\Support\Facades\DB;
+use Auth;
 
 class TransactionController extends Controller
 {
     public function getAllMyTransactions($id){
 
-        $user = User::find($id);
+        $user = Auth::user();
         $myTransactions = $user->transactions()->get();
     	$data = ['data' => $myTransactions];
-        
-        
+
+
     	return response()->json($data, 200);
     }
 
     public function store(Request $request){
         $transaction = new Transaction;
-        $user = User::find($request->user_id);
-        
+        $user = Auth::user();
+
         if(!$user) return response()->json(['msg' => 'User não encontrado'],401);
-        
+
         $transactions_status = $user->alterWallet($request->value);
-        
+
         if(!$transactions_status) return response()->json(['msg' => 'Não há saldo suficiente'],401);
-        
+
         $transaction->createTransaction($request);
 
         return response()->json(['msg' => 'Transação realizada com sucesso', 'data' => $transaction], 201);
@@ -37,24 +37,24 @@ class TransactionController extends Controller
 
     public function getReward(Request $request){
         $transaction = new Transaction;
-        $user = User::find($request->user_id);
-        
+        $user = Auth::user();
+
         if(!$user) return response()->json(['msg' => 'User não encontrado'],401);
-        
+
         $reward = Reward::find($request->reward_id);
         if(!$reward) return response()->json(['msg' => 'Reward não encontrado'],401);
-        
+
         $reward->CreateRewardUser();
         $transactions_status = $user->alterWallet(-$reward->value);
-        
+
         if(!$transactions_status) return response()->json(['msg' => 'Não há saldo suficiente'],401);
-        
+
         $request->value = $reward->value;
         $request->description = $reward->title;
 
         $transaction->createTransaction($request);
-        
-        
+
+
         return response()->json(['msg' => 'Transação realizada com sucesso', 'data' => $transaction], 201);
     }
 
@@ -63,7 +63,7 @@ class TransactionController extends Controller
         //$user = User::auth();
         return response()->json(["data"=>$user->rewards], 201);
     }
-    
+
 }
 
 /**
@@ -86,7 +86,7 @@ class TransactionController extends Controller
  *          description="successful operation"
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
- *       
+ *
  *     )
  *
  * Return user transactions
