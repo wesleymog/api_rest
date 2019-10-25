@@ -88,6 +88,9 @@ Route::group([
         Route::get('/', 'UserController@journey')->name('journey');
     });
 
+    Route::prefix('admin')->group(function (){
+        Route::get('/', 'AdminController@index')->name('admin_index');
+    });
     Route::prefix('myinitiatives')->group(function (){
         Route::get('/', 'UserController@myinitiatives')->name('myinitiatives');
     });
