@@ -5,11 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Tag;
-use App\Event;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Hash;
-
+use Auth;
 class UserController extends Controller
 {
     public function index(){
@@ -34,7 +30,7 @@ class UserController extends Controller
 
     public function update(Request $request, $id){
         $UserData = $request->all();
-        $user = User::find($id);
+        $user = Auth::user();
         if(! $user) return response()->json(['msg' => 'Usuario não encontrado'], 404);
         $user->update($UserData);
 
@@ -73,9 +69,15 @@ class UserController extends Controller
     }
 
     public function journey(){
-        $user = User::find(1);
+        $user = Auth::user();
         $journey = $user->myJourney;
         return response()->json($journey, 200);
+    }
+
+    public function myinitiatives(){
+        $user = Auth::user();
+        $myinitiatives = $user->myinitiatives();
+        return response()->json($myinitiatives, 200);
     }
 
 }

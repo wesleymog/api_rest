@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
+use App\Event;
 
 class User extends Authenticatable
 {
@@ -172,9 +173,16 @@ class User extends Authenticatable
             }
         }
     }
-    public function eventsByMe()
+    public function myinitiatives()
     {
-        return DB::table('events')->where('user_id', $this->id)->orderBy('start_time')->get();
+        $events = Event::where('user_id', $this->id)->orderBy('start_time', 'desc')->get();
+        $eventswithconfirmed = collect();
+        foreach ($events as $event) {
+            $event->users_confirmed;
+            $eventswithconfirmed = $eventswithconfirmed->push($event);
+        }
+        return $eventswithconfirmed;
+        //return DB::table('events')->where('user_id', $this->id)->orderBy('start_time', 'desc')->get();
     }
 
 

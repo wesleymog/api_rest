@@ -88,6 +88,9 @@ Route::group([
         Route::get('/', 'UserController@journey')->name('journey');
     });
 
+    Route::prefix('myinitiatives')->group(function (){
+        Route::get('/', 'UserController@myinitiatives')->name('myinitiatives');
+    });
     Route::post('/getReward', 'TransactionController@getReward')->name('get_Reward');
     Route::get('/getMyReward', 'TransactionController@getMyReward')->name('get_my_Reward');
 
