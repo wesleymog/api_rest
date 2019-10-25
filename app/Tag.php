@@ -17,6 +17,27 @@ class Tag extends Model
     public function events(){
         return $this->belongsToMany(Event::class);
     }
+    public function create($request){
+        $this->name = $request->name;
+        $this->category = $request->category;
+        $this->save();
+        return $this;
+    }
+
+    public function createMassive($name){
+        $this->name = $name;
+        $this->category = "byuser";
+        $this->save();
+        return $this;
+    }
+
+
+    public function updateTag($request){
+        $this->name = $request->name;
+        $this->category = $request->category;
+        $this->save();
+        return $this;
+    }
 
     public function RelationshipTags($request, $object){
         if($tags = explode(",", $request->tags)){
@@ -24,7 +45,7 @@ class Tag extends Model
                 if($tag_component = Tag::find($tag)){
                     $tag_component->users()->attach($this);
                 }
-            }   
-        } 
+            }
+        }
     }
 }

@@ -35,8 +35,9 @@ Route::group([
         Route::get('/', 'TagController@index')->name('tags');
         Route::get('/{id}', 'TagController@show')->name('single_tag');
         Route::post('/', 'TagController@store')->name('add_tag');
-        Route::put('/{id}', 'TagController@update')->name('update_tag');
+        Route::putusers('/{id}', 'TagController@update')->name('update_tag');
         Route::delete('/{id}', 'TagController@delete')->name('delete_tag');
+        Route::post('/autocomplete', 'TagController@autocomplete')->name('autocomplete_tag');
     });
     Route::prefix('users')->group(function (){
         Route::get('/', 'UserController@index')->name('users');

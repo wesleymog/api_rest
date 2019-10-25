@@ -11,7 +11,7 @@ use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
     use Notifiable,HasApiTokens;
-    
+
 
     /**
      * The attributes that are mass assignable.
@@ -20,21 +20,21 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'birthday', 
-        'email', 
-        'password', 
-        'admission', 
-        'position', 
-        'sector', 
+        'birthday',
+        'email',
+        'password',
+        'admission',
+        'position',
+        'sector',
         'education',
-        'university', 
+        'university',
         'first_access',
         'place_of_birth',
         'wallet',
         'profile_picture',
         'is_admin',
     ];
-    
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -52,7 +52,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     public function tags(){
         return $this->belongsToMany(Tag::class);
     }
@@ -92,22 +92,22 @@ class User extends Authenticatable
 
     public function responseCommunitybyTag(){
         $community = collect();
-            
+
         foreach ($this->tags as $tag) {
 
             $users = collect();
-            
+
             //Pegando os usuários relacionados à uma tag específica
             $user_by_tag = $tag->users()->where('user_id','!=',$this->id)->pluck('users.id');
-            
+
             //Checando se há algum usuário nessa tag do usuário
             if($user_by_tag->count() >0){
-                
+
                 $users = $users->merge(['name'=>$tag->name,'users'=> $user_by_tag]);
-            
+
                 $community = $community->push($users);
             }
-            
+
         }
         $community = $community->sortByDesc(function ($product, $key) {
             return count($product['users']);
@@ -128,7 +128,7 @@ class User extends Authenticatable
         $this->university = $request->university;
         $this->place_of_birth = $request->place_of_birth;
         $this->first_access = $request->first_access;
-        
+
         $this->save();
 
         //Tratamento das Tags
@@ -136,8 +136,40 @@ class User extends Authenticatable
             foreach ($tags as $tag) {
                 if($tag_component = Tag::find($tag)){
                     $tag_component->users()->attach($this);
+                }else{
+                    $tag_component = new Tag;
+                    $tag_component->createMassive($tag);
+                    $tag_component->users()->sync($this->id);
                 }
-            }   
+            }
+        }
+    }
+    public function updateUser($request){
+        $this->name = $request->name;
+        $this->birthday = $request->birthday;
+        $this->email = $request->email;
+        $this->password = $request->password;
+        $this->admission = $request->admission;
+        $this->position = $request->position;
+        $this->sector = $request->sector;
+        $this->education = $request->education;
+        $this->university = $request->university;
+        $this->place_of_birth = $request->place_of_birth;
+        $this->first_access = $request->first_access;
+
+        $this->save();
+
+        //Tratamento das Tags
+        if($tags = explode(",", $request->tags)){
+            foreach ($tags as $tag) {
+                if($tag_component = Tag::find($tag)){
+                    $tag_component->users()->attach($this);
+                }else{
+                    $tag_component = new Tag;
+                    $tag_component->createMassive($tag);
+                    $tag_component->users()->sync($this->id);
+                }
+            }
         }
     }
     public function eventsByMe()

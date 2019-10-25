@@ -12,17 +12,17 @@ class Event extends Model
     ];
 
 	public function tags(){
-    	
+
     	return $this->belongsToMany('App\Tag');
     }
-    
+
     public function participations(){
-    	
+
     	return $this->hasMany('App\Participation');
     }
-    
+
     public function users_confirmed(){
-    	
+
     	return $this->belongsToMany('App\User','participations');
     }
 
@@ -46,8 +46,12 @@ class Event extends Model
             foreach ($tags as $tag) {
                 if($tag_component = Tag::find($tag)){
                     $tag_component->events()->attach($this);
+                }else{
+                    $tag_component = new Tag;
+                    $tag_component->createMassive($tag);
+                    $tag_component->events()->sync($this->id);
                 }
-            }   
+            }
         }
 
     }
@@ -70,8 +74,12 @@ class Event extends Model
             foreach ($tags as $tag) {
                 if($tag_component = Tag::find($tag)){
                     $tag_component->events()->sync($this->id);
+                }else{
+                    $tag_component = new Tag;
+                    $tag_component->createMassive($tag);
+                    $tag_component->events()->sync($this->id);
                 }
-            }   
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function index(){
     	$data = ['data' => User::all()];
-    	
+
     	return response()->json($data);
     }
 
@@ -24,7 +24,7 @@ class UserController extends Controller
         $data = ['data' => ['user' => $id]];
         return response()->json($data);
     }
-/* 
+/*
     public function store(Request $request){
         $user = new User;
         $user->createUser($request);
@@ -37,16 +37,20 @@ class UserController extends Controller
         $user = User::find($id);
         if(! $user) return response()->json(['msg' => 'Usuario não encontrado'], 404);
         $user->update($UserData);
-        
+
         //Tratamento das Tags
         if($tags = explode(",", $request->tags)){
             foreach ($tags as $tag) {
                 if($tag_component = Tag::find($tag)){
                     $tag_component->users()->attach($user);
+                }else{
+                    $tag_component = new Tag;
+                    $tag_component->createMassive($tag);
+                    $tag_component->users()->sync($id);
                 }
-            }   
+            }
         }
-          
+
 
         return response()->json(['msg' => 'Usuário Atualizado com sucesso!'], 201);
 
@@ -57,13 +61,13 @@ class UserController extends Controller
             $user = User::find($id);
             if(! $user) return response()->json(['msg' => 'User não encontrado'], 404);
             $user->delete();
-            
+
             return response()->json(['msg' => 'User deletada com sucesso!'], 201);
-            
+
         } catch (\Exception $e) {
-            
+
             return response()->json(['msg' => 'Houve um erro na hora de deletar!'], 500);
-            
+
         }
 
     }
@@ -121,7 +125,7 @@ class UserController extends Controller
  *          description="successful operation"
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
- *       
+ *
  *     )
  *
  * Return an user Edited
@@ -138,7 +142,7 @@ class UserController extends Controller
  *          description="successful operation"
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
- *       
+ *
  *     )
  *
  * Return an user
@@ -176,7 +180,7 @@ class UserController extends Controller
  *          description="successful operation"
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
- *       
+ *
  *     )
  *
  * Return a message of sucess
