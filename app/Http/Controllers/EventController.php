@@ -25,7 +25,7 @@ class EventController extends Controller
     public function store(Request $request){
             $event = new Event;
             $event->createEvent($request);
-    	    return response()->json(['msg' => 'Evento cadastrado com sucesso!'], 201);          
+    	    return response()->json(['msg' => 'Evento cadastrado com sucesso!'], 201);
 
     }
 
@@ -44,15 +44,23 @@ class EventController extends Controller
             $event = Event::find($id);
             if(! $event) return response()->json(['msg' => 'event não encontrado'], 404);
             $event->delete();
-            
+
             return response()->json(['msg' => 'event deletada com sucesso!'], 201);
-            
+
         } catch (\Exception $e) {
-            
+
             return response()->json(['msg' => 'Houve um erro na hora de deletar!'], 500);
-            
+
         }
 
+    }
+
+    public function autocomplete(Request $request){
+        $data = Event::select("*")
+                ->where("title","LIKE","%{$request->name}%")
+                ->get();
+
+        return response()->json($data);
     }
 }
 
@@ -102,7 +110,7 @@ class EventController extends Controller
  *          description="successful operation"
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
- *       
+ *
  *     )
  *
  * Return an Event Edited
@@ -119,7 +127,7 @@ class EventController extends Controller
  *          description="successful operation"
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
- *       
+ *
  *     )
  *
  * Return an Event
@@ -157,7 +165,7 @@ class EventController extends Controller
  *          description="successful operation"
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
- *       
+ *
  *     )
  *
  * Return a message of sucess

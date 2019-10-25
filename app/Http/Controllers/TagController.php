@@ -9,21 +9,21 @@ class TagController extends Controller
 {
     public function index(){
     	$data = ['data' => Tag::all()];
-    	
+
     	return response()->json($data);
     }
 
     public function show(Tag $id){
     	$data = ['data' => $id];
-    	
+
     	return response()->json($data);
     }
 
     public function store(Request $request){
     	$TagData = $request->all();
     	$tag = new Tag;
-    	$tag->create($TagData);	
-    	
+    	$tag->create($TagData);
+
     	return response()->json(['msg' => 'Tag cadastrada com sucesso!'], 201);
 
     }
@@ -33,8 +33,8 @@ class TagController extends Controller
     	$tag = Tag::find($id);
     	if(! $tag) return response()->json(['msg' => 'Tag não encontrado'], 404);
     	$tag->update($TagData);
-  	
-    	return response()->json(['msg' => 'Tag editada com sucesso!'], 201);	
+
+    	return response()->json(['msg' => 'Tag editada com sucesso!'], 201);
     }
 
     public function delete($id){
@@ -42,15 +42,22 @@ class TagController extends Controller
     		$tag = Tag::find($id);
     		if(! $tag) return response()->json(['msg' => 'Tag não encontrado'], 404);
 	    	$tag->delete();
-	    	
+
 	    	return response()->json(['msg' => 'Tag deletada com sucesso!'], 201);
-    		
+
     	} catch (\Exception $e) {
-	    	
+
 	    	return response()->json(['msg' => 'Houve um erro na hora de deletar!'], 500);
-    		
+
     	}
 
+    }
+    public function autocomplete(Request $request){
+        $data = Tag::select("name")
+                ->where("name","LIKE","%{$request->name}%")
+                ->get();
+
+        return response()->json($data);
     }
 }
 //Api Documentation
@@ -96,7 +103,7 @@ class TagController extends Controller
  *          description="successful operation"
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
- *       
+ *
  *     )
  *
  * Return an tag Edited
@@ -113,7 +120,7 @@ class TagController extends Controller
  *          description="successful operation"
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
- *       
+ *
  *     )
  *
  * Return an tag
@@ -151,12 +158,12 @@ class TagController extends Controller
  *          description="successful operation"
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
- *       
+ *
  *     )
  *
  * Return a message of sucess
  */
-/* 
+/*
     paths:
       /events/{id}:
         get:

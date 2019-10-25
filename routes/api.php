@@ -35,7 +35,7 @@ Route::group([
         Route::get('/', 'TagController@index')->name('tags');
         Route::get('/{id}', 'TagController@show')->name('single_tag');
         Route::post('/', 'TagController@store')->name('add_tag');
-        Route::putusers('/{id}', 'TagController@update')->name('update_tag');
+        Route::put('/{id}', 'TagController@update')->name('update_tag');
         Route::delete('/{id}', 'TagController@delete')->name('delete_tag');
         Route::post('/autocomplete', 'TagController@autocomplete')->name('autocomplete_tag');
     });
@@ -53,6 +53,7 @@ Route::group([
         Route::post('/', 'EventController@store')->name('add_event');
         Route::put('/{id}', 'EventController@update')->name('update_event');
         Route::delete('/{id}', 'EventController@delete')->name('delete_event');
+        Route::post('/autocomplete', 'EventController@autocomplete')->name('autocomplete_event');
     });
 
     Route::get('home/{id}', 'HomeController@home'); //retorna a home com os eventos à ver com as tags
