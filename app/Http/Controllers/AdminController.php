@@ -23,6 +23,9 @@ class AdminController extends Controller
         ];
         return response()->json($data, 200);
     }
+    public function index1(){
+        return 'oi';
+    }
 
     /**
      * Show the form for creating a new resource.
