@@ -56,7 +56,7 @@ Route::group([
         Route::post('/autocomplete', 'EventController@autocomplete')->name('autocomplete_event');
     });
 
-    Route::get('home/{id}', 'HomeController@home'); //retorna a home com os eventos à ver com as tags
+    Route::get('home', 'HomeController@home'); //retorna a home com os eventos à ver com as tags
     Route::get('experiences/{filter}', 'HomeController@experiences'); //retorna a home com os eventos à ver com as tags
 
     Route::prefix('participation')->group(function (){
@@ -89,7 +89,7 @@ Route::group([
     });
 
     Route::prefix('admin')->group(function (){
-        Route::get('/', 'AdminController@index')->name('admin_index');
+        Route::get('/', 'AdminController@index')->name('admin_index')->middleware('admin');
     });
     Route::prefix('myinitiatives')->group(function (){
         Route::get('/', 'UserController@myinitiatives')->name('myinitiatives');
