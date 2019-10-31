@@ -19,7 +19,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function home($id){
+    public function home(){
 
         $user = Auth::user();
 
