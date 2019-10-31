@@ -42,17 +42,8 @@ class Event extends Model
 
         $this->save();
 
-        if($tags = explode(",", $request->tags)){
-            foreach ($tags as $tag) {
-                if($tag_component = Tag::find($tag)){
-                    $tag_component->events()->attach($this);
-                }else{
-                    $tag_component = new Tag;
-                    $tag_component->createMassive($tag);
-                    $tag_component->events()->sync($this->id);
-                }
-            }
-        }
+        Tag::TagMassive($request,"initiative", $this);
+
 
     }
     public function updateEvent($request){

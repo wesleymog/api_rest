@@ -131,19 +131,7 @@ class User extends Authenticatable
         $this->first_access = $request->first_access;
 
         $this->save();
-
-        //Tratamento das Tags
-        if($tags = explode(",", $request->tags)){
-            foreach ($tags as $tag) {
-                if($tag_component = Tag::find($tag)){
-                    $tag_component->users()->attach($this);
-                }else{
-                    $tag_component = new Tag;
-                    $tag_component->createMassive($tag);
-                    $tag_component->users()->sync($this->id);
-                }
-            }
-        }
+        Tag::TagMassive($request,"user", $this);
     }
     public function updateUser($request){
         $this->name = $request->name;
@@ -160,18 +148,7 @@ class User extends Authenticatable
 
         $this->save();
 
-        //Tratamento das Tags
-        if($tags = explode(",", $request->tags)){
-            foreach ($tags as $tag) {
-                if($tag_component = Tag::find($tag)){
-                    $tag_component->users()->attach($this);
-                }else{
-                    $tag_component = new Tag;
-                    $tag_component->createMassive($tag);
-                    $tag_component->users()->sync($this->id);
-                }
-            }
-        }
+        Tag::TagMassive($request,"user", $this);
     }
     public function myinitiatives()
     {
