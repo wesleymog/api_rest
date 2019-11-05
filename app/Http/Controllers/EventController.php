@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use Auth;
 class EventController extends Controller
 {
 	public function index(){
@@ -16,7 +17,9 @@ class EventController extends Controller
         $event = Event::find($id);
         if(! $event) return response()->json([ 'msg' =>    'O evento não foi encontrado'], 404);
     	$event->tags;
-        $users = $event->users_confirmed;
+        $event->users_confirmed;
+        $user_id = Auth::id();
+        $event->is_owner($user_id);
     	return response()->json($event);
     }
 

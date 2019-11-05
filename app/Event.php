@@ -26,6 +26,16 @@ class Event extends Model
     	return $this->belongsToMany('App\User','participations');
     }
 
+    public function is_owner($id){
+        if ($this->user_id == $id) {
+            $this->is_owner = true;
+            return $this;
+        }else {
+            $this->is_owner = false;
+            return $this;
+        }
+    }
+
     public function createEvent($request){
 
         $this->type = $request->type;
@@ -38,7 +48,7 @@ class Event extends Model
         $this->description = $request->description;
         $this->img = $request->img;
         $this->value = $request->value ? $request->value: 10;
-        $this->user_id = 1;
+        $this->user_id = Auth::id;
 
         $this->save();
 
