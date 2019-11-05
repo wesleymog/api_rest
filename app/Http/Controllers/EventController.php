@@ -18,8 +18,7 @@ class EventController extends Controller
         if(! $event) return response()->json([ 'msg' =>    'O evento não foi encontrado'], 404);
     	$event->tags;
         $event->users_confirmed;
-        $user_id = Auth::id();
-        $event->is_owner($user_id);
+        $event->is_owner();
     	return response()->json($event);
     }
 
