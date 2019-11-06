@@ -22,8 +22,26 @@ class Event extends Model
     }
 
     public function users_confirmed(){
+    	return $this->belongsToMany('App\User','participations')->where('confirm_status', true);
+    }
 
-    	return $this->belongsToMany('App\User','participations');
+    public function users_interesed(){
+    	return $this->belongsToMany('App\User','participations')->where('interest_status', true);
+    }
+
+    public function getStatus(){
+        if($this->users_confirmed()->pluck('users.id')->contains(Auth::id())){
+            $this->confirm_status = true;
+
+        }else{
+            $this->confirm_status = false;
+        }
+        if($this->users_interesed()->pluck('users.id')->contains(Auth::id())){
+            $this->interest_status = true;
+        }else{
+            $this->interest_status = false;
+        }
+        return $this;
     }
 
     public function is_owner(){

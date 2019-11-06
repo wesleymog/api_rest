@@ -37,7 +37,9 @@ class HomeController extends Controller
         //Pegando os eventos de acordo com a tag
         $events = DB::table('event_tag')->whereIn('tag_id', $tags)->pluck("event_id");
         $events = Event::findMany($events)->where('end_time','>',$carbon);
-
+        foreach ($events as $event) {
+            $event->getStatus();
+        }
         //Pegando os eventos confirmados
         $eventsConfirmed = $user->eventsConfirmed->pluck('id');
 
