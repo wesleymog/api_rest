@@ -64,6 +64,9 @@ Route::group([
         Route::post('/confirm', 'ParticipationController@confirmation')->name('confirmation_participation');
         Route::post('/interest', 'ParticipationController@interest')->name('interest_participation');
         Route::post('/rate', 'ParticipationController@rating')->name('rate_participation'); // 'rate', 'event_id' or 'status', 'event_id'
+        Route::get('/all', function () {
+            return response()->json(App\Participation::all(),200);
+        });
     });
 
     Route::prefix('transaction')->group(function (){
