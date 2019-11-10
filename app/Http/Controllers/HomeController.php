@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\User;
-use App\Tag;
 use App\Event;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -36,7 +34,7 @@ class HomeController extends Controller
 
         //Pegando os eventos de acordo com a tag
         $events = DB::table('event_tag')->whereIn('tag_id', $tags)->pluck("event_id");
-        $events = Event::findMany($events)->where('end_time','>',$carbon);
+        $events = Event::whereIn('id', $events)->where('end_time','>',$carbon)->paginate(10);
         foreach ($events as $event) {
             $event->getStatus();
         }
