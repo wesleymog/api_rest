@@ -28,9 +28,9 @@ class ParticipationController extends Controller
             $participation->createParticipation($request);
 
             }
-            if($request->confirm_status == 0 && $request->confirm_status!= null) return response()->json(['msg' => 'Desconfirmamos sua participação no evento!'], 201);
+            if($request->confirm_status == 0) return response()->json(['msg' => 'Desconfirmamos sua participação no evento!'], 201);
             if($request->confirm_status == 1) return response()->json(['msg' => 'Confirmamos sua participação no evento!'], 201);
-            if($request->interest_status == 0 && $request->interest_status!= null) return response()->json(['msg' => 'Desconfirmamos seu interesse no evento!'], 201);
+            if($request->interest_status == 0) return response()->json(['msg' => 'Desconfirmamos seu interesse no evento!'], 201);
             if($request->interest_status == 1) return response()->json(['msg' => 'Confirmamos seu interesse no evento!'], 201);
 
     }
@@ -52,7 +52,7 @@ class ParticipationController extends Controller
 
     }
 
-    if($request->interest_status == 0 && $request->interest_status!= null) return response()->json(['msg' => 'Desconfirmamos seu interesse no evento!'], 201);
+    if($request->interest_status == 0) return response()->json(['msg' => 'Desconfirmamos seu interesse no evento!'], 201);
     if($request->interest_status == 1) return response()->json(['msg' => 'Confirmamos seu interesse no evento!'], 201);
 
   }

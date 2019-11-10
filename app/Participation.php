@@ -8,7 +8,7 @@ class Participation extends Model
 {
     protected $fillable = [
         'status', 'event_id', 'user_id','rate', 'confirm_status', 'interest_status',
-    ];    
+    ];
     public $timestamps = false;
 
     public function confirmParticipation(){
@@ -17,13 +17,13 @@ class Participation extends Model
     }
     public function interestParticipation(){
         $this->interest_status = TRUE;
-        $this->save;    
+        $this->save;
     }
     public function rateParticipation($request){
         $this->status = $request->status;
         $this->rate = $request->rate;
         $this->save;
-        
+
     }
 
     public function createParticipation($request){
@@ -36,21 +36,21 @@ class Participation extends Model
         $this->rate = $request->rate;
         $this->confirm_status = $request->confirm_status;
         $this->interest_status = $request->interest_status;
-        
+
         $this->save();
     }
 
     public function updateParticipation($request){
-        
+
         $this->rate = $request->rate;
         if($request->confirm_status == 0 || $request->confirm_status == 1){
             $this->confirm_status = $request->confirm_status;
         }
-        if($request->interest_status){
+        if($request->interest_status == 0 || $request->interest_status == 1){
             $this->interest_status = $request->interest_status;
         }
         $this->status = $request->status;
         $this->save();
     }
-    
+
 }
