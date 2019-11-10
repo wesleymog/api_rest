@@ -59,8 +59,8 @@ class TransactionController extends Controller
     }
 
     public function getMyReward(Request $request){
-        $user = User::find(1);
-        //$user = User::auth();
+        //$user = User::find(1);
+        $user = User::auth();
         return response()->json(["data"=>$user->rewards], 201);
     }
 

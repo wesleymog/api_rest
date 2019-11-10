@@ -71,8 +71,10 @@ Route::group([
 
     Route::prefix('transaction')->group(function (){
         Route::post('/', 'TransactionController@store')->name('add_transaction');
-        Route::get('/{id}', 'TransactionController@getAllMyTransactions')->name('get_users_transactions');
+        Route::get('/', 'TransactionController@getAllMyTransactions')->name('get_users_transactions');
     });
+
+    Route::get('/mytransactions', 'TransactionController@getAllMyTransactions')->name('get_users_transactions');
 
     Route::prefix('rewards')->group(function (){
         Route::get('/', 'RewardController@index')->name('rewards');
@@ -91,15 +93,27 @@ Route::group([
         Route::get('/', 'UserController@journey')->name('journey');
     });
 
-    Route::prefix('admin')->group(function (){
-        Route::get('/', 'AdminController@index')->name('admin_index')->middleware('admin');
-    });
+
     Route::prefix('myinitiatives')->group(function (){
         Route::get('/', 'UserController@myinitiatives')->name('myinitiatives');
     });
-    Route::post('/getReward', 'TransactionController@getReward')->name('get_Reward');
-    Route::get('/getMyReward', 'TransactionController@getMyReward')->name('get_my_Reward');
+    Route::post('/getreward', 'TransactionController@getReward')->name('get_Reward');
+    Route::get('/myreward', 'TransactionController@getMyReward')->name('get_my_Reward');
 
 
   });
 
+  Route::group([
+    'middleware' => 'admin'
+  ], function() {
+    Route::prefix('admin')->group(function (){
+        Route::get('/', 'AdminController@index')->name('admin_index');
+    });
+
+    Route::prefix('rewards')->group(function (){
+        Route::post('/', 'RewardController@store')->name('add_reward');
+        Route::put('/{id}', 'RewardController@update')->name('update_reward');
+        Route::delete('/{id}', 'RewardController@delete')->name('delete_reward');
+    });
+
+  });
