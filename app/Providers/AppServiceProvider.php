@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
+use App\Event;
+use App\Observers\EventObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,5 +34,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Passport::routes();
+        Event::observe(EventObserver::class);
     }
 }
