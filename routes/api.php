@@ -52,7 +52,9 @@ Route::group([
         Route::get('/{id}', 'EventController@show')->name('single_event');
         Route::post('/', 'EventController@store')->name('add_event');
         Route::put('/{id}', 'EventController@update')->name('update_event');
+        Route::put('/one/{id}', 'EventController@updateone')->name('update_event');
         Route::delete('/{id}', 'EventController@delete')->name('delete_event');
+        Route::delete('/one/{id}', 'EventController@deleteone')->name('delete_one_event');
         Route::post('/autocomplete', 'EventController@autocomplete')->name('autocomplete_event');
     });
 

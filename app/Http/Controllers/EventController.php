@@ -39,20 +39,32 @@ class EventController extends Controller
 
 
     }
+
+    public function updateone(Request $request, $id){
+        $EventData = $request->all();
+        $event = Event::find($id);
+        if(! $event) return response()->json(['msg' => 'Evento não encontrado'], 404);
+        $event->updateQuietly($request);
+
+        return response()->json(['msg' => 'Evento Atualizado com sucesso!'], 201);
+    }
+
     public function delete($id){
-        try {
+
             $event = Event::find($id);
-            if(! $event) return response()->json(['msg' => 'event não encontrado'], 404);
+            if(! $event) return response()->json(['msg' => 'Evento não encontrado'], 404);
             $event->delete();
 
-            return response()->json(['msg' => 'event deletada com sucesso!'], 201);
+            return response()->json(['msg' => 'Evento deletada com sucesso!'], 201);
+    }
 
-        } catch (\Exception $e) {
+    public function deleteone($id){
 
-            return response()->json(['msg' => 'Houve um erro na hora de deletar!'], 500);
+        $event = Event::find($id);
+            if(! $event) return response()->json(['msg' => 'Evento não encontrado'], 404);
+            $event->deleteQuietly();
 
-        }
-
+            return response()->json(['msg' => 'Evento deletada com sucesso!'], 201);
     }
 
     public function autocomplete(Request $request){

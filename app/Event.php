@@ -32,7 +32,31 @@ class Event extends Model
         return $this->save();
     });
 }
+public function deleteQuietly()
+{
+    return static::withoutEvents(function () {
+        return $this->delete();
+    });
+}
 
+public function updateQuietly($request)
+{
+    $this->type = $request->type;
+    $this->category = $request->category;
+    $this->title = $request->title;
+    $this->code = $request->code;
+    $this->start_time = $request->start_time;
+    $this->end_time = $request->end_time;
+    $this->location = $request->location;
+    $this->description = $request->description;
+    $this->img = $request->img;
+    $this->recurrence = $request->recurrence;
+    $this->value = $request->value ? $request->value: 10;
+    $this->user_id = Auth::id();
+    static::withoutEvents(function () {
+        return $this->update();
+    });
+}
     public function participations(){
 
     	return $this->hasMany('App\Participation');
