@@ -56,8 +56,12 @@ class EventController extends Controller
     }
 
     public function autocomplete(Request $request){
+        if($request->max) $max = $request->max;
+        else $max = 5;
+
         $data = Event::select("*")
                 ->where("title","LIKE","%{$request->name}%")
+                ->take($max)
                 ->get();
 
         return response()->json($data);
