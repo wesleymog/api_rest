@@ -53,10 +53,13 @@ class TagController extends Controller
 
     }
     public function autocomplete(Request $request){
+        if($request->max) $max = $request->max;
+        else $max = 5;
+
         $data = Tag::select("name")
                 ->where("name","LIKE","%{$request->name}%")
+                ->take($max)
                 ->get();
-
         return response()->json($data);
     }
 }
