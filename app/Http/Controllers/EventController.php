@@ -162,7 +162,7 @@ class EventController extends Controller
  *       }
  *     )
  *
- * Returns list of Events
+ *
  */
 
  /**
