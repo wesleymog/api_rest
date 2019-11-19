@@ -57,7 +57,7 @@ Route::group([
     });
 
     Route::get('home', 'HomeController@home'); //retorna a home com os eventos à ver com as tags
-    Route::get('experiences/{filter}', 'HomeController@experiences'); //retorna a home com os eventos à ver com as tags
+    Route::get('experiences', 'HomeController@experiences'); //retorna a home com os eventos à ver com as tags
 
     Route::prefix('participation')->group(function (){
         Route::post('/', 'ParticipationController@confirmation')->name('participation');

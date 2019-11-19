@@ -65,6 +65,9 @@ class User extends Authenticatable
     public function transactions(){
         return $this->hasMany(Transaction::class);
     }
+    public function Myevents(){
+        return $this->hasMany(Event::class);
+    }
 
     public function alterWallet($value){
         if($this->wallet + $value >= 0){

@@ -53,12 +53,13 @@ class HomeController extends Controller
     	return response()->json($data);
     }
 
-    public function experiences($filter){
+    public function experiences(Request $request){
+        //return response()->json($request->filter, 200);
         $user = Auth::user();
         //pegando a data atual e passando para string
         $carbon =Carbon::now( 'America/Sao_Paulo')->toDateTimeString();
 
-        switch ($filter) {
+        switch ($request->filter) {
             case 'default':
                 //pegando todos os eventos que tem a ver com minhas tags
                 $tags = $user->tags->pluck("id");
@@ -70,21 +71,23 @@ class HomeController extends Controller
                 $events = DB::table('event_tag')->whereIn('tag_id', $tags)->pluck("event_id");
                 $events = Event::findMany($events)->where('end_time','>',$carbon);
 
+
                 break;
 
             case 'going':
                 //pegando os eventos confirmados
-                $events = $user->eventsConfirmed();
+                $events = $user->eventsConfirmed()->get();
                 break;
 
             case 'star':
                 //pegando eventos com interesse
-                $events = $user->eventsInteresed();
+                $events = $user->eventsInteresed()->get();
                 break;
 
             case 'created':
                 //pegando evento criados por mim
-                $events = $user->eventsByMe();
+                $events = $user->Myevents()->get();
+
                 break;
 
             case 'all':
@@ -97,15 +100,16 @@ class HomeController extends Controller
                 return response()->json(['msg' => 'Filtro não encontrado'], 400);
                 break;
         }
-         //Pegando os eventos confirmados
-         $eventsConfirmed = $user->eventsConfirmed->pluck('id');
+        foreach ($events as $event) {
+            $event->getStatus();
+        }
 
          //Checando se há alguma participação em evento está sem avaliação e sem confirmação de presença
          $eventsWithoutRate= $user->participationsWithoutRate->pluck('id');
-
          //checando se há algum evento na lista de eventos que eu selecionei que já finalizaram
          $eventsForPopup = DB::table('events')->whereIn('id',$eventsWithoutRate)->where('end_time','<',$carbon)->get();
-         $data = ["data" => ["eventsForHome" => $events, "eventsForPopUp" => $eventsForPopup, "eventsconfirmed"=> $eventsConfirmed]];
+
+         $data = ["data" => ["eventsForHome" => $events, "eventsForPopUp" => $eventsForPopup]];
          return response()->json($data, 200);
 
     }
