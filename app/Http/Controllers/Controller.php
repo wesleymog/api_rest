@@ -16,22 +16,14 @@ class Controller extends BaseController
 /**
  * @OA\Info(
  *      version="1.0.0",
- *      title="L5 OpenApi",
- *      description="L5 Swagger OpenApi description",
+ *      title=" Mojo Api",
+ *      description="MOJO API Descrição",
  *      @OA\Contact(
- *          email="darius@matulionis.lt"
- *      ),
- *     @OA\License(
- *         name="Apache 2.0",
- *         url="http://www.apache.org/licenses/LICENSE-2.0.html"
- *     )
+ *          email="wesleymotabr@gmail.com"
+ *      )
  * )
  */
 /**
- *  @OA\Server(
- *      url=L5_SWAGGER_CONST_HOST,
- *      description="L5 Swagger OpenApi dynamic host server"
- *  )
  *
  *  @OA\Server(
 *      url="https://localhost:8000/api/",

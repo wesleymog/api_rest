@@ -16,6 +16,47 @@ class Event extends Model
     	return $this->belongsToMany('App\Tag');
     }
 
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'event_id', 'id');
+    }
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'event_id');
+    }
+
+    public function saveQuietly()
+{
+    return static::withoutEvents(function () {
+        return $this->save();
+    });
+}
+public function deleteQuietly()
+{
+    return static::withoutEvents(function () {
+        return $this->delete();
+    });
+}
+
+public function updateQuietly($request)
+{
+    $this->type = $request->type;
+    $this->category = $request->category;
+    $this->title = $request->title;
+    $this->code = $request->code;
+    $this->start_time = $request->start_time;
+    $this->end_time = $request->end_time;
+    $this->location = $request->location;
+    $this->description = $request->description;
+    $this->img = $request->img;
+    $this->recurrence = $request->recurrence;
+    $this->value = $request->value ? $request->value: 10;
+    $this->user_id = Auth::id();
+    static::withoutEvents(function () {
+        return $this->update();
+    });
+}
     public function participations(){
 
     	return $this->hasMany('App\Participation');
@@ -65,6 +106,7 @@ class Event extends Model
         $this->end_time = $request->end_time;
         $this->location = $request->location;
         $this->description = $request->description;
+        $this->recurrence = $request->recurrence;
         $this->img = $request->img;
         $this->value = $request->value ? $request->value: 10;
         $this->user_id = Auth::id();
@@ -86,10 +128,11 @@ class Event extends Model
         $this->location = $request->location;
         $this->description = $request->description;
         $this->img = $request->img;
+        $this->recurrence = $request->recurrence;
         $this->value = $request->value ? $request->value: 10;
         $this->user_id = Auth::id();
 
-        $this->save();
+        $this->update();
         if($tags = explode(",", $request->tags)){
             foreach ($tags as $tag) {
                 if($tag_component = Tag::find($tag)){

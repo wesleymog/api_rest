@@ -18,15 +18,21 @@ class CreateTableEvents extends Migration
             $table->integer('type');
             $table->string('category')->default('teste');
             $table->string('title');
-            $table->string('code')->unique();
+            $table->string('code');
             $table->datetime('start_time');
             $table->datetime('end_time');
             $table->string('location');
             $table->text('description');
+            $table->string('recurrence')->default('none'); // daily/weekly/monthly/none
             $table->string('img')->nullable();
             $table->double('value')->default(10);
             $table->bigInteger('user_id')->unsigned();
-            
+            $table->bigInteger('event_id')->unsigned()->nullable()->default(null);
+
+            $table->foreign('event_id')
+                ->references('id')->on('events')
+                ->onDelete('cascade');
+
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');

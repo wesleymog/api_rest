@@ -6,4 +6,3 @@ sudo cp oauth-private.key /tmp/
 sudo cp oauth-public.key /tmp/
 sudo rm -rf /var/www/html/storage/*
 sudo rm -rf /var/www/html/bootstrap/*
-
