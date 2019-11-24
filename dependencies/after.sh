@@ -2,6 +2,9 @@
 # Set permissions to storage and bootstrap cache
 sudo mv oauth-private.key /var/www/html/storage/
 sudo mv oauth-public.key /var/www/html/storage/
+sudo chmod -R 0777 /var/www/html/storage
+sudo chmod -R 0777 /var/www/html/storage/framework/cache/data
+sudo chmod -R 0777 /var/www/html/bootstrap/cache
 #
 cd /var/www/html
 #
