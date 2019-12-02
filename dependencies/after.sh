@@ -1,7 +1,5 @@
 #!/bin/bash
 # Set permissions to storage and bootstrap cache
-sudo mv oauth-private.key /var/www/html/storage/
-sudo mv oauth-public.key /var/www/html/storage/
 sudo chmod -R 0777 /var/www/html/storage
 sudo chmod -R 0777 /var/www/html/storage/framework/cache/data
 sudo chmod -R 0777 /var/www/html/bootstrap/cache
@@ -14,4 +12,4 @@ composer  install --no-ansi --no-dev --no-suggest --no-interaction --no-progress
 # Run artisan commands
 php /var/www/html/artisan migrate
 
-php /var/www/html/artisan passport:install
+#php /var/www/html/artisan passport:install
