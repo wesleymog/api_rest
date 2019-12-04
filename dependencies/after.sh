@@ -3,8 +3,8 @@
  chmod -R 0777 /var/www/html/storage
  chmod -R 0777 /var/www/html/storage/framework/cache/data
  chmod -R 0777 /var/www/html/bootstrap/cache
- sudo cp oauth-public.key /var/www/html/save
- sudo cp oauth-private.key /var/www/html/save
+ sudo cp /var/www/html/save/oauth-public.key ./
+ sudo cp /var/www/html/save/oauth-public.key ./
 
 #
 cd /var/www/html
