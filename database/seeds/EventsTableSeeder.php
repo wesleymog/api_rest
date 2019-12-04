@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
 
 class EventsTableSeeder extends Seeder
 {
@@ -12,7 +14,7 @@ class EventsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
         //
         DB::table('events')->insert([
             [
@@ -30,7 +32,7 @@ class EventsTableSeeder extends Seeder
                 'location' => 'SALA 5','description' => '','img' => '2',
                 'created_at' => NULL,'updated_at' => NULL, 'user_id' => '1'
             ],
-      
+
             [
                 'id' => '9','type' => '1','title' => 'SCM – TEAM BUILDING',
                 'code' => '#3','start_time' => Carbon::now('America/Sao_Paulo')->addWeeks(3)->toDateTimeString(),
@@ -45,6 +47,6 @@ class EventsTableSeeder extends Seeder
       ['id' => '13','type' => '1','title' => 'CHALLENGE COFFEE','code' => '#52','start_time' => Carbon::now('America/Sao_Paulo')->addWeeks(5)->toDateTimeString(),'end_time' => Carbon::now('America/Sao_Paulo')->addWeeks(5)->addHours(2)->toDateTimeString(),'location' => 'SALA 7','description' => '','img' => '7','created_at' => NULL,'updated_at' => NULL, 'user_id' => '1'],
       ['id' => '14','type' => '1','title' => 'LEAN SIGMA TALK','code' => '#54','start_time' => Carbon::now('America/Sao_Paulo')->addWeeks(1)->toDateTimeString(),'end_time' => Carbon::now('America/Sao_Paulo')->addWeeks(1)->addHours(2)->toDateTimeString(),'location' => 'AUDITÓRIO 3','description' => '','img' => '8','created_at' => NULL,'updated_at' => NULL, 'user_id' => '1']
       ]);
-            
+
     }
 }
