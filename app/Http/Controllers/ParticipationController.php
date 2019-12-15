@@ -7,7 +7,7 @@ use App\User;
 use App\Participation;
 use App\Transaction;
 use Illuminate\Support\Facades\DB;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class ParticipationController extends Controller
 {

@@ -56,6 +56,8 @@ Route::group([
         Route::delete('/{id}', 'EventController@delete')->name('delete_event');
         Route::delete('/one/{id}', 'EventController@deleteone')->name('delete_one_event');
         Route::post('/autocomplete', 'EventController@autocomplete')->name('autocomplete_event');
+        Route::post('/search', 'EventController@search')->name('search_event');
+
     });
 
     Route::get('home', 'HomeController@home'); //retorna a home com os eventos à ver com as tags

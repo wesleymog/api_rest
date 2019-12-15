@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 class EventController extends Controller
 {
 	public function index(){
@@ -72,11 +72,19 @@ class EventController extends Controller
         else $max = 5;
 
         $data = Event::select("*")
-                ->where("title","LIKE","%{$request->name}%")
+                ->where("title","LIKE","%{$request->title}%")
                 ->take($max)
                 ->get();
 
         return response()->json($data);
+    }
+    public function search(Request $request){
+        $data = Event::select("*")
+                ->where("title","LIKE","%{$request->title}%")
+                ->get();
+
+        return response()->json($data);
+
     }
 }
 

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Transaction;
 use App\User;
 use App\Reward;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
