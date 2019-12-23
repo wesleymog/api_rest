@@ -17,6 +17,38 @@ class HomeController extends Controller
      *
      * @return void
      */
+    public function alta(){
+        $user =  Auth::user();
+        $tags = $user->tags->pluck('id');
+        $carbon =Carbon::now( 'America/Sao_Paulo')->toDateTimeString();
+        $events = Event::where('start_time','>',$carbon)->withCount('users_confirmed')->orderBy('boost', 'desc')->get();
+
+        foreach ($events as $event) {
+            $event->getStatus();
+        }
+
+        return response()->json(['data'=>['alta'=>$events]], 200);
+    }
+
+    public function proximas(){
+        $user =  Auth::user();
+        $tags = $user->tags->pluck('id');
+        $carbon =Carbon::now( 'America/Sao_Paulo')->toDateTimeString();
+        if($tags->count() <= 0){
+            $events = Event::where('start_time','>',$carbon)->orderBy('start_time', 'asc')->get();
+            return response()->json(['data'=>["Proximas"=>$events,'msg'=>'Você não possui filtros']], 200);
+        }
+        $events = DB::table('event_tag')->whereIn('tag_id', $tags)->pluck("event_id");
+        $events = Event::whereIn('id', $events)->where('end_time','>',$carbon)->paginate(10);
+
+        foreach ($events as $event) {
+            $event->getStatus();
+        }
+
+        return response()->json(['data'=>['proximas'=> $events]], 200);
+
+    }
+
     public function home(){
 
         $user = Auth::user();

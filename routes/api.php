@@ -43,7 +43,7 @@ Route::group([
         Route::get('/', 'UserController@index')->name('users');
         Route::get('/{id}', 'UserController@show')->name('single_user');
         Route::post('/', 'UserController@store')->name('add_user');
-        Route::put('/{id}', 'UserController@update')->name('update_user');
+        Route::put('/', 'UserController@update')->name('update_user');
         Route::delete('/{id}', 'UserController@delete')->name('delete_user');
     });
 
@@ -60,9 +60,13 @@ Route::group([
 
     });
 
-    Route::get('home', 'HomeController@home'); //retorna a home com os eventos à ver com as tags
     Route::get('experiences', 'HomeController@experiences'); //retorna a home com os eventos à ver com as tags
+    Route::prefix('home')->group(function (){
+        Route::get('/', 'HomeController@home')->name('home');
+        Route::get('/alta', 'HomeController@alta')->name('alta');
+        Route::get('/proximas', 'HomeController@proximas')->name('proximas');
 
+    });
     Route::prefix('participation')->group(function (){
         Route::post('/', 'ParticipationController@confirmation')->name('participation');
         Route::post('/confirm', 'ParticipationController@confirmation')->name('confirmation_participation');

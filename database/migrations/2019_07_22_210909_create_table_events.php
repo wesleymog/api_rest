@@ -28,6 +28,7 @@ class CreateTableEvents extends Migration
             $table->double('value')->default(10);
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('event_id')->unsigned()->nullable()->default(null);
+            $table->boolean('boost')->nullable()->default(0);
 
             $table->foreign('event_id')
                 ->references('id')->on('events')

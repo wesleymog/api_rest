@@ -8,7 +8,7 @@ class Event extends Model
 {
 	 protected $fillable = [
         'type','category', 'title', 'code','start_time'
-        ,'end_time', 'location', 'description','img','value','user_id'
+        ,'end_time', 'location', 'description','img','value','user_id', 'boost'
     ];
 
 	public function tags(){
