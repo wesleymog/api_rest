@@ -125,3 +125,5 @@ Route::group([
     });
 
   });
+  Route::get('export', 'UserControllerser@export')->name('export');
+  Route::post('import', 'UserController@import')->name('import');

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Tag;
 use Illuminate\Support\Facades\Auth;
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 class UserController extends Controller
 {
     public function index(){
@@ -78,6 +80,22 @@ class UserController extends Controller
         $user = Auth::user();
         $myinitiatives = $user->myinitiatives();
         return response()->json($myinitiatives, 200);
+    }
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
+
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function import()
+    {
+        Excel::import(new UsersImport,request()->file('file'));
+
+        return response()->json(['msg' => 'Users importados com sucesso!'], 201);
+
     }
 
 }
