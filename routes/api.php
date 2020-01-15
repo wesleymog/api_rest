@@ -17,6 +17,7 @@ Route::group([
     'prefix' => 'auth'
 ], function () {
     Route::post('login', 'AuthController@login')->name('login');
+    Route::post('authenticate', 'AuthController@authenticate')->name('login');
     Route::post('register', 'AuthController@register');
 
     Route::group([
@@ -123,7 +124,6 @@ Route::group([
         Route::put('/{id}', 'RewardController@update')->name('update_reward');
         Route::delete('/{id}', 'RewardController@delete')->name('delete_reward');
     });
-
+    Route::get('export', 'UserControllerser@export')->name('export');
+    Route::post('users/import', 'UserController@import')->name('import');
   });
-  Route::get('export', 'UserControllerser@export')->name('export');
-  Route::post('import', 'UserController@import')->name('import');

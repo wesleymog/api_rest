@@ -9,6 +9,16 @@ class AuthController extends Controller
 {
 
     public function login(){
+        $rules = [
+            'email' => 'email',
+            'password' => 'required',
+        ];
+
+        $validator = Validator::make(request()->all(), $rules);
+        if($validator->fails()){
+            return response()->json($validator->errors(), 400);
+        }
+
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
             $success['token'] = $user->createToken('myApp')->accessToken;

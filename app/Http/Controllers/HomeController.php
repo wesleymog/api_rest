@@ -144,3 +144,83 @@ class HomeController extends Controller
 
     }
 }
+
+
+/**
+ * @OA\Tag(
+ *     name="home",
+ *     description="Home",
+ * )
+ */
+
+ /**
+ * @OA\Get(
+ *      path="/",
+ *      operationId="home",
+ *      tags={"home"},
+ *      summary="Home",
+ *      description="Home",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *     )
+ *
+ */
+ /**
+ * @OA\Get(
+ *      path="/alta",
+ *      tags={"home"},
+ *      summary="Home",
+ *      description="Return top events ",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *     )
+ *
+ */
+ /**
+ * @OA\Get(
+ *      path="/proximas",
+ *      tags={"home"},
+ *      summary="Home",
+ *      description="Return next Events",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *     )
+ *
+ */
+
+/**
+ * @OA\Tag(
+ *     name="experiences",
+ *     description="Experiences filters",
+ * )
+ */
+ /**
+ * @OA\Get(
+ *      path="/experiences",
+ *      operationId="experiences",
+ *      tags={"experiences"},
+ *      summary="Experiences filters",
+ *      description="Filtrando as experiências através de um campo chamado filter que pode ser going, star, created e all",
+ *      @OA\Parameter(
+ *          name="filter",
+ *          in="query",
+ *          description="filters {going, star, created, all}",
+ *          required=true,
+ *      ),
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *     )
+ *
+ */

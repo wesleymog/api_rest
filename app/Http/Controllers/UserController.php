@@ -207,25 +207,20 @@ class UserController extends Controller
  */
 
 
-/**
- * @OA\Tag(
- *     name="home",
- *     description="Home",
- * )
- */
-
- /**
+   /**
  * @OA\Get(
- *      path="/home/{id}",
- *      operationId="home",
- *      tags={"home"},
- *      summary="Home",
- *      description="Home",
+ *      path="/users/import",
+ *      operationId="import_user",
+ *      tags={"users"},
+ *      summary="CSV Import Users",
+ *      description="Importing user from XLS or CSV document",
  *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
+ *
  *     )
  *
+ * Return an user
  */
