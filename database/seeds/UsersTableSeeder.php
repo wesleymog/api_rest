@@ -14,24 +14,23 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'Thiago Gato do Mato',
-            'birthday' =>'1990-05-02',
+            'date_of_birth' =>'1990-05-02',
             'email' =>'thiago.gatodomato@shell.com',
             'password' => bcrypt('onlyadmin'),
-            'sector' =>'Supply Chain Managment',
+            'area' =>'Supply Chain Managment',
             'position' =>'Senior Analyst',
             'education' =>'Business',
-            'place_of_birth' =>'Rio de Janeiro',
-            'university' =>'UFRJ',
+            'city' =>'Rio de Janeiro',
             'wallet' => 1500,
 
         ]
         );
         DB::table('users')->insert([
             'name' => 'Admin',
-            'birthday' =>'1990-05-02',
+            'date_of_birth' =>'1990-05-02',
             'email' =>'admin@admin.com',
             'password' => bcrypt('onlyadmin'),
-            'university' =>'UFRJ',
+            'area' =>'Supply Chain Managment',
             'wallet' => 1500,
             'is_admin' => 1,
 

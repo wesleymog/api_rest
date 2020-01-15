@@ -21,14 +21,20 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'birthday',
+        'date_of_birth',
         'email',
         'password',
+        'main_area',
+        'area',
+        'supervisor',
         'admission',
         'position',
-        'sector',
+        'branch_office',
+        'city',
+        'country',
+        'phone_number',
         'education',
-        'university',
+        'education_institute',
         'first_access',
         'place_of_birth',
         'wallet',
@@ -122,30 +128,41 @@ class User extends Authenticatable
      public function createUser($request){
 
         $this->name = $request->name;
-        $this->birthday = $request->birthday;
+        $this->date_of_birth = $request->date_of_birth;
         $this->email = $request->email;
         $this->password = $request->password;
+        $this->main_area = $request->main_area;
+        $this->area = $request->area;
+        $this->supervisor = $request->supervisor;
         $this->admission = $request->admission;
         $this->position = $request->position;
-        $this->sector = $request->sector;
+        $this->branch_office = $request->branch_office;
+        $this->city = $request->city;
+        $this->country = $request->country;
+        $this->phone_number = $request->phone_number;
         $this->education = $request->education;
-        $this->university = $request->university;
+        $this->education_institute = $request->education_institute;
         $this->place_of_birth = $request->place_of_birth;
         $this->first_access = $request->first_access;
-
         $this->save();
         Tag::TagMassive($request,"user", $this);
     }
     public function updateUser($request){
         $this->name = $request->name;
-        $this->birthday = $request->birthday;
+        $this->date_of_birth = $request->date_of_birth;
         $this->email = $request->email;
         $this->password = $request->password;
+        $this->main_area = $request->main_area;
+        $this->area = $request->area;
+        $this->supervisor = $request->supervisor;
         $this->admission = $request->admission;
         $this->position = $request->position;
-        $this->sector = $request->sector;
+        $this->branch_office = $request->branch_office;
+        $this->city = $request->city;
+        $this->country = $request->country;
+        $this->phone_number = $request->phone_number;
         $this->education = $request->education;
-        $this->university = $request->university;
+        $this->education_institute = $request->education_institute;
         $this->place_of_birth = $request->place_of_birth;
         $this->first_access = $request->first_access;
 
