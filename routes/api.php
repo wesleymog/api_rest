@@ -44,7 +44,7 @@ Route::group([
         Route::get('/', 'UserController@index')->name('users');
         Route::get('/{id}', 'UserController@show')->name('single_user');
         Route::post('/', 'UserController@store')->name('add_user');
-        Route::put('/', 'UserController@update')->name('update_user');
+        Route::put('/{id}', 'UserController@update')->name('update_user');
         Route::delete('/{id}', 'UserController@delete')->name('delete_user');
     });
 

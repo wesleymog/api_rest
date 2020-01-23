@@ -15,71 +15,49 @@ class TagTableSeeder extends Seeder
         DB::table('tags')->insert([
 
             [
-                "name"=> "Esportes",
-                "category"=> "Hobbies e Paixões"],
+                "name"=> "Esportes"],
             [
-                "name"=> "Música",
-                "category"=> "Hobbies e Paixões"],
+                "name"=> "Música"],
             [
-                "name"=> "Artes",
-                "category"=> "Hobbies e Paixões"],
+                "name"=> "Artes"],
             [
-                "name"=> "Viagem",
-                "category"=> "Hobbies e Paixões"],
+                "name"=> "Viagem"],
             [
-                "name"=> "Ação Social",
-                "category"=> "Hobbies e Paixões"],
+                "name"=> "Ação Social"],
             [
-                "name"=> "Lazer",
-                "category"=> "Hobbies e Paixões"],
+                "name"=> "Lazer"],
             [
-                "name"=> "Gastronomia",
-                "category"=> "Hobbies e Paixões"],
+                "name"=> "Gastronomia"],
             [
-                "name"=> "Networking",
-                "category"=> "Mundo Corporativo"],
+                "name"=> "Networking"],
             [
-                "name"=> "Eventos",
-                "category"=> "Mundo Corporativo"],
+                "name"=> "Eventos"],
             [
-                "name"=> "Tecnologia",
-                "category"=> "Mundo Corporativo"],
+                "name"=> "Tecnologia"],
             [
-                "name"=> "Happy Hour",
-                "category"=> "Mundo Corporativo"],
+                "name"=> "Happy Hour"],
             [
-                "name"=> "Trabalho em Equipe",
-                "category"=> "Interpessoais"],
+                "name"=> "Trabalho em Equipe"],
             [
-                "name"=> "Idiomas",
-                "category"=> "Interpessoais"],
+                "name"=> "Idiomas"],
             [
-                "name"=> "Mentoria",
-                "category"=> "Interpessoais"],
+                "name"=> "Mentoria"],
             [
-                "name"=> "Resolução de Problemas",
-                "category"=> "Interpessoais"],
+                "name"=> "Resolução de Problemas"],
             [
-                "name"=> "Persuasão",
-                "category"=> "Interpessoais"],
+                "name"=> "Persuasão"],
             [
-                "name"=> "Criatividade",
-                "category"=> "Interpessoais"],
+                "name"=> "Criatividade"],
             [
-                "name"=> "Proatividade",
-                "category"=> "Interpessoais"],
+                "name"=> "Proatividade"],
             [
-                "name"=> "Programação",
-                "category"=> "Técnicas"],
+                "name"=> "Programação"],
             [
-                "name"=> "Oratória",
-                "category"=> "Técnicas"],
+                "name"=> "Oratória"],
             [
-                "name"=> "Idioma",
-                "category"=> "Técnicas"],
+                "name"=> "Idioma"],
             [
-                "name"=> "Comercial",
-                "category"=> "Técnicas"]
+                "name"=> "Comercial"]
 
 
         ]);

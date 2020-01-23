@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
      protected $fillable = [
-        'name', 'category',
+        'name',
     ];
 
     public function users(){
@@ -19,14 +19,12 @@ class Tag extends Model
     }
     public function create($request){
         $this->name = $request->name;
-        $this->category = $request->category;
         $this->save();
         return $this;
     }
 
     public function createMassive($name){
         $this->name = $name;
-        $this->category = "byuser";
         $this->save();
         return $this;
     }
@@ -34,7 +32,6 @@ class Tag extends Model
 
     public function updateTag($request){
         $this->name = $request->name;
-        $this->category = $request->category;
         $this->save();
         return $this;
     }
@@ -67,6 +64,32 @@ class Tag extends Model
                     }
                 }
             }
+        }
+        if($skills = explode(",", $request->skills)){
+            foreach ($skills as $skill) {
+                if($tag_component = Tag::find($skill)){
+                    $tag_component->users()->attach($object,['category'=>'skills']);
+                }
+                else{
+                    $tag_component = new Tag;
+                    $tag_component->createMassive($skill);
+                    $tag_component->users()->attach($object,['category'=>'skills']);
+                }
+            }
+
+        }
+        if($interests = explode(",", $request->interests)){
+            foreach ($interests as $interest) {
+                if($tag_component = Tag::find($interest)){
+                    $tag_component->users()->attach($object,['category'=>'interests']);
+                }
+                else{
+                    $tag_component = new Tag;
+                    $tag_component->createMassive($interest);
+                    $tag_component->users()->attach($object,['category'=>'interests']);
+                }
+            }
+
         }
     }
 }

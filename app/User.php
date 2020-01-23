@@ -36,7 +36,6 @@ class User extends Authenticatable
         'education',
         'education_institute',
         'first_access',
-        'place_of_birth',
         'wallet',
         'profile_picture',
         'is_admin',
@@ -142,7 +141,6 @@ class User extends Authenticatable
         $this->phone_number = $request->phone_number;
         $this->education = $request->education;
         $this->education_institute = $request->education_institute;
-        $this->place_of_birth = $request->place_of_birth;
         $this->first_access = $request->first_access;
         $this->save();
         Tag::TagMassive($request,"user", $this);
@@ -163,7 +161,6 @@ class User extends Authenticatable
         $this->phone_number = $request->phone_number;
         $this->education = $request->education;
         $this->education_institute = $request->education_institute;
-        $this->place_of_birth = $request->place_of_birth;
         $this->first_access = $request->first_access;
 
         $this->save();

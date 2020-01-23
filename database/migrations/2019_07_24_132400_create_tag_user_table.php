@@ -17,6 +17,7 @@ class CreateTagUserTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('tag_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
+            $table->string('category')->nullable();
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');

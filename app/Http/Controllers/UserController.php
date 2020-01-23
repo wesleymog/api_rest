@@ -22,13 +22,13 @@ class UserController extends Controller
         $data = ['data' => ['user' => $id]];
         return response()->json($data);
     }
-/*
+
     public function store(Request $request){
         $user = new User;
         $user->createUser($request);
     	return response()->json(['msg' => 'Usuário cadastrada com sucesso!'], 201);
 
-    } */
+    }
 
     public function update(Request $request, $id){
         $UserData = $request->all();
@@ -44,7 +44,7 @@ class UserController extends Controller
                 }else{
                     $tag_component = new Tag;
                     $tag_component->createMassive($tag);
-                    $tag_component->users()->sync($id);
+                    $tag_component->users()->attach($user->id, ['category'=>$request->category]);
                 }
             }
         }
