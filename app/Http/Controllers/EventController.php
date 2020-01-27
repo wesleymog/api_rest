@@ -42,6 +42,7 @@ class EventController extends Controller
 
     public function updateone(Request $request, $id){
         $EventData = $request->all();
+        dd('oi');
         $event = Event::find($id);
         if(! $event) return response()->json(['msg' => 'Evento não encontrado'], 404);
         $event->updateQuietly($request);

@@ -134,6 +134,11 @@ public function updateQuietly($request)
 
         $this->update();
         if($tags = explode(",", $request->tags)){
+            $tagsbefore = $this->tags->pluck("id")->toArray();
+            $tags = array_diff($tagsbefore, $tags);
+            foreach($tagsbefore as $tag){
+                $tag->event()->detach($this->id);
+            }
             foreach ($tags as $tag) {
                 if($tag_component = Tag::find($tag)){
                     $tag_component->events()->sync($this->id);
