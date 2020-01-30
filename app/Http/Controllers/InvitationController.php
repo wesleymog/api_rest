@@ -106,7 +106,7 @@ class InvitationController extends Controller
  *      operationId="add_invitation",
  *      tags={"Invitations"},
  *      summary="Adiciona um novo convite para um usuário em um evento",
- *      description="Modelo de JSON: {"receiver_id": 9,"event_id": 7}. Onde receiver é o usuário que vai ser convidado",
+ *      description="Modelo de JSON: {'receiver_id': 9,'event_id': 7}. Onde receiver é o usuário que vai ser convidado",
  *      @OA\Response(
  *          response=200,
  *          description="successful operation"

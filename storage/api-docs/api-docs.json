@@ -167,7 +167,7 @@
                     "experiences"
                 ],
                 "summary": "Experiences filters",
-                "description": "Filters in Experiences",
+                "description": "Filtrando as experiências através de um campo chamado filter que pode ser going, star, created e all",
                 "operationId": "experiences",
                 "parameters": [
                     {
@@ -185,6 +185,75 @@
                         "description": "Bad request"
                     }
                 }
+            }
+        },
+        "/invitation": {
+            "post": {
+                "tags": [
+                    "Invitations"
+                ],
+                "summary": "Adiciona um novo convite para um usuário em um evento",
+                "description": "Modelo de JSON: {'receiver_id': 9,'event_id': 7}. Onde receiver é o usuário que vai ser convidado",
+                "operationId": "add_invitation",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/myInvitations": {
+            "get": {
+                "tags": [
+                    "Invitations"
+                ],
+                "summary": "Retorna os convites do usuário logado",
+                "description": "",
+                "operationId": "get_user_invitations",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/invitation/event/{id}": {
+            "get": {
+                "tags": [
+                    "Invitations"
+                ],
+                "summary": "Retorna os convites de acordo com o id do evento",
+                "description": "",
+                "operationId": "get_invitations_by_event",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
             }
         },
         "/participation": {
@@ -457,7 +526,7 @@
                 "tags": [
                     "users"
                 ],
-                "summary": "Import Users",
+                "summary": "CSV Import Users",
                 "description": "Importing user from XLS or CSV document",
                 "operationId": "import_user",
                 "responses": {
@@ -487,6 +556,14 @@
         {
             "name": "experiences",
             "description": "Experiences filters"
+        },
+        {
+            "name": "Invitations",
+            "description": "Everything about your Invitation",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
         },
         {
             "name": "participation",
