@@ -82,6 +82,14 @@ class UserController extends Controller
         return response()->json($myinitiatives, 200);
     }
 
+    public function myInvitations(){
+
+        $user = Auth::user();
+        $myinvitations = $user->myInvitations();
+        return response()->json($myinvitations, 200);
+
+    }
+
     public function export()
     {
         return Excel::download(new UsersExport, 'users.xlsx');

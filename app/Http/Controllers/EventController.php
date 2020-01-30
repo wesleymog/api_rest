@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Event;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 class EventController extends Controller
 {
 	public function index(){
@@ -85,6 +86,16 @@ class EventController extends Controller
                 ->get();
 
         return response()->json($data);
+    }
+
+    public function invitation($id){
+
+        $event = Event::find($id);
+
+        $users = $event->Invitations();
+        $users = User::findMany($users);
+
+        return response()->json($users, 200);
 
     }
 }

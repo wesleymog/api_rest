@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
 use App\Event;
+use App\Invitation;
 
 class User extends Authenticatable
 {
@@ -97,6 +98,18 @@ class User extends Authenticatable
     public function participationsWithoutRate()
     {
         return $this->belongsToMany('App\Event', 'participations')->wherePivot('rate',null)->wherePivot('status',null);
+    }
+
+    public function myInvitationstoOthers(){
+        return $this->hasMany(Invitation::class, 'sender_id');
+    }
+
+    public function myInvitationsbyEvent($event_id){
+        return $this->hasMany(Invitation::class, 'sender_id')->where('event_id', $event_id);
+    }
+
+    public function myInvitations(){
+        return $this->hasMany(Invitation::class, 'receiver_id');
     }
 
     public function responseCommunitybyTag(){

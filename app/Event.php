@@ -26,6 +26,10 @@ class Event extends Model
         return $this->belongsTo(Event::class, 'event_id');
     }
 
+    public function Invitations(){
+        return $this->hasMany(Invitation::class, 'event_id')->pluck('receiver_id');
+    }
+
     public function saveQuietly()
 {
     return static::withoutEvents(function () {

@@ -83,6 +83,13 @@ Route::group([
         Route::get('/', 'TransactionController@getAllMyTransactions')->name('get_users_transactions');
     });
 
+    Route::prefix('invitation')->group(function (){
+        Route::post('/', 'InvitationController@store')->name('add_invitation');
+        Route::get('/event/{id}', 'EventController@Invitation')->name('get_invitations_by_event');
+    });
+
+    Route::get('/myInvitations', 'UserController@myInvitations')->name('get_user_invitations');
+
     Route::get('/mytransactions', 'TransactionController@getAllMyTransactions')->name('get_users_transactions');
 
     Route::prefix('rewards')->group(function (){
