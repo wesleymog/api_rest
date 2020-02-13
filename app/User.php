@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
 use App\Event;
 use App\Invitation;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -93,6 +94,13 @@ class User extends Authenticatable
     public function eventsConfirmed(){
 
         return $this->belongsToMany('App\Event', 'participations')->wherePivot('confirm_status', 1)->wherePivot('status',NULL);
+    }
+
+    public function eventsHeld(){
+
+        $carbon =Carbon::now( 'America/Sao_Paulo')->toDateTimeString();
+
+        return $this->belongsToMany('App\Event', 'participations')->wherePivot('confirm_status', 1)->where('events.end_time','<',$carbon);
     }
 
     public function participationsWithoutRate()

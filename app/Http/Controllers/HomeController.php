@@ -49,6 +49,31 @@ class HomeController extends Controller
 
     }
 
+    public function held(){
+        $user = Auth::user();
+        $events = $user->eventsHeld()->get();
+
+        foreach ($events as $event) {
+            $event->getStatus();
+        }
+
+        $data = ["data" => ["events" => $events]];
+        return response()->json($data, 200);
+
+    }
+
+    public function going(){
+        $user = Auth::user();
+        $events = $user->eventsConfirmed()->get();
+
+        foreach ($events as $event) {
+            $event->getStatus();
+        }
+
+        $data = ["data" => ["events" => $events]];
+        return response()->json($data, 200);
+    }
+
     public function home(){
 
         $user = Auth::user();
@@ -84,7 +109,7 @@ class HomeController extends Controller
     }
 
     public function experiences(Request $request){
-        //return response()->json($request->filter, 200);
+
         $user = Auth::user();
         //pegando a data atual e passando para string
         $carbon =Carbon::now( 'America/Sao_Paulo')->toDateTimeString();
@@ -196,7 +221,35 @@ class HomeController extends Controller
  *     )
  *
  */
+/**
+ * @OA\Get(
+ *      path="/held",
+ *      tags={"home"},
+ *      summary="Home",
+ *      description="Return the events held",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *     )
+ *
+ */
 
+/**
+ * @OA\Get(
+ *      path="/going",
+ *      tags={"home"},
+ *      summary="Home",
+ *      description="Return the going events",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *     )
+ *
+ */
 /**
  * @OA\Tag(
  *     name="experiences",
