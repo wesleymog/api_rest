@@ -80,6 +80,14 @@ Route::group([
         });
     });
 
+    Route::prefix('content')->group(function (){
+        Route::get('/', 'ContentController@index')->name('all_content');
+        Route::get('/{id}', 'ContentController@show')->name('show_content');
+        Route::post('/', 'ContentController@store')->name('add_content');
+        Route::put('/{id}', 'ContentController@update')->name('update_content');
+        Route::delete('/{id}', 'ContentController@delete')->name('delete_content');
+    });
+
     Route::prefix('transaction')->group(function (){
         Route::post('/', 'TransactionController@store')->name('add_transaction');
         Route::get('/', 'TransactionController@getAllMyTransactions')->name('get_users_transactions');
