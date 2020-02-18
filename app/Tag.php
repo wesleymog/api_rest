@@ -38,7 +38,7 @@ class Tag extends Model
     public static function TagMassive($request,$type ,$object){
 
         //Tratamento das Tags
-        if($tags = explode(",", $request->tags)){
+        if($request->tags != null && $tags = explode(",", $request->tags)){
             foreach ($tags as $tag) {
                 if($tag_component = Tag::find($tag)){
                     if($type == "initiative"){
@@ -65,7 +65,7 @@ class Tag extends Model
                 }
             }
         }
-        if($skills = explode(",", $request->skills)){
+        if($request->skills != null && $skills = explode(",", $request->skills)){
             foreach ($skills as $skill) {
                 if($tag_component = Tag::find($skill)){
                     $tag_component->users()->attach($object,['category'=>'skills']);
@@ -78,7 +78,7 @@ class Tag extends Model
             }
 
         }
-        if($interests = explode(",", $request->interests)){
+        if($request->interests != null && $interests = explode(",", $request->interests)){
             foreach ($interests as $interest) {
                 if($tag_component = Tag::find($interest)){
                     $tag_component->users()->attach($object,['category'=>'interests']);
