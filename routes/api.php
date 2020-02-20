@@ -66,6 +66,8 @@ Route::group([
         Route::get('/', 'HomeController@home')->name('home');
         Route::get('/alta', 'HomeController@alta')->name('alta');
         Route::get('/proximas', 'HomeController@proximas')->name('proximas');
+        Route::get('/next', 'HomeController@proximas')->name('next');
+        Route::get('/highlights', 'HomeController@alta')->name('next');
         Route::get('/held', 'HomeController@held')->name('held');
         Route::get('/going', 'HomeController@going')->name('going');
 

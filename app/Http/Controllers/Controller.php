@@ -26,7 +26,7 @@ class Controller extends BaseController
 /**
  *
  *  @OA\Server(
-*      url="https://localhost:8000/api/",
+*      url="https://back.mojosolutions.co/api/",
  *      description="Server Mojo"
  * )
  */
