@@ -180,7 +180,7 @@ class HomeController extends Controller
 
  /**
  * @OA\Get(
- *      path="/",
+ *      path="/home/",
  *      operationId="home",
  *      tags={"home"},
  *      summary="Home",
@@ -227,7 +227,7 @@ class HomeController extends Controller
  */
  /**
  * @OA\Get(
- *      path="/alta",
+ *      path="/home/alta",
  *      tags={"home"},
  *      summary="Home",
  *      description="Return top events ",
@@ -273,7 +273,7 @@ class HomeController extends Controller
  */
  /**
  * @OA\Get(
- *      path="/proximas",
+ *      path="/home/proximas",
  *      tags={"home"},
  *      summary="Home",
  *      description="Return next Events",
@@ -319,7 +319,7 @@ class HomeController extends Controller
  */
 /**
  * @OA\Get(
- *      path="/held",
+ *      path="/home/held",
  *      tags={"home"},
  *      summary="Home",
  *      description="Return the events held",
@@ -366,7 +366,7 @@ class HomeController extends Controller
 
 /**
  * @OA\Get(
- *      path="/going",
+ *      path="/home/going",
  *      tags={"home"},
  *      summary="Home",
  *      description="Return the going events",

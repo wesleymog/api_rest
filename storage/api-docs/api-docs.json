@@ -265,7 +265,7 @@
                 }
             }
         },
-        "/": {
+        "/home/": {
             "get": {
                 "tags": [
                     "home"
@@ -397,7 +397,7 @@
                 }
             }
         },
-        "/alta": {
+        "/home/alta": {
             "get": {
                 "tags": [
                     "home"
@@ -528,7 +528,7 @@
                 }
             }
         },
-        "/proximas": {
+        "/home/proximas": {
             "get": {
                 "tags": [
                     "home"
@@ -659,7 +659,7 @@
                 }
             }
         },
-        "/held": {
+        "/home/held": {
             "get": {
                 "tags": [
                     "home"
@@ -790,7 +790,7 @@
                 }
             }
         },
-        "/going": {
+        "/home/going": {
             "get": {
                 "tags": [
                     "home"
