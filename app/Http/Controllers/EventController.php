@@ -141,6 +141,68 @@ class EventController extends Controller
  *      tags={"Events"},
  *      summary="Edit an Event",
  *      description="Returns list of Events",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="type",
+ *                     type="integer"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="title",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="code",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="category",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="start_time",
+ *                     type="datetime"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="end_time",
+ *                     type="datetime"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="location",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="description",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="img",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="value",
+ *                     type="double"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="user_id",
+ *                     type="integer"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="tags",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="recurrence",
+ *                     type="string"
+ *                 ),
+ *                 example={"type": 1,"title": "olg","code": "#a101","category": "1","start_time": "2019-12-28 20:45:12","end_time": "2019-08-30 23:05:12","location": "Carrin","description": "legal","img": null,"value":10,"user_id": 1,"tags":"teste, feliz, sad, test","recurrence": "monthly"},
+ *                 required={"type","title","code","category", "start_time", "end_time","location","description", "img", "value","recurrence"}
+ *             )
+ *         )
+ *     ),
+
  *      @OA\Response(
  *          response=200,
  *          description="successful operation"
@@ -176,6 +238,67 @@ class EventController extends Controller
  *      tags={"Events"},
  *      summary="Add an Event",
  *      description="Returns list of Events",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="type",
+ *                     type="integer"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="title",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="code",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="category",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="start_time",
+ *                     type="datetime"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="end_time",
+ *                     type="datetime"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="location",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="description",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="img",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="value",
+ *                     type="double"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="user_id",
+ *                     type="integer"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="tags",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="recurrence",
+ *                     type="string"
+ *                 ),
+ *                 example={"type": 1,"title": "olg","code": "#a101","category": "1","start_time": "2019-12-28 20:45:12","end_time": "2019-08-30 23:05:12","location": "Carrin","description": "legal","img": null,"value":10,"user_id": 1,"tags":"teste, feliz, sad, test","recurrence": "monthly"},
+ *                 required={"type","title","code","category", "start_time", "end_time","location","description", "img", "value","recurrence"}
+ *             )
+ *         )
+ *     ),
  *      @OA\Response(
  *          response=200,
  *          description="successful operation"
@@ -204,5 +327,5 @@ class EventController extends Controller
  *
  *     )
  *
- * Return a message of sucess
+ * Return a message of success
  */

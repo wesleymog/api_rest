@@ -187,7 +187,39 @@ class HomeController extends Controller
  *      description="Home",
  *      @OA\Response(
  *          response=200,
- *          description="successful operation"
+ *          description="successful operation",
+ *          @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="data",
+ *                     type="array",
+ *                      @OA\Items(
+ *                          @OA\Property(
+ *                              property="eventsForHome",
+ *                              type="array",
+ *
+ *                              @OA\Items(
+ *                                  @OA\Property(property="type",type="integer"),
+ *                                  @OA\Property(property="title",type="string"),
+ *                                  @OA\Property(property="code",type="string"),
+ *                                  @OA\Property(property="category",type="string"),
+ *                                  @OA\Property(property="start_time",type="datetime"),
+ *                                  @OA\Property(property="end_time",type="datetime"),
+ *                                  @OA\Property(property="location",type="string"),
+ *                                  @OA\Property(property="description",type="string"),
+ *                                  @OA\Property(property="img",type="string"),
+ *                                  @OA\Property(property="value",type="double"),
+ *                                  @OA\Property(property="user_id",type="integer"),
+ *                                  @OA\Property(property="tags",type="string"),
+ *                                  @OA\Property(property="recurrence",type="string"),
+ *                                  )
+ *                              )
+ *                      )
+ *                 ),
+ *                 example={"data": {"eventsForHome": {{    "id": 7,    "type": 1,    "category": "teste",    "title": " LUNCH ‘N’ LEARN – MERO 2",    "code": "#1",    "start_time": "2020-02-27 22:24:53",    "end_time": "2020-02-28 00:24:53",    "location": "SALA 2",    "description": "",    "recurrence": "none",    "img": "1",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false},{    "id": 8,    "type": 1,    "category": "teste",    "title": "INNOVATION TECHNIQUES TRAINING",    "code": "#2",    "start_time": "2020-02-20 22:24:53",    "end_time": "2020-02-21 00:24:53",    "location": "SALA 5",    "description": "",    "recurrence": "none",    "img": "2",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false}}}}
+ *             )
+ *         )
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
  *     )
@@ -201,7 +233,39 @@ class HomeController extends Controller
  *      description="Return top events ",
  *      @OA\Response(
  *          response=200,
- *          description="successful operation"
+ *          description="successful operation",
+ *          @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="data",
+ *                     type="array",
+ *                      @OA\Items(
+ *                          @OA\Property(
+ *                              property="alta",
+ *                              type="array",
+ *
+ *                              @OA\Items(
+ *                                  @OA\Property(property="type",type="integer"),
+ *                                  @OA\Property(property="title",type="string"),
+ *                                  @OA\Property(property="code",type="string"),
+ *                                  @OA\Property(property="category",type="string"),
+ *                                  @OA\Property(property="start_time",type="datetime"),
+ *                                  @OA\Property(property="end_time",type="datetime"),
+ *                                  @OA\Property(property="location",type="string"),
+ *                                  @OA\Property(property="description",type="string"),
+ *                                  @OA\Property(property="img",type="string"),
+ *                                  @OA\Property(property="value",type="double"),
+ *                                  @OA\Property(property="user_id",type="integer"),
+ *                                  @OA\Property(property="tags",type="string"),
+ *                                  @OA\Property(property="recurrence",type="string"),
+ *                                  )
+ *                              )
+ *                      )
+ *                 ),
+ *                 example={"data": {"alta": {{    "id": 7,    "type": 1,    "category": "teste",    "title": " LUNCH ‘N’ LEARN – MERO 2",    "code": "#1",    "start_time": "2020-02-27 22:24:53",    "end_time": "2020-02-28 00:24:53",    "location": "SALA 2",    "description": "",    "recurrence": "none",    "img": "1",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false},{    "id": 8,    "type": 1,    "category": "teste",    "title": "INNOVATION TECHNIQUES TRAINING",    "code": "#2",    "start_time": "2020-02-20 22:24:53",    "end_time": "2020-02-21 00:24:53",    "location": "SALA 5",    "description": "",    "recurrence": "none",    "img": "2",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false}}}}
+ *             )
+ *         )
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
  *     )
@@ -215,8 +279,40 @@ class HomeController extends Controller
  *      description="Return next Events",
  *      @OA\Response(
  *          response=200,
- *          description="successful operation"
- *       ),
+ *          description="successful operation",
+ *          @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="data",
+ *                     type="array",
+ *                      @OA\Items(
+ *                          @OA\Property(
+ *                              property="proximas",
+ *                              type="array",
+ *
+ *                              @OA\Items(
+ *                                  @OA\Property(property="type",type="integer"),
+ *                                  @OA\Property(property="title",type="string"),
+ *                                  @OA\Property(property="code",type="string"),
+ *                                  @OA\Property(property="category",type="string"),
+ *                                  @OA\Property(property="start_time",type="datetime"),
+ *                                  @OA\Property(property="end_time",type="datetime"),
+ *                                  @OA\Property(property="location",type="string"),
+ *                                  @OA\Property(property="description",type="string"),
+ *                                  @OA\Property(property="img",type="string"),
+ *                                  @OA\Property(property="value",type="double"),
+ *                                  @OA\Property(property="user_id",type="integer"),
+ *                                  @OA\Property(property="tags",type="string"),
+ *                                  @OA\Property(property="recurrence",type="string"),
+ *                                  )
+ *                              )
+ *                      )
+ *                 ),
+ *                 example={"data": {"proximas": {{    "id": 7,    "type": 1,    "category": "teste",    "title": " LUNCH ‘N’ LEARN – MERO 2",    "code": "#1",    "start_time": "2020-02-27 22:24:53",    "end_time": "2020-02-28 00:24:53",    "location": "SALA 2",    "description": "",    "recurrence": "none",    "img": "1",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false},{    "id": 8,    "type": 1,    "category": "teste",    "title": "INNOVATION TECHNIQUES TRAINING",    "code": "#2",    "start_time": "2020-02-20 22:24:53",    "end_time": "2020-02-21 00:24:53",    "location": "SALA 5",    "description": "",    "recurrence": "none",    "img": "2",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false}}}}
+ *             )
+ *         )
+ *        ),
  *       @OA\Response(response=400, description="Bad request"),
  *     )
  *
@@ -229,7 +325,39 @@ class HomeController extends Controller
  *      description="Return the events held",
  *      @OA\Response(
  *          response=200,
- *          description="successful operation"
+ *          description="successful operation",
+ *          @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="data",
+ *                     type="array",
+ *                      @OA\Items(
+ *                          @OA\Property(
+ *                              property="events",
+ *                              type="array",
+ *
+ *                              @OA\Items(
+ *                                  @OA\Property(property="type",type="integer"),
+ *                                  @OA\Property(property="title",type="string"),
+ *                                  @OA\Property(property="code",type="string"),
+ *                                  @OA\Property(property="category",type="string"),
+ *                                  @OA\Property(property="start_time",type="datetime"),
+ *                                  @OA\Property(property="end_time",type="datetime"),
+ *                                  @OA\Property(property="location",type="string"),
+ *                                  @OA\Property(property="description",type="string"),
+ *                                  @OA\Property(property="img",type="string"),
+ *                                  @OA\Property(property="value",type="double"),
+ *                                  @OA\Property(property="user_id",type="integer"),
+ *                                  @OA\Property(property="tags",type="string"),
+ *                                  @OA\Property(property="recurrence",type="string"),
+ *                                  )
+ *                              )
+ *                      )
+ *                 ),
+ *                 example={"data": {"events": {{    "id": 7,    "type": 1,    "category": "teste",    "title": " LUNCH ‘N’ LEARN – MERO 2",    "code": "#1",    "start_time": "2020-02-27 22:24:53",    "end_time": "2020-02-28 00:24:53",    "location": "SALA 2",    "description": "",    "recurrence": "none",    "img": "1",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false},{    "id": 8,    "type": 1,    "category": "teste",    "title": "INNOVATION TECHNIQUES TRAINING",    "code": "#2",    "start_time": "2020-02-20 22:24:53",    "end_time": "2020-02-21 00:24:53",    "location": "SALA 5",    "description": "",    "recurrence": "none",    "img": "2",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false}}}}
+ *             )
+ *         )
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
  *     )
@@ -244,35 +372,39 @@ class HomeController extends Controller
  *      description="Return the going events",
  *      @OA\Response(
  *          response=200,
- *          description="successful operation"
- *       ),
- *       @OA\Response(response=400, description="Bad request"),
- *     )
+  *          description="successful operation",
+ *          @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="data",
+ *                     type="array",
+ *                      @OA\Items(
+ *                          @OA\Property(
+ *                              property="events",
+ *                              type="array",
  *
- */
-/**
- * @OA\Tag(
- *     name="experiences",
- *     description="Experiences filters",
- * )
- */
- /**
- * @OA\Get(
- *      path="/experiences",
- *      operationId="experiences",
- *      tags={"experiences"},
- *      summary="Experiences filters",
- *      description="Filtrando as experiências através de um campo chamado filter que pode ser going, star, created e all",
- *      @OA\Parameter(
- *          name="filter",
- *          in="query",
- *          description="filters {going, star, created, all}",
- *          required=true,
- *      ),
- *      @OA\Response(
- *          response=200,
- *          description="successful operation"
- *       ),
+ *                              @OA\Items(
+ *                                  @OA\Property(property="type",type="integer"),
+ *                                  @OA\Property(property="title",type="string"),
+ *                                  @OA\Property(property="code",type="string"),
+ *                                  @OA\Property(property="category",type="string"),
+ *                                  @OA\Property(property="start_time",type="datetime"),
+ *                                  @OA\Property(property="end_time",type="datetime"),
+ *                                  @OA\Property(property="location",type="string"),
+ *                                  @OA\Property(property="description",type="string"),
+ *                                  @OA\Property(property="img",type="string"),
+ *                                  @OA\Property(property="value",type="double"),
+ *                                  @OA\Property(property="user_id",type="integer"),
+ *                                  @OA\Property(property="tags",type="string"),
+ *                                  @OA\Property(property="recurrence",type="string"),
+ *                                  )
+ *                              )
+ *                      )
+ *                 ),
+ *                 example={"data": {"events": {{    "id": 7,    "type": 1,    "category": "teste",    "title": " LUNCH ‘N’ LEARN – MERO 2",    "code": "#1",    "start_time": "2020-02-27 22:24:53",    "end_time": "2020-02-28 00:24:53",    "location": "SALA 2",    "description": "",    "recurrence": "none",    "img": "1",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false},{    "id": 8,    "type": 1,    "category": "teste",    "title": "INNOVATION TECHNIQUES TRAINING",    "code": "#2",    "start_time": "2020-02-20 22:24:53",    "end_time": "2020-02-21 00:24:53",    "location": "SALA 5",    "description": "",    "recurrence": "none",    "img": "2",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false}}}}
+ *             )
+ *         )*       ),
  *       @OA\Response(response=400, description="Bad request"),
  *     )
  *

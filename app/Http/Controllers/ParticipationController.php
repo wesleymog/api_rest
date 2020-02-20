@@ -100,6 +100,23 @@ class ParticipationController extends Controller
  *      tags={"participation"},
  *      summary="Confirm your participation",
  *      description="Confirm a participation of an user",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="confirm_status",
+ *                     type="boolean"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="event_id",
+ *                     type="integer"
+ *                 ),
+ *                 example={"event_id": 10,"confirm_status": true},
+ *                 required={"confirm_status","event_id"}
+ *             )
+ *         )
+ *     ),
  *      @OA\Response(
  *          response=200,
  *          description="successful operation"
@@ -117,6 +134,27 @@ class ParticipationController extends Controller
  *      tags={"participation"},
  *      summary="Rate your participation in an event",
  *      description="Returns your rate in the event",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="status",
+ *                     type="boolean"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="event_id",
+ *                     type="integer"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="rate",
+ *                     type="integer"
+ *                 ),
+ *                 example={"event_id": 10,"status": true, "rate":5},
+ *                 required={"confirm_status","event_id"}
+ *             )
+ *         )
+ *     ),
  *      @OA\Response(
  *          response=200,
  *          description="successful operation"

@@ -99,6 +99,23 @@ class TransactionController extends Controller
  *      tags={"transaction"},
  *      summary="Add an user",
  *      description="Add a transaction",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="receiver_id",
+ *                     type="integer"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="event_id",
+ *                     type="integer"
+ *                 ),
+ *                 example={"receiver_id": 10, "event_id": 10},
+ *                 required={"receiver_id","event_id"}
+ *             )
+ *         )
+ *     ),
  *      @OA\Response(
  *          response=200,
  *          description="successful operation"

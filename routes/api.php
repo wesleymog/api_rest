@@ -61,7 +61,7 @@ Route::group([
 
     });
 
-    Route::get('experiences', 'HomeController@experiences'); //retorna a home com os eventos à ver com as tags
+    //Route::get('experiences', 'HomeController@experiences'); //retorna a home com os eventos à ver com as tags
     Route::prefix('home')->group(function (){
         Route::get('/', 'HomeController@home')->name('home');
         Route::get('/alta', 'HomeController@alta')->name('alta');
