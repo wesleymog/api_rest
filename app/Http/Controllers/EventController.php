@@ -20,6 +20,7 @@ class EventController extends Controller
     	$event->tags;
         $event->users_confirmed;
         $event->is_owner();
+        $event->getStatus();
     	return response()->json($event);
     }
 

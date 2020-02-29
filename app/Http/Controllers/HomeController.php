@@ -25,6 +25,8 @@ class HomeController extends Controller
 
         foreach ($events as $event) {
             $event->getStatus();
+            $event->tags;
+            $event->users_confirmed;
         }
 
         return response()->json(['data'=>['alta'=>$events]], 200);
@@ -43,6 +45,8 @@ class HomeController extends Controller
 
         foreach ($events as $event) {
             $event->getStatus();
+            $event->tags;
+            $event->users_confirmed;
         }
 
         return response()->json(['data'=>['proximas'=> $events]], 200);
@@ -55,6 +59,8 @@ class HomeController extends Controller
 
         foreach ($events as $event) {
             $event->getStatus();
+            $event->tags;
+            $event->users_confirmed;
         }
 
         $data = ["data" => ["events" => $events]];
@@ -68,6 +74,8 @@ class HomeController extends Controller
 
         foreach ($events as $event) {
             $event->getStatus();
+            $event->tags;
+            $event->users_confirmed;
         }
 
         $data = ["data" => ["events" => $events]];
@@ -94,6 +102,8 @@ class HomeController extends Controller
         $events = Event::whereIn('id', $events)->where('end_time','>',$carbon)->paginate(10);
         foreach ($events as $event) {
             $event->getStatus();
+            $event->tags;
+            $event->users_confirmed;
         }
         //Pegando os eventos confirmados
         $eventsConfirmed = $user->eventsConfirmed->pluck('id');

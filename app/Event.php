@@ -15,7 +15,10 @@ class Event extends Model
 
     	return $this->belongsToMany('App\Tag');
     }
+    public function gettagnames(){
 
+    	return $this->belongsToMany('App\Tag')->pluck('name');
+    }
     public function events()
     {
         return $this->hasMany(Event::class, 'event_id', 'id');
