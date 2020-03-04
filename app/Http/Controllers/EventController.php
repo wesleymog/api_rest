@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Event;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Events\NewInvite;
 class EventController extends Controller
 {
 	public function index(){
@@ -27,6 +28,7 @@ class EventController extends Controller
     public function store(Request $request){
             $event = new Event;
             $event->createEvent($request);
+            event(new NewInvite($event->toArray(), 'like'));
     	    return response()->json(['msg' => 'Evento cadastrado com sucesso!'], 201);
 
     }
