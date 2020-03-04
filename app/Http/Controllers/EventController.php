@@ -28,7 +28,7 @@ class EventController extends Controller
     public function store(Request $request){
             $event = new Event;
             $event->createEvent($request);
-            event(new NewInvite($event->toArray(), 'like'));
+            event(new NewInvite($event->toArray(), 'notification'));
     	    return response()->json(['msg' => 'Evento cadastrado com sucesso!'], 201);
 
     }

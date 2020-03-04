@@ -30,14 +30,14 @@ app.get("/", function(req, res) {
 });
 
 // Recebe requisição do Laravel
-app.post("/like", function(req, res) {
+app.post("/notification", function(req, res) {
     console.log('Chegando dentro do like');
     var params = req.body;
     var clients = io.sockets.clients().sockets;
     console.log(req.body);
     console.log('Esses são os parametros\n');
     for (const key in clients) {
-        if (key != params.id) clients[key].emit("like", params);
+        if (key != params.id) clients[key].emit("notification", params);
     }
 
     res.send();
