@@ -118,7 +118,19 @@ class HomeController extends Controller
     	return response()->json($data);
     }
 
-    public function experiences(Request $request){
+    public function notifications(){
+        $user = Auth::user();
+        $eventsWithoutRate=  $user->participationsWithoutRate;
+        $tags = $user->tags->pluck("id");
+        $events = DB::table('event_tag')->whereIn('tag_id', $tags)->pluck("event_id");
+        $event = Event::whereIn('id', $events)->latest('created_at')->first();
+        if(($event->users_confirmed()->pluck('users.id')->contains($user))){
+            $event = null;
+        }
+        return response()->json([ [$event, $eventsWithoutRate]], 200);
+    }
+
+    /* public function experiences(Request $request){
 
         $user = Auth::user();
         //pegando a data atual e passando para string
@@ -177,7 +189,7 @@ class HomeController extends Controller
          $data = ["data" => ["eventsForHome" => $events, "eventsForPopUp" => $eventsForPopup]];
          return response()->json($data, 200);
 
-    }
+    } */
 }
 
 

@@ -61,6 +61,8 @@ Route::group([
 
     });
 
+    Route::get('/mynotifications', 'HomeController@notifications');
+
     //Route::get('experiences', 'HomeController@experiences'); //retorna a home com os eventos à ver com as tags
     Route::prefix('home')->group(function (){
         Route::get('/', 'HomeController@home')->name('home');
@@ -98,7 +100,7 @@ Route::group([
         Route::get('/event/{id}', 'EventController@Invitation')->name('get_invitations_by_event');
     });
 
-    Route::get('/myInvitations', 'UserController@myInvitations')->name('get_user_invitations');
+    Route::get('/myinvitations', 'UserController@myInvitations')->name('get_user_invitations');
 
     Route::get('/mytransactions', 'TransactionController@getAllMyTransactions')->name('get_users_transactions');
 
