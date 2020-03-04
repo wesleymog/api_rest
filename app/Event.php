@@ -89,6 +89,12 @@ public function updateQuietly($request)
         }else{
             $this->interest_status = false;
         }
+        if(Auth::user()->participationsWithoutRate->pluck('id')->contains($this->id)){
+            $this->without_rate = true;
+        }else{
+            $this->without_rate = false;
+
+        }
         return $this;
     }
 

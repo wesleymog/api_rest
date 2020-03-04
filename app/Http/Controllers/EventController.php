@@ -94,7 +94,6 @@ class EventController extends Controller
     public function invitation($id){
 
         $event = Event::find($id);
-
         $users = $event->Invitations();
         $users = User::findMany($users);
 
