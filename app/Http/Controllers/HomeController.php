@@ -431,3 +431,71 @@ class HomeController extends Controller
  *     )
  *
  */
+/**
+ * @OA\Get(
+ *      path="/mynotifications",
+ *      operationId="mynotification",
+ *      tags={"mynotification"},
+ *      summary="My Notifications",
+ *      description="Nesta rota, eu estou retornando o último evento adicionado com as tags dele e retornando os eventos que ele não avaliou",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation",
+ *          @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="data",
+ *                     type="array",
+ *                      @OA\Items(
+ *                          @OA\Property(
+ *                              property="LastEvent",
+ *                              type="array",
+ *
+ *                              @OA\Items(
+ *                                  @OA\Property(property="type",type="integer"),
+ *                                  @OA\Property(property="title",type="string"),
+ *                                  @OA\Property(property="code",type="string"),
+ *                                  @OA\Property(property="category",type="string"),
+ *                                  @OA\Property(property="start_time",type="datetime"),
+ *                                  @OA\Property(property="end_time",type="datetime"),
+ *                                  @OA\Property(property="location",type="string"),
+ *                                  @OA\Property(property="description",type="string"),
+ *                                  @OA\Property(property="img",type="string"),
+ *                                  @OA\Property(property="value",type="double"),
+ *                                  @OA\Property(property="user_id",type="integer"),
+ *                                  @OA\Property(property="tags",type="string"),
+ *                                  @OA\Property(property="recurrence",type="string"),
+ *                                  )
+ *                              ),
+ *
+ *                          @OA\Property(
+ *                              property="eventsWithoutRate",
+ *                              type="array",
+ *
+ *                              @OA\Items(
+ *                                  @OA\Property(property="type",type="integer"),
+ *                                  @OA\Property(property="title",type="string"),
+ *                                  @OA\Property(property="code",type="string"),
+ *                                  @OA\Property(property="category",type="string"),
+ *                                  @OA\Property(property="start_time",type="datetime"),
+ *                                  @OA\Property(property="end_time",type="datetime"),
+ *                                  @OA\Property(property="location",type="string"),
+ *                                  @OA\Property(property="description",type="string"),
+ *                                  @OA\Property(property="img",type="string"),
+ *                                  @OA\Property(property="value",type="double"),
+ *                                  @OA\Property(property="user_id",type="integer"),
+ *                                  @OA\Property(property="tags",type="string"),
+ *                                  @OA\Property(property="recurrence",type="string"),
+ *                                  )
+ *                              )
+ *                      )
+ *                 ),
+ *                 example={ "data": { "LastEvent": { "id": 7, "type": 1, "category": "teste", "title": " LUNCH ‘N’ LEARN – MERO 2", "code": "#1", "start_time": "2020-03-14 11:05:55", "end_time": "2020-03-14 13:05:55", "location": "SALA 2", "description": "", "recurrence": "none", "img": "1", "value": 10, "user_id": 1, "event_id": null, "boost": 0, "created_at": null, "updated_at": null }, "eventsWithoutRate": { { "id": 15, "type": 1, "category": "1", "title": "olg", "code": "#a101", "start_time": "2019-12-28 20:45:12", "end_time": "2019-08-30 23:05:12", "location": "Carrin", "description": "legal", "recurrence": "monthly", "img": null, "value": 10, "user_id": 1, "event_id": null, "boost": 0, "created_at": "2020-03-02 22:47:29", "updated_at": "2020-03-02 22:47:29", "pivot": { "user_id": 1, "event_id": 15 } } } } }
+ *             )
+ *         )
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *     )
+ *
+ */

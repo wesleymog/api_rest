@@ -921,6 +921,183 @@
                 }
             }
         },
+        "/mynotifications": {
+            "get": {
+                "tags": [
+                    "mynotification"
+                ],
+                "summary": "My Notifications",
+                "description": "Nesta rota, eu estou retornando o último evento adicionado com as tags dele e retornando os eventos que ele não avaliou",
+                "operationId": "mynotification",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "LastEvent": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string"
+                                                                },
+                                                                "code": {
+                                                                    "type": "string"
+                                                                },
+                                                                "category": {
+                                                                    "type": "string"
+                                                                },
+                                                                "start_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "end_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "location": {
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string"
+                                                                },
+                                                                "img": {
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "type": "double"
+                                                                },
+                                                                "user_id": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "tags": {
+                                                                    "type": "string"
+                                                                },
+                                                                "recurrence": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "eventsWithoutRate": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string"
+                                                                },
+                                                                "code": {
+                                                                    "type": "string"
+                                                                },
+                                                                "category": {
+                                                                    "type": "string"
+                                                                },
+                                                                "start_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "end_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "location": {
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string"
+                                                                },
+                                                                "img": {
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "type": "double"
+                                                                },
+                                                                "user_id": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "tags": {
+                                                                    "type": "string"
+                                                                },
+                                                                "recurrence": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "data": {
+                                            "LastEvent": {
+                                                "id": 7,
+                                                "type": 1,
+                                                "category": "teste",
+                                                "title": " LUNCH ‘N’ LEARN – MERO 2",
+                                                "code": "#1",
+                                                "start_time": "2020-03-14 11:05:55",
+                                                "end_time": "2020-03-14 13:05:55",
+                                                "location": "SALA 2",
+                                                "description": "",
+                                                "recurrence": "none",
+                                                "img": "1",
+                                                "value": 10,
+                                                "user_id": 1,
+                                                "event_id": null,
+                                                "boost": 0,
+                                                "created_at": null,
+                                                "updated_at": null
+                                            },
+                                            "eventsWithoutRate": [
+                                                {
+                                                    "id": 15,
+                                                    "type": 1,
+                                                    "category": "1",
+                                                    "title": "olg",
+                                                    "code": "#a101",
+                                                    "start_time": "2019-12-28 20:45:12",
+                                                    "end_time": "2019-08-30 23:05:12",
+                                                    "location": "Carrin",
+                                                    "description": "legal",
+                                                    "recurrence": "monthly",
+                                                    "img": null,
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": "2020-03-02 22:47:29",
+                                                    "updated_at": "2020-03-02 22:47:29",
+                                                    "pivot": {
+                                                        "user_id": 1,
+                                                        "event_id": 15
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
         "/invitation": {
             "post": {
                 "tags": [
