@@ -49,6 +49,6 @@ io.on("connection", function(client) {
     client.emit("welcome", {
         id: client.id
     });
-    console.log(client.id);
+    console.log(client);
 
 });

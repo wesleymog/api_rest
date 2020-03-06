@@ -35,7 +35,7 @@ class Tag extends Model
         $this->save();
         return $this;
     }
-    public static function TagMassive($request,$type ,$object){
+    public static function TagMassive($request, $event,$type ,$object){
 
         //Tratamento das Tags
         if($request->tags != null && $tags = explode(",", $request->tags)){
@@ -43,6 +43,11 @@ class Tag extends Model
                 if($tag_component = Tag::find($tag)){
                     if($type == "initiative"){
                         $tag_component->events()->attach($object);
+                        $users = $tag_component->users()->get();
+                        foreach($users as $user){
+                            $notification = new Notification;
+                            $notification->createNotification(1, $user->id, $object->id);
+                        }
                     }else if($type == "user"){
                         $tag_component->users()->attach($object);
                     }
@@ -50,6 +55,12 @@ class Tag extends Model
                 else if($tag_component = Tag::where('name', $tag)->first()){
                     if($type == "initiative"){
                         $tag_component->events()->attach($object);
+                        $users = $tag_component->users()->get();
+                        foreach($users as $user){
+                            $notification = new Notification;
+                            $notification->createNotification(1, $user->id, $object->id);
+                        }
+
                     }else if($type == "user"){
                         $tag_component->users()->attach($object);
                     }

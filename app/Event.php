@@ -24,6 +24,11 @@ class Event extends Model
         return $this->hasMany(Event::class, 'event_id', 'id');
     }
 
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'event_id', 'id');
+    }
+
     public function event()
     {
         return $this->belongsTo(Event::class, 'event_id');
@@ -126,7 +131,9 @@ public function updateQuietly($request)
 
         $this->save();
 
-        Tag::TagMassive($request,"initiative", $this);
+        Tag::TagMassive($request,$this,"initiative", $this);
+
+
 
 
     }

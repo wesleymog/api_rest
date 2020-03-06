@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script>
+    $(function () {
+       var socket  = io('https://back.mojosolutions.co/');
+       var urlBase = $('body').data('base-url');
+       var me      = 0;
+       $('#like').click(function(event){
+          event.preventDefault();
+          var self = $(this);
+          // Envio um AJAX para o Laravel
+          $.ajax({
+             url: urlBase + '/notification',
+             type: "POST",
+             data: {
+                name    : self.data('name'),
+                id      : me
+             },
+             success: function(result){
+                console.log('Sucesso!');
+             }
+           });
+       });
+       // Registra usuário no Socket
+       socket.on('welcome', function(data){
+          me = data.id;
+       });
+       /**
+        * Recebe notificação de like
+        */
+       socket.on('notification', function(response){
+          $.toast({
+             heading: 'Notificação de'+response,
+             text: response.title,
+             loader: true,
+             hideAfter: 15000,
+             loaderBg: '#000000',
+             bgColor: '#385bdc',
+             textColor: 'white'
+           });
+       });
+    });
+    </script>
+</head>
+<body>
+<div class="container spark-screen">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">Chat Message Module</div>
+                <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-lg-8" >
+                      <div id="messages" ></div>
+                    </div>
+                    <div class="col-lg-8" >
+                            <form action="sendmessage" method="POST">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}" >
+                                <input type="hidden" name="user" value="{{ Auth::user()->name }}" >
+                                <textarea class="form-control msg"></textarea>
+                                <br/>
+                                <input type="button" id="like" value="Send" class="btn btn-success send-msg like">
+                            </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var socket = io.connect('http://localhost:8890');
+    socket.on('message', function (data) {
+        data = jQuery.parseJSON(data);
+        console.log(data.user);
+        $( "#messages" ).append( "<strong>"+data.user+":</strong><p>"+data.message+"</p>" );
+      });
+    $(".send-msg").click(function(e){
+        e.preventDefault();
+        var token = $("input[name='_token']").val();
+        var user = $("input[name='user']").val();
+        var msg = $(".msg").val();
+        if(msg != ''){
+            $.ajax({
+                type: "POST",
+                url: '{!! URL::to("sendmessage") !!}',
+                dataType: "json",
+                data: {'_token':token,'message':msg,'user':user},
+                success:function(data){
+                    console.log(data);
+                    $(".msg").val('');
+                }
+            });
+        }else{
+            alert("Please Add Message.");
+        }
+    })
+</script>
+</body>
+</html>

@@ -61,6 +61,15 @@ Route::group([
 
     });
 
+    Route::prefix('notifications')->group(function (){
+        Route::get('/', 'NotificationController@index')->name('notification');
+        Route::get('/{id}', 'NotificationController@show')->name('single_notification');
+        Route::post('/', 'NotificationController@store')->name('add_notification');
+        Route::put('/{id}', 'NotificationController@update')->name('update_notification');
+        Route::put('/markAsRead/{id}', 'NotificationController@markAsRead')->name('markAsRead_notification');
+        Route::delete('/{id}', 'NotificationController@delete')->name('delete_notification');
+    });
+
     Route::get('/mynotifications', 'HomeController@notifications');
 
     //Route::get('experiences', 'HomeController@experiences'); //retorna a home com os eventos à ver com as tags
