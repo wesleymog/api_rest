@@ -37,7 +37,7 @@ class Notification extends Model
        $participations = $event->participations;
        foreach ($participations as $participation) {
            $notification = new Notification;
-           $notification->createNotification(2, $participation->user_id, $event->id);
+           $notification->createNotification('evaluation', $participation->user_id, $event->id);
        }
     }
 

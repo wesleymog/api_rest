@@ -107,7 +107,9 @@ class User extends Authenticatable
 
     public function participationsWithoutRate()
     {
-        return $this->belongsToMany('App\Event', 'participations')->wherePivot('rate',null)->wherePivot('status',null);
+        $carbon =Carbon::now( 'America/Sao_Paulo')->toDateTimeString();
+
+        return $this->belongsToMany('App\Event', 'participations')->wherePivot('rate',null)->wherePivot('status',null)->where('events.end_time','<',$carbon);
     }
 
     public function myInvitationstoOthers(){

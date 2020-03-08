@@ -17,7 +17,7 @@ class CreateNotificationsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('event_id')->unsigned();
-            $table->integer('type');
+            $table->text('type');
             $table->boolean('read');
             // Relações
             $table->foreign('event_id')

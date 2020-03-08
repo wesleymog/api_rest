@@ -46,7 +46,7 @@ class Tag extends Model
                         $users = $tag_component->users()->get();
                         foreach($users as $user){
                             $notification = new Notification;
-                            $notification->createNotification(1, $user->id, $object->id);
+                            $notification->createNotification('invitation', $user->id, $object->id);
                         }
                     }else if($type == "user"){
                         $tag_component->users()->attach($object);
@@ -58,7 +58,7 @@ class Tag extends Model
                         $users = $tag_component->users()->get();
                         foreach($users as $user){
                             $notification = new Notification;
-                            $notification->createNotification(1, $user->id, $object->id);
+                            $notification->createNotification('invitation', $user->id, $object->id);
                         }
 
                     }else if($type == "user"){
