@@ -75,7 +75,7 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class);
     }
     public function Myevents(){
-        return $this->hasMany(Event::class);
+         return Event::where('user_id', $this->id)->orderBy('end_time', 'desc')->get();
     }
 
     public function alterWallet($value){

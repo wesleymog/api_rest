@@ -790,6 +790,137 @@
                 }
             }
         },
+        "/home/byme": {
+            "get": {
+                "tags": [
+                    "home"
+                ],
+                "summary": "byme",
+                "description": "Return events that I've created",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "events": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string"
+                                                                },
+                                                                "code": {
+                                                                    "type": "string"
+                                                                },
+                                                                "category": {
+                                                                    "type": "string"
+                                                                },
+                                                                "start_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "end_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "location": {
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string"
+                                                                },
+                                                                "img": {
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "type": "double"
+                                                                },
+                                                                "user_id": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "tags": {
+                                                                    "type": "string"
+                                                                },
+                                                                "recurrence": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "data": {
+                                            "events": [
+                                                {
+                                                    "id": 7,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": " LUNCH ‘N’ LEARN – MERO 2",
+                                                    "code": "#1",
+                                                    "start_time": "2020-02-27 22:24:53",
+                                                    "end_time": "2020-02-28 00:24:53",
+                                                    "location": "SALA 2",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "1",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null,
+                                                    "users_confirmed_count": 0,
+                                                    "confirm_status": false,
+                                                    "interest_status": false
+                                                },
+                                                {
+                                                    "id": 8,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": "INNOVATION TECHNIQUES TRAINING",
+                                                    "code": "#2",
+                                                    "start_time": "2020-02-20 22:24:53",
+                                                    "end_time": "2020-02-21 00:24:53",
+                                                    "location": "SALA 5",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "2",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null,
+                                                    "users_confirmed_count": 0,
+                                                    "confirm_status": false,
+                                                    "interest_status": false
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
         "/home/going": {
             "get": {
                 "tags": [

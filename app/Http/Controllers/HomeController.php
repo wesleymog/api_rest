@@ -130,6 +130,19 @@ class HomeController extends Controller
         return response()->json([ [$event, $eventsWithoutRate]], 200);
     }
 
+    public function byme(){
+        $user = Auth::user();
+        $events = $user->Myevents();
+        foreach ($events as $event) {
+            $event->getStatus();
+            $event->tags;
+            $event->users_confirmed;
+        }
+        $data = ["data" => ["events" => $events]];
+        return response()->json($data, 200);
+
+    }
+
     /* public function experiences(Request $request){
 
         $user = Auth::user();
@@ -387,6 +400,52 @@ class HomeController extends Controller
  */
 
 /**
+ * @OA\Get(
+ *      path="/home/byme",
+ *      tags={"home"},
+ *      summary="byme",
+ *      description="Return events that I've created",
+ *      @OA\Response(
+ *          response=200,
+  *          description="successful operation",
+ *          @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="data",
+ *                     type="array",
+ *                      @OA\Items(
+ *                          @OA\Property(
+ *                              property="events",
+ *                              type="array",
+ *
+ *                              @OA\Items(
+ *                                  @OA\Property(property="type",type="integer"),
+ *                                  @OA\Property(property="title",type="string"),
+ *                                  @OA\Property(property="code",type="string"),
+ *                                  @OA\Property(property="category",type="string"),
+ *                                  @OA\Property(property="start_time",type="datetime"),
+ *                                  @OA\Property(property="end_time",type="datetime"),
+ *                                  @OA\Property(property="location",type="string"),
+ *                                  @OA\Property(property="description",type="string"),
+ *                                  @OA\Property(property="img",type="string"),
+ *                                  @OA\Property(property="value",type="double"),
+ *                                  @OA\Property(property="user_id",type="integer"),
+ *                                  @OA\Property(property="tags",type="string"),
+ *                                  @OA\Property(property="recurrence",type="string"),
+ *                                  )
+ *                              )
+ *                      )
+ *                 ),
+ *                 example={"data": {"events": {{    "id": 7,    "type": 1,    "category": "teste",    "title": " LUNCH ‘N’ LEARN – MERO 2",    "code": "#1",    "start_time": "2020-02-27 22:24:53",    "end_time": "2020-02-28 00:24:53",    "location": "SALA 2",    "description": "",    "recurrence": "none",    "img": "1",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false},{    "id": 8,    "type": 1,    "category": "teste",    "title": "INNOVATION TECHNIQUES TRAINING",    "code": "#2",    "start_time": "2020-02-20 22:24:53",    "end_time": "2020-02-21 00:24:53",    "location": "SALA 5",    "description": "",    "recurrence": "none",    "img": "2",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false}}}}
+ *             )
+ *         )*       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *     )
+ *
+ */
+
+ /**
  * @OA\Get(
  *      path="/home/going",
  *      tags={"home"},

@@ -79,6 +79,7 @@ Route::group([
         Route::get('/proximas', 'HomeController@proximas')->name('proximas');
         Route::get('/held', 'HomeController@held')->name('held');
         Route::get('/going', 'HomeController@going')->name('going');
+        Route::get('/byme', 'HomeController@byme')->name('going');
 
     });
     Route::prefix('participation')->group(function (){
