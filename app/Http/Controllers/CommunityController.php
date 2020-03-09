@@ -189,3 +189,254 @@ class CommunityController extends Controller
 
 
 }
+// Documentação API
+
+/**
+ * @OA\Tag(
+ *     name="communities",
+ *     description="Everything about your communities",
+ *     @OA\ExternalDocumentation(
+ *         description="Find out more",
+ *         url="http://swagger.io"
+ *     )
+ * )
+ */
+
+ /**
+ * @OA\Get(
+ *      path="/communities",
+ *      operationId="getcommunities",
+ *      tags={"communities"},
+ *      summary="Get list of communities",
+ *      description="Returns list of Communities",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ * Returns list of communities
+ */
+   /**
+ * @OA\Put(
+ *      path="/communities/{id}",
+ *      operationId="update_communitie",
+ *      tags={"communities"},
+ *      summary="Edit an communitie",
+ *      description="Returns list of communities",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(property="name",type="string"),
+ *                 @OA\Property(property="description",type="string"),
+ *                 @OA\Property(property="img",type="string"),
+ *                 example={"name":"test", "description": "teste", "img": "test"},
+ *                 required={"name"}
+ *             )
+ *         )
+ *     ),
+
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *
+ *     )
+ *
+ * Return an communitie Edited
+ */
+   /**
+ * @OA\Get(
+ *      path="/communities/{id}",
+ *      operationId="single_communitie",
+ *      tags={"communities"},
+ *      summary="Get an communitie",
+ *      description="Returns list of communities",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *
+ *     )
+ *
+ * Return an communitie
+ */
+
+ /**
+ * @OA\Post(
+ *      path="/communities",
+ *      operationId="add_communitie",
+ *      tags={"communities"},
+ *      summary="Add an communitie",
+ *      description="Returns list of communities",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(property="name",type="string"),
+ *                 @OA\Property(property="description",type="string"),
+ *                 @OA\Property(property="img",type="string"),
+ *                 example={"name":"test", "description": "teste", "img": "test"},
+ *                 required={"name"}
+ *             )
+ *         )
+ *     ),
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ *
+ */
+
+ /**
+ * @OA\Delete(
+ *      path="/communities/{id}",
+ *      operationId="delete_community",
+ *      tags={"com"},
+ *      summary="Delete an communitie",
+ *      description="Returns list of communities",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *
+ *     )
+ *
+ * Return a message of success
+ */
+
+ /**
+ * @OA\Post(
+ *      path="/communities/addcontent",
+ *      operationId="add_community_content",
+ *      tags={"communities"},
+ *      summary="Add a content to a community",
+ *      description="Add a content to a community",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(property="content_id",type="integer"),
+ *                 @OA\Property(property="community_id",type="integer"),
+ *                 example={"content_id":1, "community_id": 1},
+ *                 required={"content_id", "community_id"}
+ *             )
+ *         )
+ *     ),
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ *
+ */
+/**
+ * @OA\Post(
+ *      path="/communities/addevent",
+ *      operationId="add_community_event",
+ *      tags={"communities"},
+ *      summary="Add a event to a community",
+ *      description="Add a event to a community",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(property="event_id",type="integer"),
+ *                 @OA\Property(property="community_id",type="integer"),
+ *                 example={"event_id":1, "community_id": 1},
+ *                 required={"event_id", "community_id"}
+ *             )
+ *         )
+ *     ),
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ *
+ */
+/**
+ * @OA\Post(
+ *      path="/communities/subscribeuser",
+ *      operationId="subscribe_community_user",
+ *      tags={"communities"},
+ *      summary="Subscribe an user in a community",
+ *      description="Subscribe an user in a community",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(property="user_id",type="integer"),
+ *                 @OA\Property(property="community_id",type="integer"),
+ *                 @OA\Property(property="is_admin",type="boolean"),
+ *                 example={"user_id":1, "community_id": 1, "is_admin":true},
+ *                 required={"user_id", "community_id","is_admin"}
+ *             )
+ *         )
+ *     ),
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ *
+ */
+/**
+ * @OA\Post(
+ *      path="/communities/subscribemyself",
+ *      operationId="subscribe_community_myself",
+ *      tags={"communities"},
+ *      summary="Subscribe logged user in a community",
+ *      description="Subscribe logged user in a community",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(property="community_id",type="integer"),
+ *                 @OA\Property(property="is_admin",type="boolean"),
+ *                 example={"user_id":1, "community_id": 1, "is_admin":true},
+ *                 required={"user_id", "community_id","is_admin"}
+ *             )
+ *         )
+ *     ),
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ *
+ */

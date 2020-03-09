@@ -15,6 +15,355 @@
         }
     ],
     "paths": {
+        "/communities": {
+            "get": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Get list of communities",
+                "description": "Returns list of Communities",
+                "operationId": "getcommunities",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Add an communitie",
+                "description": "Returns list of communities",
+                "operationId": "add_communitie",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "img": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "test",
+                                    "description": "teste",
+                                    "img": "test"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/communities/{id}": {
+            "get": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Get an communitie",
+                "description": "Returns list of communities",
+                "operationId": "single_communitie",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Edit an communitie",
+                "description": "Returns list of communities",
+                "operationId": "update_communitie",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "img": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "test",
+                                    "description": "teste",
+                                    "img": "test"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "com"
+                ],
+                "summary": "Delete an communitie",
+                "description": "Returns list of communities",
+                "operationId": "delete_community",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/communities/addcontent": {
+            "post": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Add a content to a community",
+                "description": "Add a content to a community",
+                "operationId": "add_community_content",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "content_id",
+                                    "community_id"
+                                ],
+                                "properties": {
+                                    "content_id": {
+                                        "type": "integer"
+                                    },
+                                    "community_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "content_id": 1,
+                                    "community_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/communities/addevent": {
+            "post": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Add a event to a community",
+                "description": "Add a event to a community",
+                "operationId": "add_community_event",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "event_id",
+                                    "community_id"
+                                ],
+                                "properties": {
+                                    "event_id": {
+                                        "type": "integer"
+                                    },
+                                    "community_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "event_id": 1,
+                                    "community_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/communities/subscribeuser": {
+            "post": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Subscribe an user in a community",
+                "description": "Subscribe an user in a community",
+                "operationId": "subscribe_community_user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "community_id",
+                                    "is_admin"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer"
+                                    },
+                                    "community_id": {
+                                        "type": "integer"
+                                    },
+                                    "is_admin": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "user_id": 1,
+                                    "community_id": 1,
+                                    "is_admin": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/communities/subscribemyself": {
+            "post": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Subscribe logged user in a community",
+                "description": "Subscribe logged user in a community",
+                "operationId": "subscribe_community_myself",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "community_id",
+                                    "is_admin"
+                                ],
+                                "properties": {
+                                    "community_id": {
+                                        "type": "integer"
+                                    },
+                                    "is_admin": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "user_id": 1,
+                                    "community_id": 1,
+                                    "is_admin": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
         "/events": {
             "get": {
                 "tags": [
@@ -1881,6 +2230,14 @@
         }
     },
     "tags": [
+        {
+            "name": "communities",
+            "description": "Everything about your communities",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
         {
             "name": "Events",
             "description": "Everything about your Events",
