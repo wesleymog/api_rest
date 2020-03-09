@@ -11,6 +11,10 @@ class Content extends Model
         'title', 'body','link'
     ];
 
+    public function communities(){
+        return $this->hasMany(Community::class);
+    }
+
     public function createContent($request){
 
         $user = Auth::id();

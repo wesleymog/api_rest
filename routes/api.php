@@ -122,8 +122,18 @@ Route::group([
         Route::delete('/{id}', 'RewardController@delete')->name('delete_reward');
     });
 
-    Route::prefix('community')->group(function (){
-        Route::get('/', 'CommunityController@index')->name('comunnity');
+    Route::prefix('communities')->group(function (){
+        Route::get('/', 'CommunityController@index')->name('comunnities');
+        Route::get('/mycommunities', 'CommunityController@myCommunities')->name('Mycomunnities');
+        Route::get('/{id}', 'CommunityController@show')->name('single_comunnity');
+        Route::post('/', 'CommunityController@store')->name('add_comunnity');
+        Route::put('/{id}', 'CommunityController@update')->name('update_comunnity');
+        Route::delete('/{id}', 'CommunityController@delete')->name('delete_comunnity');
+        Route::post('/subscribeuser', 'CommunityController@subscribeUser')->name('subscribe_user_comunnity');
+        Route::post('/subscribemyself', 'CommunityController@subscribeMyself')->name('subscribe_myself_comunnity');
+        Route::post('/subscribeevent', 'CommunityController@subscribeEvent')->name('subscribe_event_comunnity');
+        Route::post('/subscribecontent', 'CommunityController@subscribeContent')->name('subscribe_content_comunnity');
+
     });
 
 

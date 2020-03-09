@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRewardUserTable extends Migration
+class CreateCommunityEventTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,17 @@ class CreateRewardUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('reward_user', function (Blueprint $table) {
+        Schema::create('community_event', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('reward_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')
-                ->references('id')->on('users')
+            $table->bigInteger('community_id')->unsigned();
+            $table->bigInteger('event_id')->unsigned();
+            $table->foreign('event_id')
+                ->references('id')->on('events')
                 ->onDelete('cascade');
 
-            $table->foreign('reward_id')
-                ->references('id')->on('rewards')
+            $table->foreign('community_id')
+                ->references('id')->on('communities')
                 ->onDelete('cascade');
-            $table->string('code')->unique()->nullable();
             $table->timestamps();
         });
     }
@@ -36,6 +35,6 @@ class CreateRewardUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reward_user');
+        Schema::dropIfExists('community_event');
     }
 }

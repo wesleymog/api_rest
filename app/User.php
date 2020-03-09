@@ -63,6 +63,10 @@ class User extends Authenticatable
     public function notifications(){
         return $this->hasMany(Notification::class);
     }
+
+    public function communities(){
+        return $this->belongsToMany(Community::class);
+    }
     public function tags(){
         return $this->belongsToMany(Tag::class);
     }

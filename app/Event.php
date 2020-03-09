@@ -11,6 +11,10 @@ class Event extends Model
         ,'end_time', 'location', 'description','img','value','user_id', 'boost'
     ];
 
+    public function communities(){
+        return $this->hasMany(Community::class);
+    }
+
 	public function tags(){
 
     	return $this->belongsToMany('App\Tag');
