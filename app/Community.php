@@ -54,8 +54,7 @@ class Community extends Model
 
     public function subscribeUser($request){
         $user = User::find($request->user_id);
-
-        $this->users()->attach([$user => ['is_admin' => $request->is_admin]]);
+        $this->users()->attach($user, ['is_admin' => $request->is_admin]);
     }
 
     public function subscribeEvent($request){

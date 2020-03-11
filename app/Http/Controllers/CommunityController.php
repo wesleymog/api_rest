@@ -423,8 +423,8 @@ class CommunityController extends Controller
  *             @OA\Schema(
  *                 @OA\Property(property="community_id",type="integer"),
  *                 @OA\Property(property="is_admin",type="boolean"),
- *                 example={"user_id":1, "community_id": 1, "is_admin":true},
- *                 required={"user_id", "community_id","is_admin"}
+ *                 example={"user_id":1, "community_id": 1},
+ *                 required={"user_id", "community_id"}
  *             )
  *         )
  *     ),
