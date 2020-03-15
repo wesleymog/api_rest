@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Community extends Model
 {
@@ -25,6 +27,18 @@ class Community extends Model
         return $this->belongsToMany(Event::class);
     }
 
+    public function userIn(){
+        if (DB::table('community_user')
+        ->whereUserId(Auth::id())
+        ->whereCommunityId($this->id)
+        ->count() > 0) {
+            $this->participation = true;
+        } else {
+            $this->participation = false;
+        }
+
+    }
+
     public function createCommunity($request){
 
             $admin = Auth::id();
@@ -34,7 +48,7 @@ class Community extends Model
 
             $this->save();
 
-            $this->user()->attach([$this->id => ['is_admin' => true]]);
+            $this->users()->attach([$this->id => ['is_admin' => true]]);
 
             return $this;
 

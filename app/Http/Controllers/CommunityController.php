@@ -22,6 +22,8 @@ class CommunityController extends Controller
             $community->users;
             $community->events;
             $community->contents;
+            $community->UserIn();
+
         }
 
         $data = ['data'=> ['Communities'=> $communities]];
@@ -68,7 +70,8 @@ class CommunityController extends Controller
     {
         $community = new Community;
         $community->createCommunity($request);
-        $data = ['data'=> ['Community'=> $community]];
+
+        $data = ['msg'=>'Comunidade criada com sucesso!', 'data'=> ['Community'=> $community]];
         return response()->json($data, 200);
     }
 
