@@ -35,7 +35,7 @@ class Tag extends Model
         $this->save();
         return $this;
     }
-    public static function TagMassive($request, $event,$type ,$object){
+    public static function TagMassive($request,$type ,$object){
 
         //Tratamento das Tags
         if($request->tags != null && $tags = explode(",", $request->tags)){

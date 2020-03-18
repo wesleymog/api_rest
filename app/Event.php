@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 class Event extends Model
 {
@@ -18,6 +19,14 @@ class Event extends Model
 	public function tags(){
 
     	return $this->belongsToMany('App\Tag');
+    }
+    public function tagsByname($name){
+
+    	return $this->belongsToMany('App\Tag')->where('name', $name);
+    }
+
+    public function suggested(){
+       return DB::table('tag_user')->whereIn('tag_id', $this->tags);
     }
     public function gettagnames(){
 
@@ -75,7 +84,7 @@ public function updateQuietly($request)
 }
     public function participations(){
 
-    	return $this->hasMany('App\Participation');
+    	return $this->belongsToMany('App\User',  'participations');
     }
 
     public function users_confirmed(){
