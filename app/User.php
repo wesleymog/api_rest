@@ -158,7 +158,7 @@ class User extends Authenticatable
         $this->name = $request->name;
         $this->date_of_birth = $request->date_of_birth;
         $this->email = $request->email;
-        $this->password = $request->password;
+        $this->password = bcrypt($request->password);
         $this->main_area = $request->main_area;
         $this->area = $request->area;
         $this->supervisor = $request->supervisor;
@@ -178,7 +178,7 @@ class User extends Authenticatable
         $this->name = $request->name;
         $this->date_of_birth = $request->date_of_birth;
         $this->email = $request->email;
-        $this->password = $request->password;
+        $this->password = bcrypt($request->password);
         $this->main_area = $request->main_area;
         $this->area = $request->area;
         $this->supervisor = $request->supervisor;
