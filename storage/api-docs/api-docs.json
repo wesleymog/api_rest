@@ -21,7 +21,7 @@
                     "Admin"
                 ],
                 "summary": "Para gerar os dados necessários para a geração dos gráficos",
-                "description": "",
+                "description": "{O type pode ser: participation, evaluation, initiativeCreated, initiativeCreatedByType initiativeCreatedByTags, interests, skills",
                 "operationId": "dashboard",
                 "requestBody": {
                     "content": {
@@ -79,7 +79,36 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "quando as demais opções",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "indicator": {
+                                                        "type": "number"
+                                                    },
+                                                    "period": {
+                                                        "type": "datetime"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "data": {
+                                            "indicator": 0,
+                                            "period": "2020-03-13 21:55:38"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
                     "400": {
                         "description": "Bad request"

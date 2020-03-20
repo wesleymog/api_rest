@@ -268,7 +268,7 @@ class AdminController extends Controller
  *      operationId="dashboard",
  *      tags={"Admin"},
  *      summary="Para gerar os dados necessários para a geração dos gráficos",
- *      description="",
+ *      description="{O type pode ser: participation, evaluation, initiativeCreated, initiativeCreatedByType initiativeCreatedByTags, interests, skills",
  *     @OA\RequestBody(
  *         @OA\MediaType(
  *             mediaType="application/json",
@@ -297,7 +297,23 @@ class AdminController extends Controller
  *     ),
  *      @OA\Response(
  *          response=200,
- *          description="successful operation"
+ *          description="quando as demais opções",
+ *          @OA\MediaType(
+ *              mediaType="application/json",
+ *              @OA\Schema(
+ *                 @OA\Property(
+ *                     property="data",
+ *                     type="array",
+ *                     @OA\Items(
+ *                        @OA\Property(property="indicator",type="number"),
+ *                        @OA\Property(property="period",type="datetime"),
+ *                  )
+ *                ),
+ *                 example={ "skills",  {{ "tag_id": { "id": 1, "name": "Esportes", "created_at": null, "updated_at": null }, "total": 1 }}},
+ *                 example={ "data":  { "indicator": 0, "period": "2020-03-13 21:55:38" }},
+ *
+ *              )
+ *          )
  *       ),
  *       @OA\Response(response=400, description="Bad request"),
  *       security={
