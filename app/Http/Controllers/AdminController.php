@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Tag;
 use App\User;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -36,32 +38,106 @@ class AdminController extends Controller
     public function dashboard(Request $request){
         $type = $request->type;
         $filters = $request->filters;
+
+        //CHECANDO SE HÁ START_TIME E END_TIME
         if(!(array_key_exists("start_time", $filters))){
-            $filters['start_time'] = "1950-03-11 21:55:38";
+            $filters['start_time'] = "2019-03-11 21:55:38";
         }
 
         if(!(array_key_exists("end_time", $filters))){
             $filters['end_time'] = new Carbon('now');
         }
+
+        //CONFIGURANDO ARRAY DE SEMANAS
+        $start_day = Carbon::parse($filters['start_time']);
+        $firstdayWeek = Carbon::parse($filters['start_time'])->startOfWeek();
+        if($firstdayWeek->lessThan($start_day)){
+            $firstDay = $start_day;
+            $firstdayWeek->addWeek();
+        }else{
+            $firstDay = null;
+        }
+
+        $period = CarbonPeriod::since($firstdayWeek)->days(7)->until($filters['end_time'])->toArray();
+
+        $response = collect();
+
+        //PARTICIPATION = MÉTRICA DE PARTICIPAÇÃO
         if($type == 'participation'){
-            $events = Event::where('end_time','>' ,$filters['start_time'])->where('end_time','<' ,$filters['end_time'])->get();
+            if($firstDay != null){
+                $events = Event::where('end_time','>' ,$start_day->toDateTimeString())->where('end_time','<' ,$firstdayWeek->toDateTimeString())->get();
+                $participations = 0;
+                $suggested = 0;
+                $notifications = 0;
+                foreach ($events as $event) {
+                    $participations += $event->participations()->count();
+                    $suggested += $event->suggested()->count();
+                    $notifications += $event->notifications()->count();
+                }
 
-            foreach ($events as $event) {
-                $event->participations = $event->participations()->count();
-                $event->suggested = $event->suggested()->count();
-                $event->notifications = $event->notifications()->count();
+                if($suggested + $notifications != 0){
+                    $indicator = $participations/($suggested+$notifications);
+                }else{
+                    $indicator = 0;
+                }
+                $response->add(['indicator'=>$indicator,'period'=>$start_day->toDateTimeString()]);
             }
-            $events = $events->map->only('title','participations','suggested','notifications','start_time','end_time');
-            return response()->json(['events'=>$events], 200);
-        }elseif ($type == 'evaluation') {
+            foreach ($period as $day) {
+                $events = Event::where('end_time','>' ,$day->toDateTimeString())->where('end_time','<' ,$day->addWeek()->toDateTimeString())->get();
+                $participations = 0;
+                $suggested = 0;
+                $notifications = 0;
+                foreach ($events as $event) {
+                    $participations += $event->participations()->count();
+                    $suggested += $event->suggested()->count();
+                    $notifications += $event->notifications()->count();
+                }
 
-        }elseif($type == 'initiativeCreated'){
-            $eventcount = Event::where('start_time','>' ,$filters['start_time'])->where('end_time','<' ,$filters['end_time'])->count();
-            return response()->json(["initiative created" => $eventcount], 200);
+                if($suggested + $notifications != 0){
+                    $indicator = $participations/($suggested+$notifications);
+                }else{
+                    $indicator = 0;
+                }
+
+                $response->add(['indicator'=>$indicator,'period'=>$day->subWeek()->toDateTimeString()]);
+            }
+            return response()->json(['data'=>$response], 200);
+
+        }
+        //EVALUATION = MÉTRICA DE AVALIAÇÃO
+        elseif ($type == 'evaluation') {
+
+            if((array_key_exists("event_id", $filters))){
+
+                $event = Event::find($filters['event_id']);
+                $indicator = DB::table('participations')->where('status', true)->avg('rate');
+                return response()->json(['indicator' => $indicator], 200);
+
+            }
+            foreach ($period as $day) {
+                $events = Event::where('end_time','>' ,$day->toDateTimeString())->where('end_time','<' ,$day->addWeek()->toDateTimeString())->pluck('id');
+                $indicator = DB::table('participations')->whereIn('event_id',$events)->avg('rate');
+                $response->add(['indicator'=>$indicator,'period'=>$day->subWeek()->toDateTimeString()]);
+            }
+
+            return response()->json(['data' => $response], 200);
+
+        }
+
+        //Nº de iniciativas criada
+        elseif($type == 'initiativeCreated'){
+            foreach ($period as $day) {
+                $indicator = Event::where('end_time','>' ,$day->toDateTimeString())->where('end_time','<' ,$day->addWeek()->toDateTimeString())->count();
+                $response->add(['indicator'=>$indicator,'period'=>$day->subWeek()->toDateTimeString()]);
+            }
+            return response()->json(['data' => $response], 200);
 
         }elseif($type == 'initiativeCreatedByType'){
-            $eventcount = Event::where('type', $filters['type'])->where('start_time','>' ,$filters['start_time'])->where('end_time','<' ,$filters['end_time'])->count();
-            return response()->json(["initiative created by Type" => $eventcount], 200);
+            foreach ($period as $day) {
+                $indicator = Event::where('type', $filters['type'])->where('end_time','>' ,$day->toDateTimeString())->where('end_time','<' ,$day->addWeek()->toDateTimeString())->count();
+                $response->add(['indicator'=>$indicator,'period'=>$day->subWeek()->toDateTimeString()]);
+            }
+            return response()->json(['data' => $response], 200);
 
         }elseif($type == 'initiativeCreatedByTags'){
 
@@ -69,9 +145,12 @@ class AdminController extends Controller
             elseif($tag = DB::table('tags')->where("name",$filters['tag'])->first()){
                 $tag = Tag::find($tag->id);
             }
-            $eventcount = $tag->events->where('start_time','>' ,$filters['start_time'])->where('end_time','<' ,$filters['end_time'])->count();
+            foreach ($period as $day) {
+                $eventcount = $tag->events->where('type', $filters['type'])->where('end_time','>' ,$day->toDateTimeString())->where('end_time','<' ,$day->addWeek()->toDateTimeString())->count();
+                $response->add(['indicator'=>$indicator,'period'=>$day->subWeek()->toDateTimeString()]);
+            }
 
-            return response()->json(["initiative created by tag" => $eventcount], 200);
+            return response()->json(['data' => $response], 200);
 
         }elseif($type == 'interests'){
             $users = User::all()->pluck("id");
@@ -86,6 +165,7 @@ class AdminController extends Controller
                 $tag->tag_id = Tag::find($tag->tag_id);
             }
             return response()->json(['interests', $tags], 200);
+
         }elseif($type == 'skills'){
 
             $users = User::all()->pluck("id");
@@ -100,7 +180,7 @@ class AdminController extends Controller
                 $tag->tag_id = Tag::find($tag->tag_id);
             }
             return response()->json(['skills', $tags], 200);
-            }
+        }
     }
 
     /**
@@ -169,3 +249,61 @@ class AdminController extends Controller
         //
     }
 }
+// Documentação API
+
+/**
+ * @OA\Tag(
+ *     name="Admin",
+ *     description="Admin routes",
+ *     @OA\ExternalDocumentation(
+ *         description="Find out more",
+ *         url="http://swagger.io"
+ *     )
+ * )
+ */
+
+  /**
+ * @OA\Post(
+ *      path="/admin/dashboard",
+ *      operationId="dashboard",
+ *      tags={"Admin"},
+ *      summary="Para gerar os dados necessários para a geração dos gráficos",
+ *      description="",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="data",
+ *                     type="array",
+ *                      @OA\Items(
+ *                          @OA\Property(property="type",type="integer"),
+ *                          @OA\Property(
+ *                              property="filters",
+ *                              type="array",
+ *                              @OA\Items(
+ *                                  @OA\Property(property="tag",type="text"),
+ *                                  @OA\Property(property="start_time",type="datetime"),
+ *                                  @OA\Property(property="end_time",type="datetime"),
+ *                                  @OA\Property(property="type",type="integer"),
+ *                              )
+ *                          ),
+ *                         )
+ *                      ),
+ *                 example={ "type":"skills", "filters":{ "tag":"4", "start_time":"2020-03-13 21:55:38", "end_time":"2020-05-11 21:55:38", "type":1 } },
+ *                 required={"type"},
+ *             )
+ *         )
+ *     ),
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ *
+ */

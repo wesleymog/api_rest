@@ -15,6 +15,83 @@
         }
     ],
     "paths": {
+        "/admin/dashboard": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Para gerar os dados necessários para a geração dos gráficos",
+                "description": "",
+                "operationId": "dashboard",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "type"
+                                ],
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "type": {
+                                                    "type": "integer"
+                                                },
+                                                "filters": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "tag": {
+                                                                "type": "text"
+                                                            },
+                                                            "start_time": {
+                                                                "type": "datetime"
+                                                            },
+                                                            "end_time": {
+                                                                "type": "datetime"
+                                                            },
+                                                            "type": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "type": "skills",
+                                    "filters": {
+                                        "tag": "4",
+                                        "start_time": "2020-03-13 21:55:38",
+                                        "end_time": "2020-05-11 21:55:38",
+                                        "type": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
         "/communities": {
             "get": {
                 "tags": [
@@ -328,8 +405,7 @@
                             "schema": {
                                 "required": [
                                     "user_id",
-                                    "community_id",
-                                    "is_admin"
+                                    "community_id"
                                 ],
                                 "properties": {
                                     "community_id": {
@@ -342,8 +418,7 @@
                                 "type": "object",
                                 "example": {
                                     "user_id": 1,
-                                    "community_id": 1,
-                                    "is_admin": true
+                                    "community_id": 1
                                 }
                             }
                         }
@@ -2230,6 +2305,14 @@
         }
     },
     "tags": [
+        {
+            "name": "Admin",
+            "description": "Admin routes",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
         {
             "name": "communities",
             "description": "Everything about your communities",
