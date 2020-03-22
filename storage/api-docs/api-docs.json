@@ -271,7 +271,7 @@
                 }
             }
         },
-        "/communities/addcontent": {
+        "/communities/subscribecontent": {
             "post": {
                 "tags": [
                     "communities"
@@ -319,7 +319,7 @@
                 ]
             }
         },
-        "/communities/addevent": {
+        "/communities/subscribeevent": {
             "post": {
                 "tags": [
                     "communities"

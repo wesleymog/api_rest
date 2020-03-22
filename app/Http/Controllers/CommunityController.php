@@ -324,7 +324,7 @@ class CommunityController extends Controller
 
  /**
  * @OA\Post(
- *      path="/communities/addcontent",
+ *      path="/communities/subscribecontent",
  *      operationId="add_community_content",
  *      tags={"communities"},
  *      summary="Add a content to a community",
@@ -354,7 +354,7 @@ class CommunityController extends Controller
  */
 /**
  * @OA\Post(
- *      path="/communities/addevent",
+ *      path="/communities/subscribeevent",
  *      operationId="add_community_event",
  *      tags={"communities"},
  *      summary="Add a event to a community",
