@@ -222,12 +222,8 @@ class User extends Authenticatable
     public function sendPicture($image){
         $imageName = rand(111111111, 999999999) . '.png';
         $p = Storage::disk('s3')->put('profilePicture/' , $image, 'public');
-        $this->profile_picture = $p;
+        $this->profile_picture = "https://s3.us-east-2.amazonaws.com/mojo-event-images".$p;
         $this->save();
-    }
-
-    public function getURLName(){
-
     }
     public function myinitiatives()
     {
