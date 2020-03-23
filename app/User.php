@@ -222,7 +222,7 @@ class User extends Authenticatable
     public function sendPicture($image){
         $imageName = rand(111111111, 999999999) . '.png';
         $p = Storage::disk('s3')->put('profilePicture' . $imageName, $image, 'public');
-        $this->profile_picture = Storage::disk('s3')->get($p);
+        $this->profile_picture = $p;
         $this->save();
     }
 
