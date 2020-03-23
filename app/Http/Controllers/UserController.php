@@ -33,7 +33,7 @@ class UserController extends Controller
     public function sendPicture(Request $request){
         $user = Auth::user();
         $user->sendPicture($request->profile_picture);
-        return response()->json(['msg'=>'Foto enviada com sucesso!'], 200, $headers);
+        return response()->json(['msg'=>'Foto enviada com sucesso!', 'file_path'=>$user->profile_picture], 200);
     }
 
     public function update(Request $request, $id){
