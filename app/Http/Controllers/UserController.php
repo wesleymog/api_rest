@@ -30,25 +30,16 @@ class UserController extends Controller
 
     }
 
-    public function update(Request $request, $id){
-        $UserData = $request->all();
+    public function sendPicture(Request $request){
         $user = Auth::user();
+        $user->sendPicture($request->profile_picture);
+        return response()->json(['msg'=>'Foto enviada com sucesso!'], 200, $headers);
+    }
+
+    public function update(Request $request, $id){
+        $user = User::find($id);
         if(! $user) return response()->json(['msg' => 'Usuario não encontrado'], 404);
-        $user->update($UserData);
-
-        //Tratamento das Tags
-        if($tags = explode(",", $request->tags)){
-            foreach ($tags as $tag) {
-                if($tag_component = Tag::find($tag)){
-                    $tag_component->users()->attach($user);
-                }else{
-                    $tag_component = new Tag;
-                    $tag_component->createMassive($tag);
-                    $tag_component->users()->attach($user->id, ['category'=>$request->category]);
-                }
-            }
-        }
-
+        $user->updateUser($request);
 
         return response()->json(['msg' => 'Usuário Atualizado com sucesso!'], 201);
 

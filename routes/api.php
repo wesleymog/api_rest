@@ -46,6 +46,7 @@ Route::group([
         Route::post('/', 'UserController@store')->name('add_user');
         Route::put('/{id}', 'UserController@update')->name('update_user');
         Route::delete('/{id}', 'UserController@delete')->name('delete_user');
+        Route::post('/sendPicture', 'UserController@sendPicture')->name('sendPicture');
     });
 
     Route::prefix('events')->group(function (){

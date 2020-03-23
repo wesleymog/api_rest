@@ -10,6 +10,8 @@ use Laravel\Passport\HasApiTokens;
 use App\Event;
 use App\Invitation;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+
 
 class User extends Authenticatable
 {
@@ -175,41 +177,55 @@ class User extends Authenticatable
         Tag::TagMassive($request,"user", $this);
     }
     public function updateUser($request){
-        $this->name = $request->name;
-        $this->date_of_birth = $request->date_of_birth;
-        $this->email = $request->email;
-        $this->password = bcrypt($request->password);
-        $this->main_area = $request->main_area;
-        $this->area = $request->area;
-        $this->supervisor = $request->supervisor;
-        $this->admission = $request->admission;
-        $this->position = $request->position;
-        $this->branch_office = $request->branch_office;
-        $this->city = $request->city;
-        $this->country = $request->country;
-        $this->phone_number = $request->phone_number;
-        $this->education = $request->education;
-        $this->education_institute = $request->education_institute;
-        $this->first_access = $request->first_access;
+        if($request->name!=null)$this->name = $request->name;
+        if($request->date_of_birth!=null)$this->date_of_birth = $request->date_of_birth;
+        if($request->email!=null)$this->email = $request->email;
+        if($request->password!=null)$this->password = bcrypt($request->password);
+        if($request->main_area!=null)$this->main_area = $request->main_area;
+        if($request->area!=null)$this->area = $request->area;
+        if($request->supervisor!=null)$this->supervisor = $request->supervisor;
+        if($request->admission!=null)$this->admission = $request->admission;
+        if($request->position!=null)$this->position = $request->position;
+        if($request->branch_office!=null)$this->branch_office = $request->branch_office;
+        if($request->city!=null)$this->city = $request->city;
+        if($request->country!=null)$this->country = $request->country;
+        if($request->phone_number!=null)$this->phone_number = $request->phone_number;
+        if($request->education!=null)$this->education = $request->education;
+        if($request->education_institute!=null)$this->education_institute = $request->education_institute;
+        if($request->first_access!=null)$this->first_access = $request->first_access;
 
-        $this->save();
 
-        if($tags = explode(",", $request->tags)){
-            $tagsbefore = $this->tags->pluck("id")->toArray();
-            $tags = array_diff($tagsbefore, $tags);
-            foreach($tagsbefore as $tag){
-                $tag->event()->detach($this->id);
-            }
-            foreach ($tags as $tag) {
-                if($tag_component = Tag::find($tag)){
-                    $tag_component->events()->sync($this->id);
-                }else{
-                    $tag_component = new Tag;
-                    $tag_component->createMassive($tag);
-                    $tag_component->events()->sync($this->id);
+        $this->update();
+        if($request->tags){
+            if($tags = explode(",", $request->tags)){
+                $tagsbefore = $this->tags->pluck("id")->toArray();
+                $tags = array_diff($tagsbefore, $tags);
+                foreach($tagsbefore as $tag){
+                    $tag->user()->detach($this->id);
+                }
+                foreach ($tags as $tag) {
+                    if($tag_component = Tag::find($tag)){
+                        $tag_component->users()->sync($this->id);
+                    }else{
+                        $tag_component = new Tag;
+                        $tag_component->createMassive($tag);
+                        $tag_component->users()->sync($this->id);
+                    }
                 }
             }
         }
+
+
+
+    }
+
+    public function sendPicture($image){
+        $imageName = rand(111111111, 999999999) . '.png';
+        $p = Storage::disk('s3')->put('profilePicture/' . $imageName, $image, 'public');
+        $this->profile_picture = $p;
+    }
+
+    public function getURLName(){
 
     }
     public function myinitiatives()
