@@ -32,7 +32,7 @@ class NotificationController extends Controller
         $notifications = $notifications->sortByDesc('created_at')->values();
 
 
-        return response()->json(['notifications'=>$notifications], 200);
+        return response()->json(['notifications'=>$notifications, 'user'=>$user], 200);
     }
 
     public function delete($id){
