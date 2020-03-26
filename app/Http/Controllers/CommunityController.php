@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Event;
 use App\Content;
+use Illuminate\Support\Facades\DB;
+
 class CommunityController extends Controller
 {
     /**
@@ -145,22 +147,33 @@ class CommunityController extends Controller
         if (!$user = User::find($request->user_id)) {
             return response()->json(["data"=>["msg"=>"User not found"]], 400);
         }
-        if($community = Community::find($request->community_id)){
+        
+        if(!$community = Community::find($request->community_id)){
+            return response()->json(["data"=>["msg"=>"Community not found"]], 400);
+        }
+
+        if($subscribe = DB::table('community_user')->where('user_id',$user->id)->where('community_id',$community->id)->first()){
+            $user->communities()->detach($community);
+            return response()->json(["data"=>["msg"=>"Unsubscribe successful"]], 200);
+        }else{
             $community->subscribeUser($request);
             return response()->json(["data"=>["msg"=>"Subscribe successful"]], 200);
-        }else{
-            return response()->json(["data"=>["msg"=>"Community not found"]], 400);
         }
     }
     public function subscribeMyself(Request $request){
-        $user = Auth::id();
-        if($community = Community::find($request->community_id)){
-            $request->user_id = $user;
+        $user = Auth::user();
+        
+        if(!$community = Community::find($request->community_id)){
+            return response()->json(["data"=>["msg"=>"Community not found"]], 400);
+        }
+
+        if($subscribe = DB::table('community_user')->where('user_id',$user->id)->where('community_id',$community->id)->first()){
+            $user->communities()->detach($community);
+            return response()->json(["data"=>["msg"=>"Unsubscribe successful"]], 200);
+        }else{
+            $request->user_id = $user->id;
             $community->subscribeUser($request);
             return response()->json(["data"=>["msg"=>"Subscribe successful"]], 200);
-
-        }else{
-            return response()->json(["data"=>["msg"=>"Community not found"]], 400);
         }
     }
     public function subscribeEvent(Request $request){

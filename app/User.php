@@ -193,6 +193,7 @@ class User extends Authenticatable
         if($request->education!=null)$this->education = $request->education;
         if($request->education_institute!=null)$this->education_institute = $request->education_institute;
         if($request->first_access!=null)$this->first_access = $request->first_access;
+        if($request->profile_picture!=null)$this->profile_picture = $request->profile_picture;
 
 
         $this->update();
