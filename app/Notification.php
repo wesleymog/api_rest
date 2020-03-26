@@ -34,6 +34,7 @@ class Notification extends Model
     }
 
      static function createMassive($event){
+         dd($event);
        $event = Event::find($event);
        $participations = $event->participations;
        foreach ($participations as $participation) {
