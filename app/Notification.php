@@ -36,10 +36,10 @@ class Notification extends Model
      static function createMassive($event){
        $event = Event::find($event->id);
        $participations = $event->participations;
-       if($participation->user_id == null){
-           $participation->user_id = $participation->id;
-       }
        foreach ($participations as $participation) {
+            if($participation->user_id == null){
+                $participation->user_id = $participation->id;
+            }
            $notification = new Notification;
            $notification->createNotification('evaluation', $participation->id, $event->id);
        }
