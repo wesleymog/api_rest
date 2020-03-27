@@ -13,7 +13,7 @@ class NotificationController extends Controller
         $user = Auth::user();
         $parts = $user->participationsWithoutRate;
         foreach ($parts as $part) {
-            if($part->notifications->withTrashed()->isEmpty()){
+            if($part->notifications->where('deleted_at','==' ,NULL)->isEmpty()){
                 Notification::createMassive($part);
             }
         }
@@ -32,7 +32,7 @@ class NotificationController extends Controller
         $notifications = $notifications->sortByDesc('created_at')->values();
 
 
-        return response()->json(['notifications'=>$notifications, 'user'=>$user], 200);
+        return response()->json(['notifications'=>$notifications], 200);
     }
 
     public function delete($id){
