@@ -13,7 +13,7 @@ class NotificationController extends Controller
         $user = Auth::user();
         $parts = $user->participationsWithoutRate;
         foreach ($parts as $part) {
-            if($part->notifications->isEmpty()){
+            if($part->notifications->withTrashed()->isEmpty()){
                 Notification::createMassive($part);
             }
         }

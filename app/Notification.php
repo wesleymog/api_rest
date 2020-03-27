@@ -37,9 +37,6 @@ class Notification extends Model
        $event = Event::find($event->id);
        $participations = $event->participations;
        foreach ($participations as $participation) {
-            if($participation->user_id == null){
-                $participation->user_id = $participation->id;
-            }
            $notification = new Notification;
            $notification->createNotification('evaluation', $participation->id, $event->id);
        }
