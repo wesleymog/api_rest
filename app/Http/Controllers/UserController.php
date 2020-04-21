@@ -26,7 +26,7 @@ class UserController extends Controller
     public function store(Request $request){
         $user = new User;
         $user->createUser($request);
-    	return response()->json(['msg' => 'Usuário cadastrada com sucesso!'], 201);
+    	return response()->json(['msg' => 'Usuário cadastrada com sucesso!', 'user'=>$user], 201);
 
     }
 
@@ -41,7 +41,7 @@ class UserController extends Controller
         if(! $user) return response()->json(['msg' => 'Usuario não encontrado'], 404);
         $user->updateUser($request);
 
-        return response()->json(['msg' => 'Usuário Atualizado com sucesso!'], 201);
+        return response()->json(['msg' => 'Usuário Atualizado com sucesso!', 'user' =>$user], 201);
 
 
     }

@@ -202,7 +202,8 @@ class User extends Authenticatable
                 $tagsbefore = $this->tags->pluck("id")->toArray();
                 $tags = array_diff($tagsbefore, $tags);
                 foreach($tagsbefore as $tag){
-                    $tag->user()->detach($this->id);
+                    $tag_component = Tag::find($tag);
+                    $tag_component->users()->detach($this->id);
                 }
                 foreach ($tags as $tag) {
                     if($tag_component = Tag::find($tag)){
