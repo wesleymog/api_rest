@@ -192,11 +192,10 @@ class User extends Authenticatable
         if($request->phone_number!=null)$this->phone_number = $request->phone_number;
         if($request->education!=null)$this->education = $request->education;
         if($request->education_institute!=null)$this->education_institute = $request->education_institute;
-        if($request->first_access!=null)$this->first_access = $request->first_access;
+        if($request->first_access==0 || $request->first_access==1)$this->first_access = $request->first_access;
         if($request->profile_picture!=null)$this->profile_picture = $request->profile_picture;
 
         $this->update();
-        dd(["request"=>$request->first_access, "database"=>$this->first_access]);
         if($request->tags){
             if($tags = explode(",", $request->tags)){
                 $tagsbefore = $this->tags->pluck("id")->toArray();
