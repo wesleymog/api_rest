@@ -197,7 +197,6 @@ class User extends Authenticatable
 
 
         $this->update();
-        dd(["request"=>$request->first_access, "database"=>$this->first_access]);
         if($request->tags){
             if($tags = explode(",", $request->tags)){
                 $tagsbefore = $this->tags->pluck("id")->toArray();
@@ -217,8 +216,7 @@ class User extends Authenticatable
                 }
             }
         }
-
-
+        return $this;
 
     }
 
