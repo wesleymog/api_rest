@@ -195,15 +195,14 @@ class User extends Authenticatable
         if($request->first_access!=null)$this->first_access = $request->first_access;
         if($request->profile_picture!=null)$this->profile_picture = $request->profile_picture;
 
-
         $this->update();
+        dd(["request"=>$request->first_access, "database"=>$this->first_access]);
         if($request->tags){
             if($tags = explode(",", $request->tags)){
                 $tagsbefore = $this->tags->pluck("id")->toArray();
                 $tags = array_diff($tagsbefore, $tags);
                 foreach($tagsbefore as $tag){
-                    $tag_component = Tag::find($tag);
-                    $tag_component->users()->detach($this->id);
+                    $tag->user()->detach($this->id);
                 }
                 foreach ($tags as $tag) {
                     if($tag_component = Tag::find($tag)){
@@ -216,7 +215,8 @@ class User extends Authenticatable
                 }
             }
         }
-        return $this;
+
+
 
     }
 
