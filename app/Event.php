@@ -143,8 +143,7 @@ public function updateQuietly($request)
         $this->user_id = Auth::id();
 
         $this->save();
-
-        Tag::TagMassive($request,$this,"initiative", $this);
+        Tag::TagMassive($request,"initiative",$this);
 
 
 
