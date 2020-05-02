@@ -25,7 +25,7 @@ class Controller extends BaseController
  */
 /**
  *
- *  @OA\Server(
+ *  @SWG\Server(
 *      url="https://back.mojosolutions.co/api/",
  *      description="Server Mojo"
  * )

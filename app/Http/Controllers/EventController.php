@@ -7,6 +7,7 @@ use App\Event;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Events\NewInvite;
+use Carbon\Carbon;
 class EventController extends Controller
 {
 	public function index(){
@@ -28,7 +29,6 @@ class EventController extends Controller
     public function store(Request $request){
             $event = new Event;
             $event->createEvent($request);
-            event(new NewInvite($event->toArray(), 'notification'));
     	    return response()->json(['msg' => 'Evento cadastrado com sucesso!', 'initiative' => $event], 201);
 
     }
@@ -107,10 +107,10 @@ class EventController extends Controller
 // Documentação API
 
 /**
- * @OA\Tag(
+ * @SWG\Tag(
  *     name="Events",
  *     description="Everything about your Events",
- *     @OA\ExternalDocumentation(
+ *     @SWG\ExternalDocumentation(
  *         description="Find out more",
  *         url="http://swagger.io"
  *     )
@@ -118,17 +118,17 @@ class EventController extends Controller
  */
 
  /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/events",
  *      operationId="getEvents",
  *      tags={"Events"},
  *      summary="Get list of Events",
  *      description="Returns list of Evennts",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -137,65 +137,65 @@ class EventController extends Controller
  * Returns list of Events
  */
    /**
- * @OA\Put(
+ * @SWG\Put(
  *      path="/events/{id}",
  *      operationId="update_event",
  *      tags={"Events"},
  *      summary="Edit an Event",
  *      description="Returns list of Events",
- *     @OA\RequestBody(
- *         @OA\MediaType(
+ *     @SWG\RequestBody(
+ *         @SWG\MediaType(
  *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(
+ *             @SWG\Schema(
+ *                 @SWG\Property(
  *                     property="type",
  *                     type="integer"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="title",
  *                     type="string"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="code",
  *                     type="string"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="category",
  *                     type="string"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="start_time",
  *                     type="datetime"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="end_time",
  *                     type="datetime"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="location",
  *                     type="string"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="description",
  *                     type="string"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="img",
  *                     type="string"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="value",
  *                     type="double"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="user_id",
  *                     type="integer"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="tags",
  *                     type="string"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="recurrence",
  *                     type="string"
  *                 ),
@@ -205,28 +205,28 @@ class EventController extends Controller
  *         )
  *     ),
 
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *
  *     )
  *
  * Return an Event Edited
  */
    /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/events/{id}",
  *      operationId="single_event",
  *      tags={"Events"},
  *      summary="Get an Event",
  *      description="Returns list of Events",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *
  *     )
  *
@@ -234,65 +234,65 @@ class EventController extends Controller
  */
 
  /**
- * @OA\Post(
+ * @SWG\Post(
  *      path="/events",
  *      operationId="add_event",
  *      tags={"Events"},
  *      summary="Add an Event",
  *      description="Returns list of Events",
- *     @OA\RequestBody(
- *         @OA\MediaType(
+ *     @SWG\RequestBody(
+ *         @SWG\MediaType(
  *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(
+ *             @SWG\Schema(
+ *                 @SWG\Property(
  *                     property="type",
  *                     type="integer"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="title",
  *                     type="string"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="code",
  *                     type="string"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="category",
  *                     type="string"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="start_time",
  *                     type="datetime"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="end_time",
  *                     type="datetime"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="location",
  *                     type="string"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="description",
  *                     type="string"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="img",
  *                     type="string"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="value",
  *                     type="double"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="user_id",
  *                     type="integer"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="tags",
  *                     type="string"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="recurrence",
  *                     type="string"
  *                 ),
@@ -301,11 +301,11 @@ class EventController extends Controller
  *             )
  *         )
  *     ),
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -315,17 +315,17 @@ class EventController extends Controller
  */
 
  /**
- * @OA\Delete(
+ * @SWG\Delete(
  *      path="/events/{id}",
  *      operationId="delete_event",
  *      tags={"Events"},
  *      summary="Delete an Event",
  *      description="Returns list of Events",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *
  *     )
  *

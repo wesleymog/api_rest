@@ -67,7 +67,7 @@ class TransactionController extends Controller
 }
 
 /**
- * @OA\Tag(
+ * @SWG\Tag(
  *     name="transaction",
  *     description="Everything about your transactions",
  * )
@@ -75,17 +75,17 @@ class TransactionController extends Controller
 
 
    /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/transaction/{id}",
  *      operationId="get_users_transactions",
  *      tags={"transaction"},
  *      summary="Get an user transaction",
  *      description="Returns users transactions",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *
  *     )
  *
@@ -93,21 +93,21 @@ class TransactionController extends Controller
  */
 
  /**
- * @OA\Post(
+ * @SWG\Post(
  *      path="/transaction",
  *      operationId="add_transaction",
  *      tags={"transaction"},
  *      summary="Add an user",
  *      description="Add a transaction",
- *     @OA\RequestBody(
- *         @OA\MediaType(
+ *     @SWG\RequestBody(
+ *         @SWG\MediaType(
  *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(
+ *             @SWG\Schema(
+ *                 @SWG\Property(
  *                     property="receiver_id",
  *                     type="integer"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="event_id",
  *                     type="integer"
  *                 ),
@@ -116,11 +116,11 @@ class TransactionController extends Controller
  *             )
  *         )
  *     ),
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }

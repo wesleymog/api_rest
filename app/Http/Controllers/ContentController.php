@@ -96,3 +96,113 @@ class ContentController extends Controller
 
     }
 }
+
+// Documentação API
+
+/**
+ * @SWG\Tag(
+ *     name="reset_password",
+ *     description="Reset Password routes",
+ *     @SWG\ExternalDocumentation(
+ *         description="Find out more",
+ *         url="http://swagger.io"
+ *     )
+ * )
+ */
+/**
+ * @SWG\Get(
+ *      path="/password/find/{token}",
+ *      operationId="check_token_password",
+ *      tags={"reset_password"},
+ *      summary="Check if exist token",
+ *      description="Returns list of Communities",
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @SWG\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ * Returns list of communities
+ */
+
+/**
+ * @SWG\Post(
+ *      path="/password/create",
+ *      operationId="reset_password_request",
+ *      tags={"reset_password"},
+ *      summary="Envia um email para resetar a senha",
+ *      description="Envia um email para resetar a senha",
+ *     @SWG\RequestBody(
+ *         @SWG\MediaType(
+ *             mediaType="application/json",
+ *             @SWG\Schema(
+ *                 @SWG\Property(
+ *                     property="email",
+ *                     type="text"
+ *                 ),
+ *                 example={"email": "teste@gmail.com"},
+ *                 required={"email"}
+ *             )
+ *         )
+ *     ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @SWG\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ */
+
+/**
+ * @SWG\Post(
+ *      path="/password/reset",
+ *      operationId="reset_password",
+ *      tags={"reset_password"},
+ *      summary="Form reset password",
+ *      description="Formulário de resetar a senha",
+ *     @SWG\RequestBody(
+ *         @SWG\MediaType(
+ *             mediaType="application/json",
+ *             @SWG\Schema(
+ *                 @SWG\Property(
+ *                     property="email",
+ *                     type="text"
+ *                 ),
+ *                 @SWG\Property(
+ *                     property="token",
+ *                     type="text"
+ *                 ),
+ *                 @SWG\Property(
+ *                     property="password",
+ *                     type="text"
+ *                 ),
+ *                 @SWG\Property(
+ *                     property="password_confirmation",
+ *                     type="text"
+ *                 ),
+ *                 example={"email": "wesleymotabr@gmail.com","token": "2UOdHfRrCp2qzHIy8eI15C6T2IR4Q9VgXkgOBqyARmnhzfKxD1T9rNaJXKLq","password": "secret","password_confirmation": "secret"},
+ *                 required={"email", "token", "password", "password_confirmation"}
+ *             )
+ *         )
+ *     ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @SWG\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+
+ */
+

@@ -91,31 +91,31 @@ class InvitationController extends Controller
 // Documentação API
 
 /**
- * @OA\Tag(
+ * @SWG\Tag(
  *     name="Invitations",
  *     description="Everything about your Invitation",
- *     @OA\ExternalDocumentation(
+ *     @SWG\ExternalDocumentation(
  *         description="Find out more",
  *         url="http://swagger.io"
  *     )
  * )
  */
 /**
- * @OA\Post(
+ * @SWG\Post(
  *      path="/invitation",
  *      operationId="add_invitation",
  *      tags={"Invitations"},
  *      summary="Adiciona um novo convite para um usuário em um evento",
  *      description="Receiver é o convidado do evento",
- *     @OA\RequestBody(
- *         @OA\MediaType(
+ *     @SWG\RequestBody(
+ *         @SWG\MediaType(
  *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(
+ *             @SWG\Schema(
+ *                 @SWG\Property(
  *                     property="receiver_id",
  *                     type="integer"
  *                 ),
- *                 @OA\Property(
+ *                 @SWG\Property(
  *                     property="event_id",
  *                     type="integer"
  *                 ),
@@ -124,11 +124,11 @@ class InvitationController extends Controller
  *             )
  *         )
  *     ),
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -136,17 +136,17 @@ class InvitationController extends Controller
  *
  */
 /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/myInvitations",
  *      operationId="get_user_invitations",
  *      tags={"Invitations"},
  *      summary="Retorna os convites do usuário logado",
  *      description="",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -155,17 +155,17 @@ class InvitationController extends Controller
  */
 
 /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/invitation/event/{id}",
  *      operationId="get_invitations_by_event",
  *      tags={"Invitations"},
  *      summary="Retorna os convites de acordo com o id do evento",
  *      description="",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }

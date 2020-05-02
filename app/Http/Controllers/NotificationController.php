@@ -53,51 +53,51 @@ class NotificationController extends Controller
     }
 }
 /**
- * @OA\Tag(
+ * @SWG\Tag(
  *     name="notifications",
  *     description="notifications",
  * )
  */
 /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/notifications/",
  *      operationId="notifications",
  *      tags={"notifications"},
  *      summary="Notifications",
  *      description="Retornando as notificações do usuério e removendo os convites desatualizados, ordenados pela ordem de criação",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation",
- *          @OA\MediaType(
+ *          @SWG\MediaType(
  *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(
+ *             @SWG\Schema(
+ *                 @SWG\Property(
  *                     property="notifications",
  *                     type="array",
- *                      @OA\Items(
- *                          @OA\Property(property="id",type="integer"),
- *                          @OA\Property(property="type",type="integer"),
- *                          @OA\Property(property="user_id",type="integer"),
- *                          @OA\Property(property="read",type="boolean"),
+ *                      @SWG\Items(
+ *                          @SWG\Property(property="id",type="integer"),
+ *                          @SWG\Property(property="type",type="integer"),
+ *                          @SWG\Property(property="user_id",type="integer"),
+ *                          @SWG\Property(property="read",type="boolean"),
  *
- *                          @OA\Property(
+ *                          @SWG\Property(
  *                              property="event_id",
  *                              type="array",
  *
- *                              @OA\Items(
- *                                  @OA\Property(property="type",type="integer"),
- *                                  @OA\Property(property="title",type="string"),
- *                                  @OA\Property(property="code",type="string"),
- *                                  @OA\Property(property="category",type="string"),
- *                                  @OA\Property(property="start_time",type="datetime"),
- *                                  @OA\Property(property="end_time",type="datetime"),
- *                                  @OA\Property(property="location",type="string"),
- *                                  @OA\Property(property="description",type="string"),
- *                                  @OA\Property(property="img",type="string"),
- *                                  @OA\Property(property="value",type="double"),
- *                                  @OA\Property(property="user_id",type="integer"),
- *                                  @OA\Property(property="tags",type="string"),
- *                                  @OA\Property(property="recurrence",type="string"),
+ *                              @SWG\Items(
+ *                                  @SWG\Property(property="type",type="integer"),
+ *                                  @SWG\Property(property="title",type="string"),
+ *                                  @SWG\Property(property="code",type="string"),
+ *                                  @SWG\Property(property="category",type="string"),
+ *                                  @SWG\Property(property="start_time",type="datetime"),
+ *                                  @SWG\Property(property="end_time",type="datetime"),
+ *                                  @SWG\Property(property="location",type="string"),
+ *                                  @SWG\Property(property="description",type="string"),
+ *                                  @SWG\Property(property="img",type="string"),
+ *                                  @SWG\Property(property="value",type="double"),
+ *                                  @SWG\Property(property="user_id",type="integer"),
+ *                                  @SWG\Property(property="tags",type="string"),
+ *                                  @SWG\Property(property="recurrence",type="string"),
  *                                  )
  *                              ),
  *
@@ -107,42 +107,42 @@ class NotificationController extends Controller
  *             )
  *         )
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *     )
  *
  */
 
  /**
- * @OA\Put(
+ * @SWG\Put(
  *      path="/notifications/markAsRead/{id}",
  *      operationId="notification_markAsRead",
  *      tags={"Notifications"},
  *      summary="Marca como lida uma notificação",
  *      description="Marca como lida uma notificação",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
- *       @OA\Response(response=404, description="Notificação não encontrada"),
+ *       @SWG\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=404, description="Notificação não encontrada"),
  *
  *     )
  *
  * Return a message of success
  */
  /**
- * @OA\Delete(
+ * @SWG\Delete(
  *      path="/notifications/{id}",
  *      operationId="notification_delete",
  *      tags={"Notifications"},
  *      summary="Deleta uma notificação",
  *      description="Remove uma notificação com o id enviado",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
- *       @OA\Response(response=404, description="Notificação não encontrada"),
+ *       @SWG\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=404, description="Notificação não encontrada"),
  *
  *     )
  *

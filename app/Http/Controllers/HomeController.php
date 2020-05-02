@@ -207,47 +207,47 @@ class HomeController extends Controller
 
 
 /**
- * @OA\Tag(
+ * @SWG\Tag(
  *     name="home",
  *     description="Home",
  * )
  */
 
  /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/home/",
  *      operationId="home",
  *      tags={"home"},
  *      summary="Home",
  *      description="Home",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation",
- *          @OA\MediaType(
+ *          @SWG\MediaType(
  *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(
+ *             @SWG\Schema(
+ *                 @SWG\Property(
  *                     property="data",
  *                     type="array",
- *                      @OA\Items(
- *                          @OA\Property(
+ *                      @SWG\Items(
+ *                          @SWG\Property(
  *                              property="eventsForHome",
  *                              type="array",
  *
- *                              @OA\Items(
- *                                  @OA\Property(property="type",type="integer"),
- *                                  @OA\Property(property="title",type="string"),
- *                                  @OA\Property(property="code",type="string"),
- *                                  @OA\Property(property="category",type="string"),
- *                                  @OA\Property(property="start_time",type="datetime"),
- *                                  @OA\Property(property="end_time",type="datetime"),
- *                                  @OA\Property(property="location",type="string"),
- *                                  @OA\Property(property="description",type="string"),
- *                                  @OA\Property(property="img",type="string"),
- *                                  @OA\Property(property="value",type="double"),
- *                                  @OA\Property(property="user_id",type="integer"),
- *                                  @OA\Property(property="tags",type="string"),
- *                                  @OA\Property(property="recurrence",type="string"),
+ *                              @SWG\Items(
+ *                                  @SWG\Property(property="type",type="integer"),
+ *                                  @SWG\Property(property="title",type="string"),
+ *                                  @SWG\Property(property="code",type="string"),
+ *                                  @SWG\Property(property="category",type="string"),
+ *                                  @SWG\Property(property="start_time",type="datetime"),
+ *                                  @SWG\Property(property="end_time",type="datetime"),
+ *                                  @SWG\Property(property="location",type="string"),
+ *                                  @SWG\Property(property="description",type="string"),
+ *                                  @SWG\Property(property="img",type="string"),
+ *                                  @SWG\Property(property="value",type="double"),
+ *                                  @SWG\Property(property="user_id",type="integer"),
+ *                                  @SWG\Property(property="tags",type="string"),
+ *                                  @SWG\Property(property="recurrence",type="string"),
  *                                  )
  *                              )
  *                      )
@@ -256,44 +256,44 @@ class HomeController extends Controller
  *             )
  *         )
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *     )
  *
  */
  /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/home/alta",
  *      tags={"home"},
  *      summary="Home",
  *      description="Return top events ",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation",
- *          @OA\MediaType(
+ *          @SWG\MediaType(
  *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(
+ *             @SWG\Schema(
+ *                 @SWG\Property(
  *                     property="data",
  *                     type="array",
- *                      @OA\Items(
- *                          @OA\Property(
+ *                      @SWG\Items(
+ *                          @SWG\Property(
  *                              property="alta",
  *                              type="array",
  *
- *                              @OA\Items(
- *                                  @OA\Property(property="type",type="integer"),
- *                                  @OA\Property(property="title",type="string"),
- *                                  @OA\Property(property="code",type="string"),
- *                                  @OA\Property(property="category",type="string"),
- *                                  @OA\Property(property="start_time",type="datetime"),
- *                                  @OA\Property(property="end_time",type="datetime"),
- *                                  @OA\Property(property="location",type="string"),
- *                                  @OA\Property(property="description",type="string"),
- *                                  @OA\Property(property="img",type="string"),
- *                                  @OA\Property(property="value",type="double"),
- *                                  @OA\Property(property="user_id",type="integer"),
- *                                  @OA\Property(property="tags",type="string"),
- *                                  @OA\Property(property="recurrence",type="string"),
+ *                              @SWG\Items(
+ *                                  @SWG\Property(property="type",type="integer"),
+ *                                  @SWG\Property(property="title",type="string"),
+ *                                  @SWG\Property(property="code",type="string"),
+ *                                  @SWG\Property(property="category",type="string"),
+ *                                  @SWG\Property(property="start_time",type="datetime"),
+ *                                  @SWG\Property(property="end_time",type="datetime"),
+ *                                  @SWG\Property(property="location",type="string"),
+ *                                  @SWG\Property(property="description",type="string"),
+ *                                  @SWG\Property(property="img",type="string"),
+ *                                  @SWG\Property(property="value",type="double"),
+ *                                  @SWG\Property(property="user_id",type="integer"),
+ *                                  @SWG\Property(property="tags",type="string"),
+ *                                  @SWG\Property(property="recurrence",type="string"),
  *                                  )
  *                              )
  *                      )
@@ -302,44 +302,44 @@ class HomeController extends Controller
  *             )
  *         )
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *     )
  *
  */
  /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/home/proximas",
  *      tags={"home"},
  *      summary="Home",
  *      description="Return next Events",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation",
- *          @OA\MediaType(
+ *          @SWG\MediaType(
  *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(
+ *             @SWG\Schema(
+ *                 @SWG\Property(
  *                     property="data",
  *                     type="array",
- *                      @OA\Items(
- *                          @OA\Property(
+ *                      @SWG\Items(
+ *                          @SWG\Property(
  *                              property="proximas",
  *                              type="array",
  *
- *                              @OA\Items(
- *                                  @OA\Property(property="type",type="integer"),
- *                                  @OA\Property(property="title",type="string"),
- *                                  @OA\Property(property="code",type="string"),
- *                                  @OA\Property(property="category",type="string"),
- *                                  @OA\Property(property="start_time",type="datetime"),
- *                                  @OA\Property(property="end_time",type="datetime"),
- *                                  @OA\Property(property="location",type="string"),
- *                                  @OA\Property(property="description",type="string"),
- *                                  @OA\Property(property="img",type="string"),
- *                                  @OA\Property(property="value",type="double"),
- *                                  @OA\Property(property="user_id",type="integer"),
- *                                  @OA\Property(property="tags",type="string"),
- *                                  @OA\Property(property="recurrence",type="string"),
+ *                              @SWG\Items(
+ *                                  @SWG\Property(property="type",type="integer"),
+ *                                  @SWG\Property(property="title",type="string"),
+ *                                  @SWG\Property(property="code",type="string"),
+ *                                  @SWG\Property(property="category",type="string"),
+ *                                  @SWG\Property(property="start_time",type="datetime"),
+ *                                  @SWG\Property(property="end_time",type="datetime"),
+ *                                  @SWG\Property(property="location",type="string"),
+ *                                  @SWG\Property(property="description",type="string"),
+ *                                  @SWG\Property(property="img",type="string"),
+ *                                  @SWG\Property(property="value",type="double"),
+ *                                  @SWG\Property(property="user_id",type="integer"),
+ *                                  @SWG\Property(property="tags",type="string"),
+ *                                  @SWG\Property(property="recurrence",type="string"),
  *                                  )
  *                              )
  *                      )
@@ -348,44 +348,44 @@ class HomeController extends Controller
  *             )
  *         )
  *        ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *     )
  *
  */
 /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/home/held",
  *      tags={"home"},
  *      summary="Home",
  *      description="Return the events held",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation",
- *          @OA\MediaType(
+ *          @SWG\MediaType(
  *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(
+ *             @SWG\Schema(
+ *                 @SWG\Property(
  *                     property="data",
  *                     type="array",
- *                      @OA\Items(
- *                          @OA\Property(
+ *                      @SWG\Items(
+ *                          @SWG\Property(
  *                              property="events",
  *                              type="array",
  *
- *                              @OA\Items(
- *                                  @OA\Property(property="type",type="integer"),
- *                                  @OA\Property(property="title",type="string"),
- *                                  @OA\Property(property="code",type="string"),
- *                                  @OA\Property(property="category",type="string"),
- *                                  @OA\Property(property="start_time",type="datetime"),
- *                                  @OA\Property(property="end_time",type="datetime"),
- *                                  @OA\Property(property="location",type="string"),
- *                                  @OA\Property(property="description",type="string"),
- *                                  @OA\Property(property="img",type="string"),
- *                                  @OA\Property(property="value",type="double"),
- *                                  @OA\Property(property="user_id",type="integer"),
- *                                  @OA\Property(property="tags",type="string"),
- *                                  @OA\Property(property="recurrence",type="string"),
+ *                              @SWG\Items(
+ *                                  @SWG\Property(property="type",type="integer"),
+ *                                  @SWG\Property(property="title",type="string"),
+ *                                  @SWG\Property(property="code",type="string"),
+ *                                  @SWG\Property(property="category",type="string"),
+ *                                  @SWG\Property(property="start_time",type="datetime"),
+ *                                  @SWG\Property(property="end_time",type="datetime"),
+ *                                  @SWG\Property(property="location",type="string"),
+ *                                  @SWG\Property(property="description",type="string"),
+ *                                  @SWG\Property(property="img",type="string"),
+ *                                  @SWG\Property(property="value",type="double"),
+ *                                  @SWG\Property(property="user_id",type="integer"),
+ *                                  @SWG\Property(property="tags",type="string"),
+ *                                  @SWG\Property(property="recurrence",type="string"),
  *                                  )
  *                              )
  *                      )
@@ -394,45 +394,45 @@ class HomeController extends Controller
  *             )
  *         )
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *     )
  *
  */
 
 /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/home/byme",
  *      tags={"home"},
  *      summary="byme",
  *      description="Return events that I've created",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
   *          description="successful operation",
- *          @OA\MediaType(
+ *          @SWG\MediaType(
  *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(
+ *             @SWG\Schema(
+ *                 @SWG\Property(
  *                     property="data",
  *                     type="array",
- *                      @OA\Items(
- *                          @OA\Property(
+ *                      @SWG\Items(
+ *                          @SWG\Property(
  *                              property="events",
  *                              type="array",
  *
- *                              @OA\Items(
- *                                  @OA\Property(property="type",type="integer"),
- *                                  @OA\Property(property="title",type="string"),
- *                                  @OA\Property(property="code",type="string"),
- *                                  @OA\Property(property="category",type="string"),
- *                                  @OA\Property(property="start_time",type="datetime"),
- *                                  @OA\Property(property="end_time",type="datetime"),
- *                                  @OA\Property(property="location",type="string"),
- *                                  @OA\Property(property="description",type="string"),
- *                                  @OA\Property(property="img",type="string"),
- *                                  @OA\Property(property="value",type="double"),
- *                                  @OA\Property(property="user_id",type="integer"),
- *                                  @OA\Property(property="tags",type="string"),
- *                                  @OA\Property(property="recurrence",type="string"),
+ *                              @SWG\Items(
+ *                                  @SWG\Property(property="type",type="integer"),
+ *                                  @SWG\Property(property="title",type="string"),
+ *                                  @SWG\Property(property="code",type="string"),
+ *                                  @SWG\Property(property="category",type="string"),
+ *                                  @SWG\Property(property="start_time",type="datetime"),
+ *                                  @SWG\Property(property="end_time",type="datetime"),
+ *                                  @SWG\Property(property="location",type="string"),
+ *                                  @SWG\Property(property="description",type="string"),
+ *                                  @SWG\Property(property="img",type="string"),
+ *                                  @SWG\Property(property="value",type="double"),
+ *                                  @SWG\Property(property="user_id",type="integer"),
+ *                                  @SWG\Property(property="tags",type="string"),
+ *                                  @SWG\Property(property="recurrence",type="string"),
  *                                  )
  *                              )
  *                      )
@@ -440,45 +440,45 @@ class HomeController extends Controller
  *                 example={"data": {"events": {{    "id": 7,    "type": 1,    "category": "teste",    "title": " LUNCH ‘N’ LEARN – MERO 2",    "code": "#1",    "start_time": "2020-02-27 22:24:53",    "end_time": "2020-02-28 00:24:53",    "location": "SALA 2",    "description": "",    "recurrence": "none",    "img": "1",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false},{    "id": 8,    "type": 1,    "category": "teste",    "title": "INNOVATION TECHNIQUES TRAINING",    "code": "#2",    "start_time": "2020-02-20 22:24:53",    "end_time": "2020-02-21 00:24:53",    "location": "SALA 5",    "description": "",    "recurrence": "none",    "img": "2",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false}}}}
  *             )
  *         )*       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *     )
  *
  */
 
  /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/home/going",
  *      tags={"home"},
  *      summary="Home",
  *      description="Return the going events",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
   *          description="successful operation",
- *          @OA\MediaType(
+ *          @SWG\MediaType(
  *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(
+ *             @SWG\Schema(
+ *                 @SWG\Property(
  *                     property="data",
  *                     type="array",
- *                      @OA\Items(
- *                          @OA\Property(
+ *                      @SWG\Items(
+ *                          @SWG\Property(
  *                              property="events",
  *                              type="array",
  *
- *                              @OA\Items(
- *                                  @OA\Property(property="type",type="integer"),
- *                                  @OA\Property(property="title",type="string"),
- *                                  @OA\Property(property="code",type="string"),
- *                                  @OA\Property(property="category",type="string"),
- *                                  @OA\Property(property="start_time",type="datetime"),
- *                                  @OA\Property(property="end_time",type="datetime"),
- *                                  @OA\Property(property="location",type="string"),
- *                                  @OA\Property(property="description",type="string"),
- *                                  @OA\Property(property="img",type="string"),
- *                                  @OA\Property(property="value",type="double"),
- *                                  @OA\Property(property="user_id",type="integer"),
- *                                  @OA\Property(property="tags",type="string"),
- *                                  @OA\Property(property="recurrence",type="string"),
+ *                              @SWG\Items(
+ *                                  @SWG\Property(property="type",type="integer"),
+ *                                  @SWG\Property(property="title",type="string"),
+ *                                  @SWG\Property(property="code",type="string"),
+ *                                  @SWG\Property(property="category",type="string"),
+ *                                  @SWG\Property(property="start_time",type="datetime"),
+ *                                  @SWG\Property(property="end_time",type="datetime"),
+ *                                  @SWG\Property(property="location",type="string"),
+ *                                  @SWG\Property(property="description",type="string"),
+ *                                  @SWG\Property(property="img",type="string"),
+ *                                  @SWG\Property(property="value",type="double"),
+ *                                  @SWG\Property(property="user_id",type="integer"),
+ *                                  @SWG\Property(property="tags",type="string"),
+ *                                  @SWG\Property(property="recurrence",type="string"),
  *                                  )
  *                              )
  *                      )
@@ -486,66 +486,66 @@ class HomeController extends Controller
  *                 example={"data": {"events": {{    "id": 7,    "type": 1,    "category": "teste",    "title": " LUNCH ‘N’ LEARN – MERO 2",    "code": "#1",    "start_time": "2020-02-27 22:24:53",    "end_time": "2020-02-28 00:24:53",    "location": "SALA 2",    "description": "",    "recurrence": "none",    "img": "1",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false},{    "id": 8,    "type": 1,    "category": "teste",    "title": "INNOVATION TECHNIQUES TRAINING",    "code": "#2",    "start_time": "2020-02-20 22:24:53",    "end_time": "2020-02-21 00:24:53",    "location": "SALA 5",    "description": "",    "recurrence": "none",    "img": "2",    "value": 10,    "user_id": 1,    "event_id": null,    "boost": 0,    "created_at": null,    "updated_at": null,    "users_confirmed_count": 0,    "confirm_status": false,    "interest_status": false}}}}
  *             )
  *         )*       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *     )
  *
  */
 /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/mynotifications",
  *      operationId="mynotification",
  *      tags={"mynotification"},
  *      summary="My Notifications",
  *      description="Nesta rota, eu estou retornando o último evento adicionado com as tags dele e retornando os eventos que ele não avaliou",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation",
- *          @OA\MediaType(
+ *          @SWG\MediaType(
  *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(
+ *             @SWG\Schema(
+ *                 @SWG\Property(
  *                     property="data",
  *                     type="array",
- *                      @OA\Items(
- *                          @OA\Property(
+ *                      @SWG\Items(
+ *                          @SWG\Property(
  *                              property="LastEvent",
  *                              type="array",
  *
- *                              @OA\Items(
- *                                  @OA\Property(property="type",type="integer"),
- *                                  @OA\Property(property="title",type="string"),
- *                                  @OA\Property(property="code",type="string"),
- *                                  @OA\Property(property="category",type="string"),
- *                                  @OA\Property(property="start_time",type="datetime"),
- *                                  @OA\Property(property="end_time",type="datetime"),
- *                                  @OA\Property(property="location",type="string"),
- *                                  @OA\Property(property="description",type="string"),
- *                                  @OA\Property(property="img",type="string"),
- *                                  @OA\Property(property="value",type="double"),
- *                                  @OA\Property(property="user_id",type="integer"),
- *                                  @OA\Property(property="tags",type="string"),
- *                                  @OA\Property(property="recurrence",type="string"),
+ *                              @SWG\Items(
+ *                                  @SWG\Property(property="type",type="integer"),
+ *                                  @SWG\Property(property="title",type="string"),
+ *                                  @SWG\Property(property="code",type="string"),
+ *                                  @SWG\Property(property="category",type="string"),
+ *                                  @SWG\Property(property="start_time",type="datetime"),
+ *                                  @SWG\Property(property="end_time",type="datetime"),
+ *                                  @SWG\Property(property="location",type="string"),
+ *                                  @SWG\Property(property="description",type="string"),
+ *                                  @SWG\Property(property="img",type="string"),
+ *                                  @SWG\Property(property="value",type="double"),
+ *                                  @SWG\Property(property="user_id",type="integer"),
+ *                                  @SWG\Property(property="tags",type="string"),
+ *                                  @SWG\Property(property="recurrence",type="string"),
  *                                  )
  *                              ),
  *
- *                          @OA\Property(
+ *                          @SWG\Property(
  *                              property="eventsWithoutRate",
  *                              type="array",
  *
- *                              @OA\Items(
- *                                  @OA\Property(property="type",type="integer"),
- *                                  @OA\Property(property="title",type="string"),
- *                                  @OA\Property(property="code",type="string"),
- *                                  @OA\Property(property="category",type="string"),
- *                                  @OA\Property(property="start_time",type="datetime"),
- *                                  @OA\Property(property="end_time",type="datetime"),
- *                                  @OA\Property(property="location",type="string"),
- *                                  @OA\Property(property="description",type="string"),
- *                                  @OA\Property(property="img",type="string"),
- *                                  @OA\Property(property="value",type="double"),
- *                                  @OA\Property(property="user_id",type="integer"),
- *                                  @OA\Property(property="tags",type="string"),
- *                                  @OA\Property(property="recurrence",type="string"),
+ *                              @SWG\Items(
+ *                                  @SWG\Property(property="type",type="integer"),
+ *                                  @SWG\Property(property="title",type="string"),
+ *                                  @SWG\Property(property="code",type="string"),
+ *                                  @SWG\Property(property="category",type="string"),
+ *                                  @SWG\Property(property="start_time",type="datetime"),
+ *                                  @SWG\Property(property="end_time",type="datetime"),
+ *                                  @SWG\Property(property="location",type="string"),
+ *                                  @SWG\Property(property="description",type="string"),
+ *                                  @SWG\Property(property="img",type="string"),
+ *                                  @SWG\Property(property="value",type="double"),
+ *                                  @SWG\Property(property="user_id",type="integer"),
+ *                                  @SWG\Property(property="tags",type="string"),
+ *                                  @SWG\Property(property="recurrence",type="string"),
  *                                  )
  *                              )
  *                      )
@@ -554,7 +554,7 @@ class HomeController extends Controller
  *             )
  *         )
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *     )
  *
  */

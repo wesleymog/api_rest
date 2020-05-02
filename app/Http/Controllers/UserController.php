@@ -102,10 +102,10 @@ class UserController extends Controller
 //Api Documentation
 
 /**
- * @OA\Tag(
+ * @SWG\Tag(
  *     name="users",
  *     description="Everything about your users",
- *     @OA\ExternalDocumentation(
+ *     @SWG\ExternalDocumentation(
  *         description="Find out more",
  *         url="http://swagger.io"
  *     )
@@ -114,17 +114,17 @@ class UserController extends Controller
 
 
  /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/users",
  *      operationId="getusers",
  *      tags={"users"},
  *      summary="Get list of users",
  *      description="Returns list of Users",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -133,34 +133,34 @@ class UserController extends Controller
  * Returns list of users
  */
    /**
- * @OA\Put(
+ * @SWG\Put(
  *      path="/users/{id}",
  *      operationId="update_user",
  *      tags={"users"},
  *      summary="Edit an user",
  *      description="Returns list of users",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *
  *     )
  *
  * Return an user Edited
  */
    /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/users/{id}",
  *      operationId="single_user",
  *      tags={"users"},
  *      summary="Get an user",
  *      description="Returns list of users",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *
  *     )
  *
@@ -168,17 +168,17 @@ class UserController extends Controller
  */
 
  /**
- * @OA\Post(
+ * @SWG\Post(
  *      path="/users",
  *      operationId="add_user",
  *      tags={"users"},
  *      summary="Add an user",
  *      description="Returns list of users",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -188,17 +188,17 @@ class UserController extends Controller
  */
 
  /**
- * @OA\Delete(
+ * @SWG\Delete(
  *      path="/users/{id}",
  *      operationId="delete_user",
  *      tags={"users"},
  *      summary="Delete an user",
  *      description="Returns list of users",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *
  *     )
  *
@@ -207,17 +207,17 @@ class UserController extends Controller
 
 
    /**
- * @OA\Get(
+ * @SWG\Get(
  *      path="/users/import",
  *      operationId="import_user",
  *      tags={"users"},
  *      summary="CSV Import Users",
  *      description="Importing user from XLS or CSV document",
- *      @OA\Response(
+ *      @SWG\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @OA\Response(response=400, description="Bad request"),
+ *       @SWG\Response(response=400, description="Bad request"),
  *
  *     )
  *
