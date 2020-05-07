@@ -100,27 +100,167 @@ class ContentController extends Controller
 // Documentação API
 
 /**
- * @SWG\Tag(
+ * @OA\Tag(
  *     name="reset_password",
  *     description="Reset Password routes",
- *     @SWG\ExternalDocumentation(
+ *     @OA\ExternalDocumentation(
  *         description="Find out more",
  *         url="http://swagger.io"
  *     )
  * )
  */
+
 /**
- * @SWG\Get(
+ * @OA\Tag(
+ *     name="content",
+ *     description="All about contents",
+ *     @OA\ExternalDocumentation(
+ *         description="Find out more",
+ *         url="http://swagger.io"
+ *     )
+ * )
+ */
+
+/**
+ * @OA\Get(
+ *      path="/content",
+ *      operationId="get_content",
+ *      tags={"content"},
+ *      summary="Get Content",
+ *      description="Returns list of contents",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ * Returns list of contents
+ */
+
+/**
+ * @OA\Post(
+ *      path="/content",
+ *      operationId="post_content",
+ *      tags={"content"},
+ *      summary="Post de conteúdo",
+ *      description="Cadastra um conteúdo",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="title",
+ *                     type="text"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="body",
+ *                     type="text"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="link",
+ *                     type="text"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="user_id",
+ *                     type="integer"
+ *                 ),
+ *                 example={"title": "mamamia", "body":"blabal", "link":"", "user_id":1},
+ *                 required={"title", "user_id"}
+ *             )
+ *         )
+ *     ),
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ */
+
+/**
+ * @OA\Put(
+ *      path="/content/{id}",
+ *      operationId="put_content",
+ *      tags={"content"},
+ *      summary="Put de conteúdo",
+ *      description="Edita um conteúdo",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="title",
+ *                     type="text"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="body",
+ *                     type="text"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="link",
+ *                     type="text"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="user_id",
+ *                     type="integer"
+ *                 ),
+ *                 example={"title": "mamamia", "body":"blabal", "link":"", "user_id":1},
+ *                 required={"title", "user_id"}
+ *             )
+ *         )
+ *     ),
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ */
+
+/**
+ * @OA\Delete(
+ *      path="/content/{id}",
+ *      operationId="delete_content",
+ *      tags={"content"},
+ *      summary="Delete Content",
+ *      description="Deleta um conteúdo",
+ *      @OA\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @OA\Response(response=400, description="Bad request"),
+ *       security={
+ *           {"api_key_security_example": {}}
+ *       }
+ *     )
+ *
+ * Returns list of contents
+ */
+
+/**
+ * @OA\Get(
  *      path="/password/find/{token}",
  *      operationId="check_token_password",
  *      tags={"reset_password"},
  *      summary="Check if exist token",
  *      description="Returns list of Communities",
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -130,17 +270,17 @@ class ContentController extends Controller
  */
 
 /**
- * @SWG\Post(
+ * @OA\Post(
  *      path="/password/create",
  *      operationId="reset_password_request",
  *      tags={"reset_password"},
  *      summary="Envia um email para resetar a senha",
  *      description="Envia um email para resetar a senha",
- *     @SWG\RequestBody(
- *         @SWG\MediaType(
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
  *             mediaType="application/json",
- *             @SWG\Schema(
- *                 @SWG\Property(
+ *             @OA\Schema(
+ *                 @OA\Property(
  *                     property="email",
  *                     type="text"
  *                 ),
@@ -149,11 +289,11 @@ class ContentController extends Controller
  *             )
  *         )
  *     ),
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -162,29 +302,29 @@ class ContentController extends Controller
  */
 
 /**
- * @SWG\Post(
+ * @OA\Post(
  *      path="/password/reset",
  *      operationId="reset_password",
  *      tags={"reset_password"},
  *      summary="Form reset password",
  *      description="Formulário de resetar a senha",
- *     @SWG\RequestBody(
- *         @SWG\MediaType(
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
  *             mediaType="application/json",
- *             @SWG\Schema(
- *                 @SWG\Property(
+ *             @OA\Schema(
+ *                 @OA\Property(
  *                     property="email",
  *                     type="text"
  *                 ),
- *                 @SWG\Property(
+ *                 @OA\Property(
  *                     property="token",
  *                     type="text"
  *                 ),
- *                 @SWG\Property(
+ *                 @OA\Property(
  *                     property="password",
  *                     type="text"
  *                 ),
- *                 @SWG\Property(
+ *                 @OA\Property(
  *                     property="password_confirmation",
  *                     type="text"
  *                 ),
@@ -193,11 +333,11 @@ class ContentController extends Controller
  *             )
  *         )
  *     ),
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }

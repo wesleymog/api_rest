@@ -8,11 +8,624 @@
         },
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": "https://back.mojosolutions.co/api/",
+            "description": "Server Mojo"
+        }
+    ],
     "paths": {
+        "/admin/dashboard": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Para gerar os dados necessários para a geração dos gráficos",
+                "description": "{O type pode ser: participation, evaluation, initiativeCreated, initiativeCreatedByType initiativeCreatedByTags, interests, skills",
+                "operationId": "dashboard",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "type"
+                                ],
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "type": {
+                                                    "type": "integer"
+                                                },
+                                                "filters": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "tag": {
+                                                                "type": "text"
+                                                            },
+                                                            "start_time": {
+                                                                "type": "datetime"
+                                                            },
+                                                            "end_time": {
+                                                                "type": "datetime"
+                                                            },
+                                                            "type": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "type": "skills",
+                                    "filters": {
+                                        "tag": "4",
+                                        "start_time": "2020-03-13 21:55:38",
+                                        "end_time": "2020-05-11 21:55:38",
+                                        "type": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "quando as demais opções",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "indicator": {
+                                                        "type": "number"
+                                                    },
+                                                    "period": {
+                                                        "type": "datetime"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "data": {
+                                            "indicator": 0,
+                                            "period": "2020-03-13 21:55:38"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/communities": {
+            "get": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Get list of communities",
+                "description": "Returns list of Communities",
+                "operationId": "getcommunities",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Add an communitie",
+                "description": "Returns list of communities",
+                "operationId": "add_communitie",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "img": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "test",
+                                    "description": "teste",
+                                    "img": "test"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/communities/{id}": {
+            "get": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Get an communitie",
+                "description": "Returns list of communities",
+                "operationId": "single_communitie",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Edit an communitie",
+                "description": "Returns list of communities",
+                "operationId": "update_communitie",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "img": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "test",
+                                    "description": "teste",
+                                    "img": "test"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "com"
+                ],
+                "summary": "Delete an communitie",
+                "description": "Returns list of communities",
+                "operationId": "delete_community",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/communities/subscribecontent": {
+            "post": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Add a content to a community",
+                "description": "Add a content to a community",
+                "operationId": "add_community_content",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "content_id",
+                                    "community_id"
+                                ],
+                                "properties": {
+                                    "content_id": {
+                                        "type": "integer"
+                                    },
+                                    "community_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "content_id": 1,
+                                    "community_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/communities/subscribeevent": {
+            "post": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Add a event to a community",
+                "description": "Add a event to a community",
+                "operationId": "add_community_event",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "event_id",
+                                    "community_id"
+                                ],
+                                "properties": {
+                                    "event_id": {
+                                        "type": "integer"
+                                    },
+                                    "community_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "event_id": 1,
+                                    "community_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/communities/subscribeuser": {
+            "post": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Subscribe an user in a community",
+                "description": "Subscribe an user in a community",
+                "operationId": "subscribe_community_user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "community_id",
+                                    "is_admin"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer"
+                                    },
+                                    "community_id": {
+                                        "type": "integer"
+                                    },
+                                    "is_admin": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "user_id": 1,
+                                    "community_id": 1,
+                                    "is_admin": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/communities/subscribemyself": {
+            "post": {
+                "tags": [
+                    "communities"
+                ],
+                "summary": "Subscribe logged user in a community",
+                "description": "Subscribe logged user in a community",
+                "operationId": "subscribe_community_myself",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "community_id"
+                                ],
+                                "properties": {
+                                    "community_id": {
+                                        "type": "integer"
+                                    },
+                                    "is_admin": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "user_id": 1,
+                                    "community_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/content": {
+            "get": {
+                "tags": [
+                    "content"
+                ],
+                "summary": "Get Content",
+                "description": "Returns list of contents",
+                "operationId": "get_content",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "content"
+                ],
+                "summary": "Post de conteúdo",
+                "description": "Cadastra um conteúdo",
+                "operationId": "post_content",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "user_id"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "text"
+                                    },
+                                    "body": {
+                                        "type": "text"
+                                    },
+                                    "link": {
+                                        "type": "text"
+                                    },
+                                    "user_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "mamamia",
+                                    "body": "blabal",
+                                    "link": "",
+                                    "user_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/content/{id}": {
+            "put": {
+                "tags": [
+                    "content"
+                ],
+                "summary": "Put de conteúdo",
+                "description": "Edita um conteúdo",
+                "operationId": "put_content",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "user_id"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "text"
+                                    },
+                                    "body": {
+                                        "type": "text"
+                                    },
+                                    "link": {
+                                        "type": "text"
+                                    },
+                                    "user_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "mamamia",
+                                    "body": "blabal",
+                                    "link": "",
+                                    "user_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "content"
+                ],
+                "summary": "Delete Content",
+                "description": "Deleta um conteúdo",
+                "operationId": "delete_content",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
         "/password/find/{token}": {
             "get": {
                 "tags": [
-                    "Reset Password"
+                    "reset_password"
                 ],
                 "summary": "Check if exist token",
                 "description": "Returns list of Communities",
@@ -35,7 +648,7 @@
         "/password/create": {
             "post": {
                 "tags": [
-                    "Reset Password"
+                    "reset_password"
                 ],
                 "summary": "Envia um email para resetar a senha",
                 "description": "Envia um email para resetar a senha",
@@ -78,7 +691,7 @@
         "/password/reset": {
             "post": {
                 "tags": [
-                    "Reset Password"
+                    "reset_password"
                 ],
                 "summary": "Form reset password",
                 "description": "Formulário de resetar a senha",
@@ -132,12 +745,1958 @@
                     }
                 ]
             }
+        },
+        "/": {
+            "get": {
+                "description": "Home page",
+                "responses": {
+                    "default": {
+                        "description": "Welcome page"
+                    }
+                }
+            }
+        },
+        "/events": {
+            "get": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Get list of Events",
+                "description": "Returns list of Evennts",
+                "operationId": "getEvents",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Add an Event",
+                "description": "Returns list of Events",
+                "operationId": "add_event",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "type",
+                                    "title",
+                                    "code",
+                                    "category",
+                                    "start_time",
+                                    "end_time",
+                                    "location",
+                                    "description",
+                                    "img",
+                                    "value",
+                                    "recurrence"
+                                ],
+                                "properties": {
+                                    "type": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "category": {
+                                        "type": "string"
+                                    },
+                                    "start_time": {
+                                        "type": "datetime"
+                                    },
+                                    "end_time": {
+                                        "type": "datetime"
+                                    },
+                                    "location": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "img": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "double"
+                                    },
+                                    "user_id": {
+                                        "type": "integer"
+                                    },
+                                    "tags": {
+                                        "type": "string"
+                                    },
+                                    "recurrence": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "type": 1,
+                                    "title": "olg",
+                                    "code": "#a101",
+                                    "category": "1",
+                                    "start_time": "2019-12-28 20:45:12",
+                                    "end_time": "2019-08-30 23:05:12",
+                                    "location": "Carrin",
+                                    "description": "legal",
+                                    "img": null,
+                                    "value": 10,
+                                    "user_id": 1,
+                                    "tags": "teste, feliz, sad, test",
+                                    "recurrence": "monthly"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/events/{id}": {
+            "get": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Get an Event",
+                "description": "Returns list of Events",
+                "operationId": "single_event",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Edit an Event",
+                "description": "Returns list of Events",
+                "operationId": "update_event",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "type",
+                                    "title",
+                                    "code",
+                                    "category",
+                                    "start_time",
+                                    "end_time",
+                                    "location",
+                                    "description",
+                                    "img",
+                                    "value",
+                                    "recurrence"
+                                ],
+                                "properties": {
+                                    "type": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "category": {
+                                        "type": "string"
+                                    },
+                                    "start_time": {
+                                        "type": "datetime"
+                                    },
+                                    "end_time": {
+                                        "type": "datetime"
+                                    },
+                                    "location": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "img": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "double"
+                                    },
+                                    "user_id": {
+                                        "type": "integer"
+                                    },
+                                    "tags": {
+                                        "type": "string"
+                                    },
+                                    "recurrence": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "type": 1,
+                                    "title": "olg",
+                                    "code": "#a101",
+                                    "category": "1",
+                                    "start_time": "2019-12-28 20:45:12",
+                                    "end_time": "2019-08-30 23:05:12",
+                                    "location": "Carrin",
+                                    "description": "legal",
+                                    "img": null,
+                                    "value": 10,
+                                    "user_id": 1,
+                                    "tags": "teste, feliz, sad, test",
+                                    "recurrence": "monthly"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Delete an Event",
+                "description": "Returns list of Events",
+                "operationId": "delete_event",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/home/": {
+            "get": {
+                "tags": [
+                    "home"
+                ],
+                "summary": "Home",
+                "description": "Home",
+                "operationId": "home",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "eventsForHome": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string"
+                                                                },
+                                                                "code": {
+                                                                    "type": "string"
+                                                                },
+                                                                "category": {
+                                                                    "type": "string"
+                                                                },
+                                                                "start_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "end_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "location": {
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string"
+                                                                },
+                                                                "img": {
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "type": "double"
+                                                                },
+                                                                "user_id": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "tags": {
+                                                                    "type": "string"
+                                                                },
+                                                                "recurrence": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "data": {
+                                            "eventsForHome": [
+                                                {
+                                                    "id": 7,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": " LUNCH ‘N’ LEARN – MERO 2",
+                                                    "code": "#1",
+                                                    "start_time": "2020-02-27 22:24:53",
+                                                    "end_time": "2020-02-28 00:24:53",
+                                                    "location": "SALA 2",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "1",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null,
+                                                    "users_confirmed_count": 0,
+                                                    "confirm_status": false,
+                                                    "interest_status": false
+                                                },
+                                                {
+                                                    "id": 8,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": "INNOVATION TECHNIQUES TRAINING",
+                                                    "code": "#2",
+                                                    "start_time": "2020-02-20 22:24:53",
+                                                    "end_time": "2020-02-21 00:24:53",
+                                                    "location": "SALA 5",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "2",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null,
+                                                    "users_confirmed_count": 0,
+                                                    "confirm_status": false,
+                                                    "interest_status": false
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/home/alta": {
+            "get": {
+                "tags": [
+                    "home"
+                ],
+                "summary": "Home",
+                "description": "Return top events ",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "alta": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string"
+                                                                },
+                                                                "code": {
+                                                                    "type": "string"
+                                                                },
+                                                                "category": {
+                                                                    "type": "string"
+                                                                },
+                                                                "start_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "end_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "location": {
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string"
+                                                                },
+                                                                "img": {
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "type": "double"
+                                                                },
+                                                                "user_id": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "tags": {
+                                                                    "type": "string"
+                                                                },
+                                                                "recurrence": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "data": {
+                                            "alta": [
+                                                {
+                                                    "id": 7,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": " LUNCH ‘N’ LEARN – MERO 2",
+                                                    "code": "#1",
+                                                    "start_time": "2020-02-27 22:24:53",
+                                                    "end_time": "2020-02-28 00:24:53",
+                                                    "location": "SALA 2",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "1",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null,
+                                                    "users_confirmed_count": 0,
+                                                    "confirm_status": false,
+                                                    "interest_status": false
+                                                },
+                                                {
+                                                    "id": 8,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": "INNOVATION TECHNIQUES TRAINING",
+                                                    "code": "#2",
+                                                    "start_time": "2020-02-20 22:24:53",
+                                                    "end_time": "2020-02-21 00:24:53",
+                                                    "location": "SALA 5",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "2",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null,
+                                                    "users_confirmed_count": 0,
+                                                    "confirm_status": false,
+                                                    "interest_status": false
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/home/proximas": {
+            "get": {
+                "tags": [
+                    "home"
+                ],
+                "summary": "Home",
+                "description": "Return next Events",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "proximas": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string"
+                                                                },
+                                                                "code": {
+                                                                    "type": "string"
+                                                                },
+                                                                "category": {
+                                                                    "type": "string"
+                                                                },
+                                                                "start_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "end_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "location": {
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string"
+                                                                },
+                                                                "img": {
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "type": "double"
+                                                                },
+                                                                "user_id": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "tags": {
+                                                                    "type": "string"
+                                                                },
+                                                                "recurrence": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "data": {
+                                            "proximas": [
+                                                {
+                                                    "id": 7,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": " LUNCH ‘N’ LEARN – MERO 2",
+                                                    "code": "#1",
+                                                    "start_time": "2020-02-27 22:24:53",
+                                                    "end_time": "2020-02-28 00:24:53",
+                                                    "location": "SALA 2",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "1",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null,
+                                                    "users_confirmed_count": 0,
+                                                    "confirm_status": false,
+                                                    "interest_status": false
+                                                },
+                                                {
+                                                    "id": 8,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": "INNOVATION TECHNIQUES TRAINING",
+                                                    "code": "#2",
+                                                    "start_time": "2020-02-20 22:24:53",
+                                                    "end_time": "2020-02-21 00:24:53",
+                                                    "location": "SALA 5",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "2",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null,
+                                                    "users_confirmed_count": 0,
+                                                    "confirm_status": false,
+                                                    "interest_status": false
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/home/held": {
+            "get": {
+                "tags": [
+                    "home"
+                ],
+                "summary": "Home",
+                "description": "Return the events held",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "events": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string"
+                                                                },
+                                                                "code": {
+                                                                    "type": "string"
+                                                                },
+                                                                "category": {
+                                                                    "type": "string"
+                                                                },
+                                                                "start_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "end_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "location": {
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string"
+                                                                },
+                                                                "img": {
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "type": "double"
+                                                                },
+                                                                "user_id": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "tags": {
+                                                                    "type": "string"
+                                                                },
+                                                                "recurrence": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "data": {
+                                            "events": [
+                                                {
+                                                    "id": 7,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": " LUNCH ‘N’ LEARN – MERO 2",
+                                                    "code": "#1",
+                                                    "start_time": "2020-02-27 22:24:53",
+                                                    "end_time": "2020-02-28 00:24:53",
+                                                    "location": "SALA 2",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "1",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null,
+                                                    "users_confirmed_count": 0,
+                                                    "confirm_status": false,
+                                                    "interest_status": false
+                                                },
+                                                {
+                                                    "id": 8,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": "INNOVATION TECHNIQUES TRAINING",
+                                                    "code": "#2",
+                                                    "start_time": "2020-02-20 22:24:53",
+                                                    "end_time": "2020-02-21 00:24:53",
+                                                    "location": "SALA 5",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "2",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null,
+                                                    "users_confirmed_count": 0,
+                                                    "confirm_status": false,
+                                                    "interest_status": false
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/home/byme": {
+            "get": {
+                "tags": [
+                    "home"
+                ],
+                "summary": "byme",
+                "description": "Return events that I've created",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "events": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string"
+                                                                },
+                                                                "code": {
+                                                                    "type": "string"
+                                                                },
+                                                                "category": {
+                                                                    "type": "string"
+                                                                },
+                                                                "start_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "end_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "location": {
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string"
+                                                                },
+                                                                "img": {
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "type": "double"
+                                                                },
+                                                                "user_id": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "tags": {
+                                                                    "type": "string"
+                                                                },
+                                                                "recurrence": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "data": {
+                                            "events": [
+                                                {
+                                                    "id": 7,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": " LUNCH ‘N’ LEARN – MERO 2",
+                                                    "code": "#1",
+                                                    "start_time": "2020-02-27 22:24:53",
+                                                    "end_time": "2020-02-28 00:24:53",
+                                                    "location": "SALA 2",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "1",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null,
+                                                    "users_confirmed_count": 0,
+                                                    "confirm_status": false,
+                                                    "interest_status": false
+                                                },
+                                                {
+                                                    "id": 8,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": "INNOVATION TECHNIQUES TRAINING",
+                                                    "code": "#2",
+                                                    "start_time": "2020-02-20 22:24:53",
+                                                    "end_time": "2020-02-21 00:24:53",
+                                                    "location": "SALA 5",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "2",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null,
+                                                    "users_confirmed_count": 0,
+                                                    "confirm_status": false,
+                                                    "interest_status": false
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/home/going": {
+            "get": {
+                "tags": [
+                    "home"
+                ],
+                "summary": "Home",
+                "description": "Return the going events",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "events": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string"
+                                                                },
+                                                                "code": {
+                                                                    "type": "string"
+                                                                },
+                                                                "category": {
+                                                                    "type": "string"
+                                                                },
+                                                                "start_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "end_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "location": {
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string"
+                                                                },
+                                                                "img": {
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "type": "double"
+                                                                },
+                                                                "user_id": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "tags": {
+                                                                    "type": "string"
+                                                                },
+                                                                "recurrence": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "data": {
+                                            "events": [
+                                                {
+                                                    "id": 7,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": " LUNCH ‘N’ LEARN – MERO 2",
+                                                    "code": "#1",
+                                                    "start_time": "2020-02-27 22:24:53",
+                                                    "end_time": "2020-02-28 00:24:53",
+                                                    "location": "SALA 2",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "1",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null,
+                                                    "users_confirmed_count": 0,
+                                                    "confirm_status": false,
+                                                    "interest_status": false
+                                                },
+                                                {
+                                                    "id": 8,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": "INNOVATION TECHNIQUES TRAINING",
+                                                    "code": "#2",
+                                                    "start_time": "2020-02-20 22:24:53",
+                                                    "end_time": "2020-02-21 00:24:53",
+                                                    "location": "SALA 5",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "2",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null,
+                                                    "users_confirmed_count": 0,
+                                                    "confirm_status": false,
+                                                    "interest_status": false
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/mynotifications": {
+            "get": {
+                "tags": [
+                    "mynotification"
+                ],
+                "summary": "My Notifications",
+                "description": "Nesta rota, eu estou retornando o último evento adicionado com as tags dele e retornando os eventos que ele não avaliou",
+                "operationId": "mynotification",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "LastEvent": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string"
+                                                                },
+                                                                "code": {
+                                                                    "type": "string"
+                                                                },
+                                                                "category": {
+                                                                    "type": "string"
+                                                                },
+                                                                "start_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "end_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "location": {
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string"
+                                                                },
+                                                                "img": {
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "type": "double"
+                                                                },
+                                                                "user_id": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "tags": {
+                                                                    "type": "string"
+                                                                },
+                                                                "recurrence": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "eventsWithoutRate": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string"
+                                                                },
+                                                                "code": {
+                                                                    "type": "string"
+                                                                },
+                                                                "category": {
+                                                                    "type": "string"
+                                                                },
+                                                                "start_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "end_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "location": {
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string"
+                                                                },
+                                                                "img": {
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "type": "double"
+                                                                },
+                                                                "user_id": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "tags": {
+                                                                    "type": "string"
+                                                                },
+                                                                "recurrence": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "data": {
+                                            "LastEvent": {
+                                                "id": 7,
+                                                "type": 1,
+                                                "category": "teste",
+                                                "title": " LUNCH ‘N’ LEARN – MERO 2",
+                                                "code": "#1",
+                                                "start_time": "2020-03-14 11:05:55",
+                                                "end_time": "2020-03-14 13:05:55",
+                                                "location": "SALA 2",
+                                                "description": "",
+                                                "recurrence": "none",
+                                                "img": "1",
+                                                "value": 10,
+                                                "user_id": 1,
+                                                "event_id": null,
+                                                "boost": 0,
+                                                "created_at": null,
+                                                "updated_at": null
+                                            },
+                                            "eventsWithoutRate": [
+                                                {
+                                                    "id": 15,
+                                                    "type": 1,
+                                                    "category": "1",
+                                                    "title": "olg",
+                                                    "code": "#a101",
+                                                    "start_time": "2019-12-28 20:45:12",
+                                                    "end_time": "2019-08-30 23:05:12",
+                                                    "location": "Carrin",
+                                                    "description": "legal",
+                                                    "recurrence": "monthly",
+                                                    "img": null,
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": "2020-03-02 22:47:29",
+                                                    "updated_at": "2020-03-02 22:47:29",
+                                                    "pivot": {
+                                                        "user_id": 1,
+                                                        "event_id": 15
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/invitation": {
+            "post": {
+                "tags": [
+                    "Invitations"
+                ],
+                "summary": "Adiciona um novo convite para um usuário em um evento",
+                "description": "Receiver é o convidado do evento",
+                "operationId": "add_invitation",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "receiver_id",
+                                    "event_id"
+                                ],
+                                "properties": {
+                                    "receiver_id": {
+                                        "type": "integer"
+                                    },
+                                    "event_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "receiver_id": 10,
+                                    "event_id": 10
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/myInvitations": {
+            "get": {
+                "tags": [
+                    "Invitations"
+                ],
+                "summary": "Retorna os convites do usuário logado",
+                "description": "",
+                "operationId": "get_user_invitations",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/invitation/event/{id}": {
+            "get": {
+                "tags": [
+                    "Invitations"
+                ],
+                "summary": "Retorna os convites de acordo com o id do evento",
+                "description": "",
+                "operationId": "get_invitations_by_event",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/notifications/": {
+            "get": {
+                "tags": [
+                    "notifications"
+                ],
+                "summary": "Notifications",
+                "description": "Retornando as notificações do usuério e removendo os convites desatualizados, ordenados pela ordem de criação",
+                "operationId": "notifications",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "notifications": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "type": {
+                                                        "type": "integer"
+                                                    },
+                                                    "user_id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "read": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "event_id": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string"
+                                                                },
+                                                                "code": {
+                                                                    "type": "string"
+                                                                },
+                                                                "category": {
+                                                                    "type": "string"
+                                                                },
+                                                                "start_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "end_time": {
+                                                                    "type": "datetime"
+                                                                },
+                                                                "location": {
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string"
+                                                                },
+                                                                "img": {
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "type": "double"
+                                                                },
+                                                                "user_id": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "tags": {
+                                                                    "type": "string"
+                                                                },
+                                                                "recurrence": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "notifications": [
+                                            {
+                                                "id": 2,
+                                                "user_id": 1,
+                                                "event_id": {
+                                                    "id": 7,
+                                                    "type": 1,
+                                                    "category": "teste",
+                                                    "title": " LUNCH ‘N’ LEARN – MERO 2",
+                                                    "code": "#1",
+                                                    "start_time": "2020-03-03 17:58:25",
+                                                    "end_time": "2020-03-04 19:58:25",
+                                                    "location": "SALA 2",
+                                                    "description": "",
+                                                    "recurrence": "none",
+                                                    "img": "1",
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": null,
+                                                    "updated_at": null
+                                                },
+                                                "type": 2,
+                                                "read": 0,
+                                                "created_at": "2020-03-06 21:00:36",
+                                                "updated_at": "2020-03-06 21:00:36"
+                                            },
+                                            {
+                                                "id": 1,
+                                                "user_id": 1,
+                                                "event_id": {
+                                                    "id": 15,
+                                                    "type": 1,
+                                                    "category": "1",
+                                                    "title": "sasaasa",
+                                                    "code": "#a101",
+                                                    "start_time": "2019-12-28 20:45:12",
+                                                    "end_time": "2019-08-30 23:05:12",
+                                                    "location": "Carrin",
+                                                    "description": "legal",
+                                                    "recurrence": "none",
+                                                    "img": null,
+                                                    "value": 10,
+                                                    "user_id": 1,
+                                                    "event_id": null,
+                                                    "boost": 0,
+                                                    "created_at": "2020-03-06 20:59:04",
+                                                    "updated_at": "2020-03-06 20:59:04"
+                                                },
+                                                "type": 1,
+                                                "read": 0,
+                                                "created_at": "2020-03-06 20:59:04",
+                                                "updated_at": "2020-03-06 20:59:04"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/notifications/markAsRead/{id}": {
+            "put": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Marca como lida uma notificação",
+                "description": "Marca como lida uma notificação",
+                "operationId": "notification_markAsRead",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Notificação não encontrada"
+                    }
+                }
+            }
+        },
+        "/notifications/{id}": {
+            "delete": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Deleta uma notificação",
+                "description": "Remove uma notificação com o id enviado",
+                "operationId": "notification_delete",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Notificação não encontrada"
+                    }
+                }
+            }
+        },
+        "/participation": {
+            "post": {
+                "tags": [
+                    "participation"
+                ],
+                "summary": "Confirm your participation",
+                "description": "Confirm a participation of an user",
+                "operationId": "confirmation_participation",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "confirm_status",
+                                    "event_id"
+                                ],
+                                "properties": {
+                                    "confirm_status": {
+                                        "type": "boolean"
+                                    },
+                                    "event_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "event_id": 10,
+                                    "confirm_status": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/participation/rate": {
+            "post": {
+                "tags": [
+                    "participation"
+                ],
+                "summary": "Rate your participation in an event",
+                "description": "Returns your rate in the event",
+                "operationId": "rate_participation",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "confirm_status",
+                                    "event_id"
+                                ],
+                                "properties": {
+                                    "status": {
+                                        "type": "boolean"
+                                    },
+                                    "event_id": {
+                                        "type": "integer"
+                                    },
+                                    "rate": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "event_id": 10,
+                                    "status": true,
+                                    "rate": 5
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/tags": {
+            "get": {
+                "tags": [
+                    "tags"
+                ],
+                "summary": "Get list of tags",
+                "description": "Returns list of tags",
+                "operationId": "gettags",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "tags"
+                ],
+                "summary": "Add an tag",
+                "description": "Returns list of tags",
+                "operationId": "add_tag",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/tags/{id}": {
+            "get": {
+                "tags": [
+                    "tags"
+                ],
+                "summary": "Get an tag",
+                "description": "Returns list of tags",
+                "operationId": "single_tag",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tags"
+                ],
+                "summary": "Edit an tag",
+                "description": "Returns list of tags",
+                "operationId": "update_tag",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tags"
+                ],
+                "summary": "Delete an tag",
+                "description": "Returns list of tags",
+                "operationId": "delete_tag",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/transaction/{id}": {
+            "get": {
+                "tags": [
+                    "transaction"
+                ],
+                "summary": "Get an user transaction",
+                "description": "Returns users transactions",
+                "operationId": "get_users_transactions",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/transaction": {
+            "post": {
+                "tags": [
+                    "transaction"
+                ],
+                "summary": "Add an user",
+                "description": "Add a transaction",
+                "operationId": "add_transaction",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "receiver_id",
+                                    "event_id"
+                                ],
+                                "properties": {
+                                    "receiver_id": {
+                                        "type": "integer"
+                                    },
+                                    "event_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "receiver_id": 10,
+                                    "event_id": 10
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get list of users",
+                "description": "Returns list of Users",
+                "operationId": "getusers",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Add an user",
+                "description": "Returns list of users",
+                "operationId": "add_user",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get an user",
+                "description": "Returns list of users",
+                "operationId": "single_user",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Edit an user",
+                "description": "Returns list of users",
+                "operationId": "update_user",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Delete an user",
+                "description": "Returns list of users",
+                "operationId": "delete_user",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/users/import": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "CSV Import Users",
+                "description": "Importing user from XLS or CSV document",
+                "operationId": "import_user",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
         }
     },
     "tags": [
         {
-            "name": "Reset Password",
+            "name": "Admin",
+            "description": "Admin routes",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "communities",
+            "description": "Everything about your communities",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "reset_password",
             "description": "Reset Password routes",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "content",
+            "description": "All about contents",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "Events",
+            "description": "Everything about your Events",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "home",
+            "description": "Home"
+        },
+        {
+            "name": "Invitations",
+            "description": "Everything about your Invitation",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "notifications",
+            "description": "notifications"
+        },
+        {
+            "name": "participation",
+            "description": "Everything about your participations"
+        },
+        {
+            "name": "tags",
+            "description": "Everything about your tags",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "transaction",
+            "description": "Everything about your transactions"
+        },
+        {
+            "name": "users",
+            "description": "Everything about your users",
             "externalDocs": {
                 "description": "Find out more",
                 "url": "http://swagger.io"

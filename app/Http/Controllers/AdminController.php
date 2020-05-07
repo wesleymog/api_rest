@@ -252,10 +252,10 @@ class AdminController extends Controller
 // Documentação API
 
 /**
- * @SWG\Tag(
+ * @OA\Tag(
  *     name="Admin",
  *     description="Admin routes",
- *     @SWG\ExternalDocumentation(
+ *     @OA\ExternalDocumentation(
  *         description="Find out more",
  *         url="http://swagger.io"
  *     )
@@ -263,29 +263,29 @@ class AdminController extends Controller
  */
 
   /**
- * @SWG\Post(
+ * @OA\Post(
  *      path="/admin/dashboard",
  *      operationId="dashboard",
  *      tags={"Admin"},
  *      summary="Para gerar os dados necessários para a geração dos gráficos",
  *      description="{O type pode ser: participation, evaluation, initiativeCreated, initiativeCreatedByType initiativeCreatedByTags, interests, skills",
- *     @SWG\RequestBody(
- *         @SWG\MediaType(
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
  *             mediaType="application/json",
- *             @SWG\Schema(
- *                 @SWG\Property(
+ *             @OA\Schema(
+ *                 @OA\Property(
  *                     property="data",
  *                     type="array",
- *                      @SWG\Items(
- *                          @SWG\Property(property="type",type="integer"),
- *                          @SWG\Property(
+ *                      @OA\Items(
+ *                          @OA\Property(property="type",type="integer"),
+ *                          @OA\Property(
  *                              property="filters",
  *                              type="array",
- *                              @SWG\Items(
- *                                  @SWG\Property(property="tag",type="text"),
- *                                  @SWG\Property(property="start_time",type="datetime"),
- *                                  @SWG\Property(property="end_time",type="datetime"),
- *                                  @SWG\Property(property="type",type="integer"),
+ *                              @OA\Items(
+ *                                  @OA\Property(property="tag",type="text"),
+ *                                  @OA\Property(property="start_time",type="datetime"),
+ *                                  @OA\Property(property="end_time",type="datetime"),
+ *                                  @OA\Property(property="type",type="integer"),
  *                              )
  *                          ),
  *                         )
@@ -295,18 +295,18 @@ class AdminController extends Controller
  *             )
  *         )
  *     ),
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="quando as demais opções",
- *          @SWG\MediaType(
+ *          @OA\MediaType(
  *              mediaType="application/json",
- *              @SWG\Schema(
- *                 @SWG\Property(
+ *              @OA\Schema(
+ *                 @OA\Property(
  *                     property="data",
  *                     type="array",
- *                     @SWG\Items(
- *                        @SWG\Property(property="indicator",type="number"),
- *                        @SWG\Property(property="period",type="datetime"),
+ *                     @OA\Items(
+ *                        @OA\Property(property="indicator",type="number"),
+ *                        @OA\Property(property="period",type="datetime"),
  *                  )
  *                ),
  *                 example={ "skills",  {{ "tag_id": { "id": 1, "name": "Esportes", "created_at": null, "updated_at": null }, "total": 1 }}},
@@ -315,7 +315,7 @@ class AdminController extends Controller
  *              )
  *          )
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }

@@ -87,28 +87,28 @@ class ParticipationController extends Controller
 
 
 /**
- * @SWG\Tag(
+ * @OA\Tag(
  *     name="participation",
  *     description="Everything about your participations",
  * )
  */
 
  /**
- * @SWG\Post(
+ * @OA\Post(
  *      path="/participation",
  *      operationId="confirmation_participation",
  *      tags={"participation"},
  *      summary="Confirm your participation",
  *      description="Confirm a participation of an user",
- *     @SWG\RequestBody(
- *         @SWG\MediaType(
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
  *             mediaType="application/json",
- *             @SWG\Schema(
- *                 @SWG\Property(
+ *             @OA\Schema(
+ *                 @OA\Property(
  *                     property="confirm_status",
  *                     type="boolean"
  *                 ),
- *                 @SWG\Property(
+ *                 @OA\Property(
  *                     property="event_id",
  *                     type="integer"
  *                 ),
@@ -117,36 +117,36 @@ class ParticipationController extends Controller
  *             )
  *         )
  *     ),
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *
  *     )
  *
  * Return the participation of the user
  */
    /**
- * @SWG\Post(
+ * @OA\Post(
  *      path="/participation/rate",
  *      operationId="rate_participation",
  *      tags={"participation"},
  *      summary="Rate your participation in an event",
  *      description="Returns your rate in the event",
- *     @SWG\RequestBody(
- *         @SWG\MediaType(
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
  *             mediaType="application/json",
- *             @SWG\Schema(
- *                 @SWG\Property(
+ *             @OA\Schema(
+ *                 @OA\Property(
  *                     property="status",
  *                     type="boolean"
  *                 ),
- *                 @SWG\Property(
+ *                 @OA\Property(
  *                     property="event_id",
  *                     type="integer"
  *                 ),
- *                 @SWG\Property(
+ *                 @OA\Property(
  *                     property="rate",
  *                     type="integer"
  *                 ),
@@ -155,11 +155,11 @@ class ParticipationController extends Controller
  *             )
  *         )
  *     ),
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *
  *     )
  *

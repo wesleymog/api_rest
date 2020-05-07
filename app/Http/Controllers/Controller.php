@@ -25,13 +25,19 @@ class Controller extends BaseController
  */
 /**
  *
- *  @SWG\Server(
+ *  @OA\Server(
 *      url="https://back.mojosolutions.co/api/",
  *      description="Server Mojo"
  * )
  */
 
 
-
+/**
+ * @OA\Get(
+ *     path="/",
+ *     description="Home page",
+ *     @OA\Response(response="default", description="Welcome page")
+ * )
+ */
 
 

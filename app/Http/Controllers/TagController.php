@@ -65,10 +65,10 @@ class TagController extends Controller
 }
 //Api Documentation
 /**
- * @SWG\Tag(
+ * @OA\Tag(
  *     name="tags",
  *     description="Everything about your tags",
- *     @SWG\ExternalDocumentation(
+ *     @OA\ExternalDocumentation(
  *         description="Find out more",
  *         url="http://swagger.io"
  *     )
@@ -76,17 +76,17 @@ class TagController extends Controller
  */
 
  /**
- * @SWG\Get(
+ * @OA\Get(
  *      path="/tags",
  *      operationId="gettags",
  *      tags={"tags"},
  *      summary="Get list of tags",
  *      description="Returns list of tags",
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -95,34 +95,34 @@ class TagController extends Controller
  * Returns list of tags
  */
    /**
- * @SWG\Put(
+ * @OA\Put(
  *      path="/tags/{id}",
  *      operationId="update_tag",
  *      tags={"tags"},
  *      summary="Edit an tag",
  *      description="Returns list of tags",
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *
  *     )
  *
  * Return an tag Edited
  */
    /**
- * @SWG\Get(
+ * @OA\Get(
  *      path="/tags/{id}",
  *      operationId="single_tag",
  *      tags={"tags"},
  *      summary="Get an tag",
  *      description="Returns list of tags",
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *
  *     )
  *
@@ -130,17 +130,17 @@ class TagController extends Controller
  */
 
  /**
- * @SWG\Post(
+ * @OA\Post(
  *      path="/tags",
  *      operationId="add_tag",
  *      tags={"tags"},
  *      summary="Add an tag",
  *      description="Returns list of tags",
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -150,17 +150,17 @@ class TagController extends Controller
  */
 
  /**
- * @SWG\Delete(
+ * @OA\Delete(
  *      path="/tags/{id}",
  *      operationId="delete_tag",
  *      tags={"tags"},
  *      summary="Delete an tag",
  *      description="Returns list of tags",
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *
  *     )
  *

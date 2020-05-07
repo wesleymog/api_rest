@@ -208,10 +208,10 @@ class CommunityController extends Controller
 // Documentação API
 
 /**
- * @SWG\Tag(
+ * @OA\Tag(
  *     name="communities",
  *     description="Everything about your communities",
- *     @SWG\ExternalDocumentation(
+ *     @OA\ExternalDocumentation(
  *         description="Find out more",
  *         url="http://swagger.io"
  *     )
@@ -219,17 +219,17 @@ class CommunityController extends Controller
  */
 
  /**
- * @SWG\Get(
+ * @OA\Get(
  *      path="/communities",
  *      operationId="getcommunities",
  *      tags={"communities"},
  *      summary="Get list of communities",
  *      description="Returns list of Communities",
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -238,47 +238,47 @@ class CommunityController extends Controller
  * Returns list of communities
  */
    /**
- * @SWG\Put(
+ * @OA\Put(
  *      path="/communities/{id}",
  *      operationId="update_communitie",
  *      tags={"communities"},
  *      summary="Edit an communitie",
  *      description="Returns list of communities",
- *     @SWG\RequestBody(
- *         @SWG\MediaType(
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
  *             mediaType="application/json",
- *             @SWG\Schema(
- *                 @SWG\Property(property="name",type="string"),
- *                 @SWG\Property(property="description",type="string"),
- *                 @SWG\Property(property="img",type="string"),
+ *             @OA\Schema(
+ *                 @OA\Property(property="name",type="string"),
+ *                 @OA\Property(property="description",type="string"),
+ *                 @OA\Property(property="img",type="string"),
  *                 example={"name":"test", "description": "teste", "img": "test"},
  *                 required={"name"}
  *             )
  *         )
  *     ),
 
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *
  *     )
  *
  * Return an communitie Edited
  */
    /**
- * @SWG\Get(
+ * @OA\Get(
  *      path="/communities/{id}",
  *      operationId="single_communitie",
  *      tags={"communities"},
  *      summary="Get an communitie",
  *      description="Returns list of communities",
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *
  *     )
  *
@@ -286,29 +286,29 @@ class CommunityController extends Controller
  */
 
  /**
- * @SWG\Post(
+ * @OA\Post(
  *      path="/communities",
  *      operationId="add_communitie",
  *      tags={"communities"},
  *      summary="Add an communitie",
  *      description="Returns list of communities",
- *     @SWG\RequestBody(
- *         @SWG\MediaType(
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
  *             mediaType="application/json",
- *             @SWG\Schema(
- *                 @SWG\Property(property="name",type="string"),
- *                 @SWG\Property(property="description",type="string"),
- *                 @SWG\Property(property="img",type="string"),
+ *             @OA\Schema(
+ *                 @OA\Property(property="name",type="string"),
+ *                 @OA\Property(property="description",type="string"),
+ *                 @OA\Property(property="img",type="string"),
  *                 example={"name":"test", "description": "teste", "img": "test"},
  *                 required={"name"}
  *             )
  *         )
  *     ),
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -318,17 +318,17 @@ class CommunityController extends Controller
  */
 
  /**
- * @SWG\Delete(
+ * @OA\Delete(
  *      path="/communities/{id}",
  *      operationId="delete_community",
  *      tags={"com"},
  *      summary="Delete an communitie",
  *      description="Returns list of communities",
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *
  *     )
  *
@@ -336,28 +336,28 @@ class CommunityController extends Controller
  */
 
  /**
- * @SWG\Post(
+ * @OA\Post(
  *      path="/communities/subscribecontent",
  *      operationId="add_community_content",
  *      tags={"communities"},
  *      summary="Add a content to a community",
  *      description="Add a content to a community",
- *     @SWG\RequestBody(
- *         @SWG\MediaType(
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
  *             mediaType="application/json",
- *             @SWG\Schema(
- *                 @SWG\Property(property="content_id",type="integer"),
- *                 @SWG\Property(property="community_id",type="integer"),
+ *             @OA\Schema(
+ *                 @OA\Property(property="content_id",type="integer"),
+ *                 @OA\Property(property="community_id",type="integer"),
  *                 example={"content_id":1, "community_id": 1},
  *                 required={"content_id", "community_id"}
  *             )
  *         )
  *     ),
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -366,28 +366,28 @@ class CommunityController extends Controller
  *
  */
 /**
- * @SWG\Post(
+ * @OA\Post(
  *      path="/communities/subscribeevent",
  *      operationId="add_community_event",
  *      tags={"communities"},
  *      summary="Add a event to a community",
  *      description="Add a event to a community",
- *     @SWG\RequestBody(
- *         @SWG\MediaType(
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
  *             mediaType="application/json",
- *             @SWG\Schema(
- *                 @SWG\Property(property="event_id",type="integer"),
- *                 @SWG\Property(property="community_id",type="integer"),
+ *             @OA\Schema(
+ *                 @OA\Property(property="event_id",type="integer"),
+ *                 @OA\Property(property="community_id",type="integer"),
  *                 example={"event_id":1, "community_id": 1},
  *                 required={"event_id", "community_id"}
  *             )
  *         )
  *     ),
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -396,29 +396,29 @@ class CommunityController extends Controller
  *
  */
 /**
- * @SWG\Post(
+ * @OA\Post(
  *      path="/communities/subscribeuser",
  *      operationId="subscribe_community_user",
  *      tags={"communities"},
  *      summary="Subscribe an user in a community",
  *      description="Subscribe an user in a community",
- *     @SWG\RequestBody(
- *         @SWG\MediaType(
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
  *             mediaType="application/json",
- *             @SWG\Schema(
- *                 @SWG\Property(property="user_id",type="integer"),
- *                 @SWG\Property(property="community_id",type="integer"),
- *                 @SWG\Property(property="is_admin",type="boolean"),
+ *             @OA\Schema(
+ *                 @OA\Property(property="user_id",type="integer"),
+ *                 @OA\Property(property="community_id",type="integer"),
+ *                 @OA\Property(property="is_admin",type="boolean"),
  *                 example={"user_id":1, "community_id": 1, "is_admin":true},
  *                 required={"user_id", "community_id","is_admin"}
  *             )
  *         )
  *     ),
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
@@ -427,28 +427,28 @@ class CommunityController extends Controller
  *
  */
 /**
- * @SWG\Post(
+ * @OA\Post(
  *      path="/communities/subscribemyself",
  *      operationId="subscribe_community_myself",
  *      tags={"communities"},
  *      summary="Subscribe logged user in a community",
  *      description="Subscribe logged user in a community",
- *     @SWG\RequestBody(
- *         @SWG\MediaType(
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
  *             mediaType="application/json",
- *             @SWG\Schema(
- *                 @SWG\Property(property="community_id",type="integer"),
- *                 @SWG\Property(property="is_admin",type="boolean"),
+ *             @OA\Schema(
+ *                 @OA\Property(property="community_id",type="integer"),
+ *                 @OA\Property(property="is_admin",type="boolean"),
  *                 example={"user_id":1, "community_id": 1},
  *                 required={"user_id", "community_id"}
  *             )
  *         )
  *     ),
- *      @SWG\Response(
+ *      @OA\Response(
  *          response=200,
  *          description="successful operation"
  *       ),
- *       @SWG\Response(response=400, description="Bad request"),
+ *       @OA\Response(response=400, description="Bad request"),
  *       security={
  *           {"api_key_security_example": {}}
  *       }
