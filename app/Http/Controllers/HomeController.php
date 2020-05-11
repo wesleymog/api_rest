@@ -36,13 +36,14 @@ class HomeController extends Controller
         $user =  Auth::user();
         $tags = $user->tags->pluck('id');
         $carbon =Carbon::now( 'America/Sao_Paulo')->toDateTimeString();
-        if($tags->count() <= 0){
+        /**if($tags->count() <= 0){
             $events = Event::where('start_time','>',$carbon)->orderBy('start_time', 'asc')->get();
             return response()->json(['data'=>["Proximas"=>$events,'msg'=>'Você não possui filtros']], 200);
         }
         $events = DB::table('event_tag')->whereIn('tag_id', $tags)->pluck("event_id");
         $events = Event::whereIn('id', $events)->where('end_time','>',$carbon)->paginate(10);
-
+        **/
+        $events = Event::where('start_time','>',$carbon)->orderBy('start_time', 'asc')->get();
         foreach ($events as $event) {
             $event->getStatus();
             $event->tags;
