@@ -1,0 +1,19 @@
+runtime: php
+env: flex
+
+runtime_config:
+  document_root: public
+ 
+skip_files:
+  - .env
+
+env_variables:
+  APP_LOG: errorlog
+  APP_DEBUG: true
+  APP_KEY: 2T3f0NwB3ENVc3OWUIXuqmHOyR6moKvnR8NtetYRHlk=
+  DB_CONNECTION: mysql
+  DB_HOST: 127.0.0.1
+  DB_PORT: 3306
+  DB_DATABASE: Mojo
+  DB_USERNAME: root
+  DB_PASSWORD: "#Mojo2020"
